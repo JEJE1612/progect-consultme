@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/chat.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/profail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
+import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register.dart';
+import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
+import 'package:flutter_application_1/core/thems/Mytheam.dart';
+import 'package:flutter_application_1/core/utils/MyBlocObserver.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+void main() {
+  runApp(const MyApp());
+  Bloc.observer = MyBlocObserver();
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MyBloc(),
+        ),
+      ],
+      child: BlocConsumer<MyBloc, MyState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Consult_me ',
+            debugShowCheckedModeBanner: false,
+            home: const SplashView(),
+            theme: MyThemData.lightThem,
+            darkTheme: MyThemData.darkTheam,
+            themeMode: MyBloc.get(context).themeMode,
+            initialRoute: SplashView.nameKey,
+            routes: {
+              SplashView.nameKey: (_) => const SplashView(),
+              Login.nameKey: (_) => Login(),
+              HomeLayOut.nameKey: (_) => const HomeLayOut(),
+              Redister.nameKey: (_) => Redister(),
+              Profail.nameKey: (_) => Profail(),
+              Setting.nameKey: (_) => Setting(),
+              ChatScreen.nameKey: (_) => ChatScreen(),
+            },
+          );
+        },
+      ),
+    );
+  }
+}

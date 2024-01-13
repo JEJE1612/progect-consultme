@@ -16,6 +16,9 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
 
+bool obscureText = false;
+IconData icon = Icons.visibility_outlined;
+
 TextEditingController email = TextEditingController();
 TextEditingController password = TextEditingController();
 var formkey = GlobalKey<FormState>();
@@ -68,6 +71,7 @@ class _LoginState extends State<Login> {
                       height: MediaQuery.of(context).size.height * 0.002,
                     ),
                     CustomTextForm(
+                      obscureText: false,
                       keyboardType: TextInputType.emailAddress,
                       hinttext: "ُEnter Your Email",
                       mycontroller: email,
@@ -94,6 +98,12 @@ class _LoginState extends State<Login> {
                       height: MediaQuery.of(context).size.height * 0.002,
                     ),
                     CustomTextForm(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          changepassWord();
+                        },
+                        icon: Icon(icon),
+                      ),
                       keyboardType: TextInputType.visiblePassword,
                       hinttext: "ُEnter Your password",
                       mycontroller: password,
@@ -103,6 +113,7 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
+                      obscureText: obscureText,
                     ),
                     InkWell(
                       onTap: () {},
@@ -129,6 +140,7 @@ class _LoginState extends State<Login> {
                       child: CustomButtonAuth(
                         title: "login",
                         onPressed: () async {
+                          setState(() {});
                           if (formkey.currentState!.validate()) {}
                         },
                       ),
@@ -168,5 +180,14 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void changepassWord() {
+    setState(() {
+      obscureText = !obscureText;
+      icon = obscureText
+          ? Icons.visibility_off_outlined
+          : Icons.visibility_outlined;
+    });
   }
 }

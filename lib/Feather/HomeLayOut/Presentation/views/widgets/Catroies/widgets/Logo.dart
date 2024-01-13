@@ -10,7 +10,7 @@ class Logo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircleAvatar(
-        backgroundColor: Colors.blue[300],
+        backgroundColor: Color(0xff1290CB),
         radius: 58,
         child: Center(
           child: Column(

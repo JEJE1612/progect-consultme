@@ -5,13 +5,17 @@ class CustomTextForm extends StatelessWidget {
   final TextEditingController mycontroller;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
+  final Widget? suffixIcon;
+  final bool obscureText;
 
   const CustomTextForm(
       {super.key,
       required this.hinttext,
       required this.mycontroller,
       this.validator,
-      required this.keyboardType});
+      required this.keyboardType,
+      this.suffixIcon,
+      required this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,10 @@ class CustomTextForm extends StatelessWidget {
       validator: validator,
       controller: mycontroller,
       keyboardType: keyboardType,
+      obscureText: obscureText,
       decoration: InputDecoration(
           hintText: hinttext,
+          suffixIcon: suffixIcon,
           hintStyle: const TextStyle(fontSize: 16, color: Colors.black),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 2, horizontal: 20),

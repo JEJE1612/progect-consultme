@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/CustomAppBarCatrois.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/ListOneCiral.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/customLine.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/GradViewBuilder.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/GridViewBuilder.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 

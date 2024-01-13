@@ -23,14 +23,13 @@ class BuildConsulat extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 10),
         padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 3),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(255, 211, 208, 208)),
+            borderRadius: BorderRadius.circular(20), color: Colors.grey[300]),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
               Container(
-                height: 80,
+                height: 60,
                 width: 60,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
@@ -62,7 +61,12 @@ class BuildConsulat extends StatelessWidget {
                     ),
                     Text(
                       "SomeInformation ",
-                      style: Styles.textStyle14.copyWith(color: Colors.white),
+                      style: Styles.textStyle14.copyWith(
+                        color: Theme.of(context).colorScheme.brightness ==
+                                Brightness.dark
+                            ? Colors.white
+                            : Colors.black45,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

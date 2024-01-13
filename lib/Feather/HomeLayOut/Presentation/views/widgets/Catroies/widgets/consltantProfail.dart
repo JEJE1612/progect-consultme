@@ -100,22 +100,47 @@ class ConsltantProfail extends StatelessWidget {
               const SizedBox(
                 height: 5,
               ),
-              SizedBox(
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.password_rounded,
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      "Adout And Some information ",
-                      style: Styles.textStyle16.copyWith(color: Colors.grey),
-                    ),
-                  ],
-                ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        " Write BIO",
+                        style: Styles.textStyle16.copyWith(
+                          color: Theme.of(context).colorScheme.brightness ==
+                                  Brightness.dark
+                              ? Colors.white
+                              : Colors.black54,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.badge_outlined,
+                            color: Theme.of(context).colorScheme.brightness ==
+                                    Brightness.dark
+                                ? Colors.white
+                                : Colors.black54,
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            "Job title",
+                            style: Styles.textStyle16.copyWith(
+                              color: Theme.of(context).colorScheme.brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black54,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ]),
               ),
               const SizedBox(
                 height: 5,

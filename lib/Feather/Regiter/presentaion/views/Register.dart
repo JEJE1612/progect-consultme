@@ -70,6 +70,7 @@ class _RedisterState extends State<Redister> {
                       ),
                     ),
                     CustomTextForm(
+                      obscureText: false,
                       keyboardType: TextInputType.name,
                       hinttext: "ُEnter Your name",
                       mycontroller: namme,
@@ -93,6 +94,7 @@ class _RedisterState extends State<Redister> {
                       ),
                     ),
                     CustomTextForm(
+                      obscureText: false,
                       keyboardType: TextInputType.emailAddress,
                       hinttext: "ُEnter Your Email",
                       mycontroller: email,
@@ -116,6 +118,7 @@ class _RedisterState extends State<Redister> {
                       ),
                     ),
                     CustomTextForm(
+                      obscureText: false,
                       keyboardType: TextInputType.phone,
                       hinttext: "ُEnter Your phone",
                       mycontroller: email,
@@ -139,6 +142,7 @@ class _RedisterState extends State<Redister> {
                       ),
                     ),
                     CustomTextForm(
+                      obscureText: false,
                       keyboardType: TextInputType.visiblePassword,
                       hinttext: "ُEnter Your password",
                       mycontroller: password,

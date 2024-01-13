@@ -21,33 +21,6 @@ class ItemsListCatroies extends StatelessWidget {
         AssetsData.logo,
         fit: BoxFit.cover,
       ),
-      // child: Container(
-      //   margin: const EdgeInsets.symmetric(horizontal: 10),
-      //   padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
-      //   decoration: BoxDecoration(
-      //     borderRadius: BorderRadius.circular(12),
-      //     image: const DecorationImage(
-      //       image: AssetImage(
-      //         AssetsData.logo,
-      //       ),
-      //     ),
-      //   ),
-      //   child: Row(
-      //     children: [
-      //       const SizedBox(
-      //         width: 35,
-      //       ),
-      //       Text(
-      //         "Theather",
-      //         maxLines: 2,
-      //         overflow: TextOverflow.ellipsis,
-      //         style: Styles.textStyle20.copyWith(
-      //           color: Color(0xff060E1E),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

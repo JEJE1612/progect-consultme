@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/HomeLayOut/presentaion/mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
@@ -27,6 +28,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => MyBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AdminBloc(),
         ),
       ],
       child: BlocConsumer<MyBloc, MyState>(

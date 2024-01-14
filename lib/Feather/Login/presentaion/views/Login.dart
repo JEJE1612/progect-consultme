@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/HomeLayOut/presentaion/views/AdminLayout.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomButtonAuth%20.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomTextForm.dart';
@@ -140,6 +141,11 @@ class _LoginState extends State<Login> {
                       child: CustomButtonAuth(
                         title: "login",
                         onPressed: () async {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AdminLyOut(),
+                              ));
                           setState(() {});
                           if (formkey.currentState!.validate()) {}
                         },

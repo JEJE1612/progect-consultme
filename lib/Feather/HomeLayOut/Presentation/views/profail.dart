@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/Post/AddPost/NewPost.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

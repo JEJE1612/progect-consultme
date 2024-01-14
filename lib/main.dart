@@ -42,7 +42,8 @@ class MyApp extends StatelessWidget {
             home: const SplashView(),
             theme: MyThemData.lightThem,
             darkTheme: MyThemData.darkTheam,
-            themeMode: MyBloc.get(context).themeMode,
+            //themeMode: MyBloc.get(context).themeMode,
+            themeMode: ThemeMode.dark,
             initialRoute: SplashView.nameKey,
             routes: {
               SplashView.nameKey: (_) => const SplashView(),

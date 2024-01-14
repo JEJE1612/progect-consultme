@@ -22,6 +22,13 @@ class Catroisbody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
+            Text(
+              "Hight Reating",
+              style: Styles.textStyle18,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.03,
+            ),
             const ListOneCiral(),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,

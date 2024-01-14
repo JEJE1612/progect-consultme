@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/Post/AddPost/NewPost.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,50 +83,65 @@ class __ProfailState extends State<Profail> {
                           ),
                         ),
                       ),
+                      Positioned(
+                        top: 0,
+                        right: 10,
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 5),
+                            Material(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(50),
+                              child: PopupMenuButton<String>(
+                                itemBuilder: (context) => [
+                                  const PopupMenuItem(
+                                    value: 'update',
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.edit),
+                                        SizedBox(width: 5),
+                                        Text('Edit profail'),
+                                      ],
+                                    ),
+                                  ),
+                                  const PopupMenuItem(
+                                    value: 'Chat',
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.chat),
+                                        SizedBox(width: 5),
+                                        Text('Chat'),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                                onSelected: (value) {
+                                  // Handle selection here
+                                  if (value == 'update') {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => EditProfail(),
+                                      ),
+                                    );
+                                  } else if (value == 'Chat') {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => chatDeatiles(),
+                                      ),
+                                    );
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: PopupMenuButton<String>(
-                      itemBuilder: (context) => [
-                        const PopupMenuItem(
-                          value: 'update',
-                          child: Row(
-                            children: [
-                              Icon(Icons.edit),
-                              SizedBox(width: 5),
-                              Text('Edit profail'),
-                            ],
-                          ),
-                        ),
-                        const PopupMenuItem(
-                          value: 'Setting',
-                          child: Row(
-                            children: [
-                              Icon(Icons.settings),
-                              SizedBox(width: 5),
-                              Text('Setting'),
-                            ],
-                          ),
-                        ),
-                      ],
-                      onSelected: (value) {
-                        // Handle selection here
-                        if (value == 'update') {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => EditProfail(),
-                              ));
-                        } else if (value == 'Setting') {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Setting(),
-                              ));
-                        }
-                      },
-                    ),
+                  SizedBox(
+                    height: 50,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

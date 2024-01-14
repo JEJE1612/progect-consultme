@@ -4,6 +4,7 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/m
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/BodyCaht.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ChatScreen extends StatelessWidget {
   static const String nameKey = "ChatScreen";
@@ -31,6 +32,8 @@ class ChatScreen extends StatelessWidget {
                         "Chat",
                         style: Styles.textStyle20,
                       ),
+                      IconButton(
+                          onPressed: () {}, icon: Icon(FontAwesomeIcons.bell))
                     ],
                   ),
                   SizedBox(

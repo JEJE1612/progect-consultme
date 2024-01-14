@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/Post/AddPost/NewPost.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/Post/ListPost.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/customLine.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/Post/RatingReviews.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Reating.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/ChatDeatiles.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
@@ -14,6 +17,7 @@ class ConsltantProfail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var primaryColor;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -65,25 +69,99 @@ class ConsltantProfail extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Positioned(
+                    top: 0,
+                    right: 10,
+                    child: Row(
+                      children: [
+                        const SizedBox(width: 5),
+                        Material(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(50),
+                          child: PopupMenuButton<String>(
+                            itemBuilder: (context) => [
+                              const PopupMenuItem(
+                                value: 'update',
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.edit),
+                                    SizedBox(width: 5),
+                                    Text('Edit profail'),
+                                  ],
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'Chat',
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.chat),
+                                    SizedBox(width: 5),
+                                    Text('Counsult'),
+                                  ],
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'NewPost',
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.settings),
+                                    SizedBox(width: 5),
+                                    Text('NewPost'),
+                                  ],
+                                ),
+                              ),
+                              const PopupMenuItem(
+                                value: 'prodelm',
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.horizontal_distribute),
+                                    SizedBox(width: 5),
+                                    Text('prodelm'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            onSelected: (value) {
+                              // Handle selection here
+                              if (value == 'update') {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EditProfail(),
+                                  ),
+                                );
+                              } else if (value == 'NewPost') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NewPost(),
+                                  ),
+                                );
+                              } else if (value == 'prodelm') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Setting(),
+                                  ),
+                                );
+                              } else if (value == 'Chat') {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => chatDeatiles(),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => chatDeatiles(),
-                          ));
-                    },
-                    icon: const Icon(
-                      Icons.chat_bubble_outline,
-                      color: Colors.grey,
-                    )),
-              ),
               const SizedBox(
-                height: 20,
+                height: 50,
               ),
               Row(
                 children: [
@@ -102,63 +180,56 @@ class ConsltantProfail extends StatelessWidget {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.3,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        " Write BIO",
-                        style: Styles.textStyle16.copyWith(
-                          color: Theme.of(context).colorScheme.brightness ==
-                                  Brightness.dark
-                              ? Colors.white
-                              : Colors.black54,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.badge_outlined,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 6),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Write BIO",
+                          style: Styles.textStyle16.copyWith(
                             color: Theme.of(context).colorScheme.brightness ==
                                     Brightness.dark
                                 ? Colors.white
                                 : Colors.black54,
                           ),
-                          const SizedBox(
-                            width: 3,
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          "Job title",
+                          style: Styles.textStyle16.copyWith(
+                            color: Theme.of(context).colorScheme.brightness ==
+                                    Brightness.dark
+                                ? Colors.white
+                                : Colors.black54,
                           ),
-                          Text(
-                            "Job title",
-                            style: Styles.textStyle16.copyWith(
-                              color: Theme.of(context).colorScheme.brightness ==
-                                      Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black54,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ]),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                      ]),
+                ),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.phone,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(
-                    width: 3,
-                  ),
-                  Text(
-                    "01010657674",
-                    style: Styles.textStyle16.copyWith(color: Colors.grey[500]),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.phone,
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(
+                      width: 3,
+                    ),
+                    Text(
+                      "01010657674",
+                      style:
+                          Styles.textStyle14.copyWith(color: Colors.grey[500]),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 10,
@@ -199,15 +270,6 @@ class ConsltantProfail extends StatelessWidget {
               ),
               const ListViewFeeds(),
             ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Text(
-          "Add ",
-          style: TextStyle(
-            color: Colors.white,
           ),
         ),
       ),

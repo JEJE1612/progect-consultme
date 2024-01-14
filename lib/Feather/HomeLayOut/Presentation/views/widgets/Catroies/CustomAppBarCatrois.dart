@@ -8,14 +8,11 @@ class CustomAppBarCatrois extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Consult Me",
-          style: Styles.textStyle20,
-        ),
-      ],
+    return Center(
+      child: Text(
+        "Consult Me",
+        style: Styles.textStyle20,
+      ),
     );
   }
 }

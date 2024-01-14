@@ -15,8 +15,8 @@ class Logo extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 10,
               ),
               Text(
                 "C",

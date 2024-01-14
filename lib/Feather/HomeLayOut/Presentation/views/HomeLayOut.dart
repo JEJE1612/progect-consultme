@@ -35,6 +35,11 @@ class HomeLayOut extends StatelessWidget {
                       Icons.person_2_outlined,
                     ),
                     label: "profail"),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.settings,
+                    ),
+                    label: "settings"),
               ]),
         );
       },

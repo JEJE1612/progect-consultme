@@ -9,7 +9,7 @@ class GridViewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: 15,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -19,7 +19,7 @@ class GridViewBuilder extends StatelessWidget {
         crossAxisSpacing: 10,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return GradViewBuilder();
+        return const GradViewBuilder();
       },
     );
   }

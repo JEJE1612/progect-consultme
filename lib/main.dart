@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/HomeLayOut/presentaion/mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
@@ -13,8 +16,19 @@ import 'package:flutter_application_1/core/thems/Mytheam.dart';
 import 'package:flutter_application_1/core/utils/MyBlocObserver.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: "AIzaSyB3StQIjdMxZt-1WorB-GDzZ4doOjG1hbg",
+              appId: "1:469912997265:android:97de68703e0502f4c61e30",
+              messagingSenderId: "469912997265",
+              projectId: "consultme-2be0e",
+              storageBucket: "consultme-2be0e.appspot.com"))
+      : await Firebase.initializeApp();
   runApp(const MyApp());
+
   Bloc.observer = MyBlocObserver();
 }
 
@@ -42,8 +56,7 @@ class MyApp extends StatelessWidget {
             home: const SplashView(),
             theme: MyThemData.lightThem,
             darkTheme: MyThemData.darkTheam,
-            //themeMode: MyBloc.get(context).themeMode,
-            themeMode: ThemeMode.dark,
+            themeMode: MyBloc.get(context).themeMode,
             initialRoute: SplashView.nameKey,
             routes: {
               SplashView.nameKey: (_) => const SplashView(),

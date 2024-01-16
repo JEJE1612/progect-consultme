@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/HomeLayOut/presentaion/views/AdminLayout.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Logo.dart';
-import 'package:flutter_application_1/Feather/Login/mangment/LoginState.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomButtonAuth%20.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomTextForm.dart';
 import 'package:flutter_application_1/Feather/Regiter/presentaion/Mangment/CreatAccoubtState.dart';
@@ -29,18 +28,16 @@ class Redister extends StatelessWidget {
       create: (context) => CreatAccount(),
       child: BlocConsumer<CreatAccount, CratAccountState>(
         listener: (context, state) {
-          if (State is ErrorCrestLodingState) {
-            tost(state: ToastStae.eror, text: " Error");
-          } else if (State is CreatUserLodingState) {
+          if (state is CreatUserLodingState) {
             const Center(
-              child: CircularProgressIndicator(
-                color: primarycolor,
-              ),
+              child: CircularProgressIndicator(),
             );
-          } else if (State is SaveDataFireStoreScafull) {
-            tost(state: ToastStae.succes, text: " Scafull Creat Account");
+          } else if (state is ScafullCreatUserState) {
+            tost(text: "Scaffull Login ", state: ToastStae.succes);
             Navigator.pushNamedAndRemoveUntil(
                 context, HomeLayOut.nameKey, (route) => false);
+          } else if (state is ErrorCrestLodingState) {
+            tost(text: state.Error, state: ToastStae.eror);
           }
         },
         builder: (context, state) {
@@ -95,7 +92,9 @@ class Redister extends StatelessWidget {
                             mycontroller: namme,
                             validator: (val) {
                               if (val == "") {
-                                print("Cant de empety");
+                                tost(
+                                    text: "Name Cant de empety",
+                                    state: ToastStae.eror);
                               }
                               return null;
                             },
@@ -119,7 +118,9 @@ class Redister extends StatelessWidget {
                             mycontroller: email,
                             validator: (val) {
                               if (val == "") {
-                                print("Cant de empety");
+                                tost(
+                                    text: "Email Cant de empety",
+                                    state: ToastStae.eror);
                               }
                               return null;
                             },
@@ -143,7 +144,9 @@ class Redister extends StatelessWidget {
                             mycontroller: phone,
                             validator: (val) {
                               if (val == "") {
-                                print("Cant de empety");
+                                tost(
+                                    text: "Phone Cant de empety",
+                                    state: ToastStae.eror);
                               }
                               return null;
                             },
@@ -167,7 +170,9 @@ class Redister extends StatelessWidget {
                             mycontroller: password,
                             validator: (val) {
                               if (val == "") {
-                                print("Cant de empety");
+                                tost(
+                                    text: "password Cant de empety",
+                                    state: ToastStae.eror);
                               }
                               return null;
                             },
@@ -180,13 +185,13 @@ class Redister extends StatelessWidget {
                             child: CustomButtonAuth(
                               title: "SignUp",
                               onPressed: () async {
-                                // if (formkey.currentState!.validate()) {
-                                //   CreatAccount.get(context).userRegister(
-                                //       email: email.text,
-                                //       password: password.text,
-                                //       phone: phone.text,
-                                //       name: namme.text);
-                                // }
+                                if (formkey.currentState!.validate()) {
+                                  CreatAccount.get(context).userRegister(
+                                      email: email.text,
+                                      password: password.text,
+                                      phone: phone.text,
+                                      name: namme.text);
+                                }
                               },
                             ),
                           ),

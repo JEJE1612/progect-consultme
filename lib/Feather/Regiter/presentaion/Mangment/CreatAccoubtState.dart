@@ -7,8 +7,8 @@ class CreatUserLodingState extends CratAccountState {}
 class ScafullCreatUserState extends CratAccountState {}
 
 class ErrorCrestLodingState extends CratAccountState {
-  final Error;
-  ErrorCrestLodingState(this.Error);
+  String Error;
+  ErrorCrestLodingState({required this.Error});
 }
 
 class SaveDataFireStoreLoding extends CratAccountState {}

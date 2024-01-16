@@ -17,9 +17,9 @@ class CreatAccount extends Cubit<CratAccountState> {
     emit(CreatUserLodingState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(
-          email: email,
-           password: password,
-           )
+      email: email,
+      password: password,
+    )
         .then((value) {
       creatSaveData(
         email: email,
@@ -29,7 +29,7 @@ class CreatAccount extends Cubit<CratAccountState> {
       );
       emit(ScafullCreatUserState());
     }).catchError((e) {
-      emit(ErrorCrestLodingState(e.toString()));
+      emit(ErrorCrestLodingState(Error: e.toString()));
     });
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/AdminScreen/presentaion/AdminLayOut/views/AdminLayout.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomTe
 import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register.dart';
 
 import 'package:flutter_application_1/core/utils/constant.dart';
+import 'package:flutter_application_1/core/utils/sharedPresfrace.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,6 +33,7 @@ class Login extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           } else if (state is ScafullLoginState) {
+            CacheHealper.SavedData(key: "uid", value: state.uid);
             tost(text: "Scaffull Login ", state: ToastStae.succes);
             Navigator.pushNamedAndRemoveUntil(
                 context, HomeLayOut.nameKey, (route) => false);
@@ -157,6 +160,14 @@ class Login extends StatelessWidget {
                             child: CustomButtonAuth(
                               title: "login",
                               onPressed: () async {
+                                if (email.text == emailAdimin &&
+                                    password.text == passwordAdmin) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AdminLyOut(),
+                                      ));
+                                }
                                 if (formkey.currentState!.validate()) {
                                   LoginBloc.get(context).loginUser(
                                       email: email.text,

@@ -25,7 +25,9 @@ class LoginBloc extends Cubit<LoginState> {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      emit(ScafullLoginState());
+      emit(ScafullLoginState(
+        uid: value.user!.uid,
+      ));
     }).catchError((e) {
       emit(ErrorLoginState());
     });

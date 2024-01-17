@@ -14,6 +14,7 @@ import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register
 import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
 import 'package:flutter_application_1/core/thems/Mytheam.dart';
 import 'package:flutter_application_1/core/utils/MyBlocObserver.dart';
+import 'package:flutter_application_1/core/utils/sharedPresfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
@@ -27,6 +28,16 @@ void main() async {
               projectId: "consultme-2be0e",
               storageBucket: "consultme-2be0e.appspot.com"))
       : await Firebase.initializeApp();
+
+  await CacheHealper.init();
+  var uid = CacheHealper.getData("uid", key: "uid");
+  // Widget widget;
+  // if (uid != null) {
+  //   widget = HomeLayOut();
+  // }else{
+  //   widget =Login()
+  // }
+
   runApp(const MyApp());
 
   Bloc.observer = MyBlocObserver();

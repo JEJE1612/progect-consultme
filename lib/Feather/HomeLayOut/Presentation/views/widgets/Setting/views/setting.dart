@@ -118,7 +118,7 @@ class _SettingState extends State<Setting> {
                 ),
                 Expanded(
                   child: Align(
-                    alignment: AlignmentDirectional.bottomStart,
+                    alignment: AlignmentDirectional.bottomEnd,
                     child: CustomButton(
                       onTap: () {},
                       text: "LogOut",

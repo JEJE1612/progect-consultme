@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/AdminScreen/presentaion/AdminLayOut/views/AdminLayout.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/Home.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
@@ -165,7 +165,7 @@ class Login extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => AdminLyOut(),
+                                        builder: (context) => AdminHome(),
                                       ));
                                 }
                                 if (formkey.currentState!.validate()) {

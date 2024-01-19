@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 const primarycolor = Colors.blue;
 const ScoundColor = Color(0xff05042C);
+String emailAdimin = "1";
+String passwordAdmin = "1";
 
 Future<bool?> tost({
   required text,

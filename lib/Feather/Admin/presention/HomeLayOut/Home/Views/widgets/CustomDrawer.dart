@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/Home.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/AddCatoies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/AdminSetting.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/DeleteCatroies.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ShowCatroies/ShowCatroies.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/ShowAllConsultant.dart';
+import 'package:flutter_application_1/core/utils/constant.dart';
+import 'package:flutter_application_1/core/utils/styles.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -32,21 +36,100 @@ class _CustomDrawerState extends State<CustomDrawer> {
           children: [
             CustomDrawerHeader(isCollapsable: _isCollapsed),
             const Divider(color: Colors.grey),
-            // home
+            //MangmentCatroies
             CustomListTile(
               isCollapsed: _isCollapsed,
-              icon: Icons.house_outlined,
-              title: 'Home',
+              icon: Icons.note_add_outlined,
+              title: 'Add Catroies',
               infoCount: 0,
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AdminHome(),
+                      builder: (context) => NewCatroies(),
                     ));
               },
             ),
-            // settings
+
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.visibility_outlined,
+              title: 'Show Catroes',
+              infoCount: 0,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShowCatroies(),
+                    ));
+              },
+            ),
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.delete_outline,
+              title: 'Delete Catroes',
+              infoCount: 0,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DeleteCatroies(),
+                    ));
+              },
+            ),
+
+            const Divider(color: Colors.grey),
+
+            //Mangment Consultant
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.supervised_user_circle_sharp,
+              title: 'Show Consultant',
+              infoCount: 0,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShowAllConaltant(),
+                    ));
+              },
+            ),
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.person_2_outlined,
+              title: 'Show User',
+              infoCount: 0,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShowAllConaltant(),
+                    ));
+              },
+            ),
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.contact_support_outlined,
+              title: 'Contact Us',
+              infoCount: 0,
+            ),
+
+            CustomListTile(
+              isCollapsed: _isCollapsed,
+              icon: Icons.delete_outline,
+              title: 'Delete ',
+              infoCount: 0,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DeleteCatroies(),
+                    ));
+              },
+            ),
+
+            const Divider(color: Colors.grey),
+
             CustomListTile(
               isCollapsed: _isCollapsed,
               icon: Icons.settings_outlined,
@@ -59,40 +142,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       builder: (context) => AdminSetting(),
                     ));
               },
-            ),
-
-            // delete account
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.delete_outline,
-              title: 'Delete Account',
-              infoCount: 0,
-            ),
-
-            const Divider(color: Colors.grey),
-
-            // about us
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.info_outline,
-              title: 'About Us',
-              infoCount: 0,
-            ),
-
-            // contact us
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.contact_support_outlined,
-              title: 'Contact Us',
-              infoCount: 0,
-            ),
-
-            // privacy policy
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.privacy_tip_outlined,
-              title: 'Privacy Policy',
-              infoCount: 0,
             ),
             OwnerInfo(isCollapsed: _isCollapsed),
             Align(
@@ -145,6 +194,7 @@ class CustomDrawerHeader extends StatelessWidget {
       width: double.infinity,
       child: Row(
         children: [
+          OwnerAvatar(),
           if (isCollapsable) ...[
             const SizedBox(width: 10),
             const Expanded(
@@ -267,10 +317,9 @@ class OwnerInfo extends StatelessWidget {
           ? IntrinsicHeight(
               child: Row(
                 children: [
-                  // const Expanded(
-                  //   child: OwnerAvatar(),
-                  // ),
-                  // name and username
+                  const Expanded(
+                    child: OwnerAvatar(),
+                  ),
                   const SizedBox(width: 10),
                   const Expanded(
                     flex: 3,
@@ -282,7 +331,7 @@ class OwnerInfo extends StatelessWidget {
                         FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            "Ahmed",
+                            "ConsultantMe",
                             overflow: TextOverflow.clip,
                             maxLines: 1,
                             style: TextStyle(
@@ -297,7 +346,7 @@ class OwnerInfo extends StatelessWidget {
                         FittedBox(
                           fit: BoxFit.scaleDown,
                           child: Text(
-                            '@ao307',
+                            '@gmail.com',
                             overflow: TextOverflow.clip,
                             maxLines: 1,
                             style: TextStyle(
@@ -323,9 +372,9 @@ class OwnerInfo extends StatelessWidget {
             )
           : Column(
               children: [
-                // const Expanded(
-                //   child: OwnerAvatar(),
-                // ),
+                const Expanded(
+                  child: OwnerAvatar(),
+                ),
                 Expanded(
                   child: IconButton(
                     onPressed: () {},
@@ -341,15 +390,20 @@ class OwnerInfo extends StatelessWidget {
   }
 }
 
-// owner image
-// class OwnerAvatar extends StatelessWidget {
-//   const OwnerAvatar({super.key});
+class OwnerAvatar extends StatelessWidget {
+  const OwnerAvatar({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return const CircleAvatar(
-//       radius: 22,
-//       backgroundImage: NetworkImage('https://imgur.com/ivPXgoz.png'),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      decoration: BoxDecoration(
+          color: primarycolor, borderRadius: BorderRadius.circular(50)),
+      child: Text(
+        "C",
+        textAlign: TextAlign.center,
+        style: Styles.textStyle36.copyWith(color: Colors.white),
+      ),
+    );
+  }
+}

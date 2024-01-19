@@ -17,6 +17,7 @@ class AdminSetting extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           CustomAppBarAbmin(
+            title: "Setting",
             onPressed: () {
               Navigator.push(
                   context,

@@ -27,4 +27,43 @@ class AdminBloc extends Cubit<AdminState> {
       emit(ErrorGetUserData(e));
     });
   }
+
+  List<QueryDocumentSnapshot> dataconsult = [];
+  List<QueryDocumentSnapshot> dataclient = [];
+
+  getconsultant() async {
+    emit(LodingGetAllConsltant());
+    FirebaseFirestore.instance
+        .collection('user')
+        .where('type', isEqualTo: 'consulting')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        dataconsult.add(element);
+        print(element.data());
+      });
+      print(value.toString());
+      emit(ScafullGetAllConsltant());
+    }).catchError((e) {
+      emit(ErrorGetGetAllConsltant());
+    });
+  }
+
+  getAllUser() async {
+    emit(LodingGetAlluser());
+    FirebaseFirestore.instance
+        .collection('user')
+        .where('type', isEqualTo: 'client')
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        dataclient.add(element);
+        print(element.data());
+      });
+      print(value.toString());
+      emit(ScafullGetAllUser());
+    }).catchError((e) {
+      emit(ErrorGetGetAllConsltant());
+    });
+  }
 }

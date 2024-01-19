@@ -167,6 +167,9 @@ class Login extends StatelessWidget {
                                       MaterialPageRoute(
                                         builder: (context) => AdminHome(),
                                       ));
+                                  tost(
+                                      text: "Scafull login Admin",
+                                      state: ToastStae.succes);
                                 } else if (formkey.currentState!.validate()) {
                                   LoginBloc.get(context).loginUser(
                                       email: email.text,

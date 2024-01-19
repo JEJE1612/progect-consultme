@@ -4,10 +4,10 @@ import 'package:flutter_application_1/core/utils/styles.dart';
 class AdminViews extends StatelessWidget {
   const AdminViews({
     super.key,
-    required this.Name,
+    required this.name,
     required this.numder,
   });
-  final String Name;
+  final String name;
   final String numder;
 
   @override
@@ -15,11 +15,11 @@ class AdminViews extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.2,
-      decoration: BoxDecoration(color: Colors.grey),
+      decoration: const BoxDecoration(color: Colors.grey),
       child: Column(
         children: [
           Text(
-            Name,
+            name,
             style: Styles.textStyle20.copyWith(color: Colors.white),
           ),
           Text(

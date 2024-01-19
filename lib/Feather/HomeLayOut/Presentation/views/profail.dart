@@ -168,11 +168,11 @@ class Profail extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.phone,
                               color: Colors.grey,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 2,
                             ),
                             Text(

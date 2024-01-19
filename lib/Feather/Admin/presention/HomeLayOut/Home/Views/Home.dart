@@ -21,7 +21,7 @@ class AdminHome extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
             key: _scaffoldKey,
-            drawer: CustomDrawer(),
+            drawer: const CustomDrawer(),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SafeArea(
@@ -54,22 +54,22 @@ class AdminHome extends StatelessWidget {
                       height: Size.height * 0.02,
                     ),
                     const AdminViews(
-                      Name: "Numder Catroies",
+                      name: "Numder Catroies",
                       numder: "4",
                     ),
                     SizedBox(
                       height: Size.height * 0.02,
                     ),
-                    const AdminViews(
-                      Name: "Numder Consultant",
-                      numder: "4",
+                    AdminViews(
+                      name: "Numder Consultant",
+                      numder: "${AdminBloc.get(context).dataconsult.length}",
                     ),
                     SizedBox(
                       height: Size.height * 0.02,
                     ),
-                    const AdminViews(
-                      Name: "Numder User",
-                      numder: "4",
+                    AdminViews(
+                      name: "Numder User",
+                      numder: "${AdminBloc.get(context).dataclient.length}",
                     ),
                   ],
                 ),

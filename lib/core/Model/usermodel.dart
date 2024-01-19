@@ -3,6 +3,8 @@ class UserModel {
   String? email;
   String? phone;
   String? uid;
+  String? type;
+
   // String? bio;
   // String? image;
   // String? cover;
@@ -11,6 +13,8 @@ class UserModel {
     required this.email,
     required this.phone,
     required this.uid,
+    required this.type,
+
     // required this.bio,
     // required this.image,
     // required this.cover,
@@ -20,6 +24,8 @@ class UserModel {
     email = json['email'];
     phone = json['phone'];
     uid = json['uid'];
+    type = json['type'];
+
     // bio = json['bio'];
     // image = json['image'];
     // cover = json['cover'];
@@ -30,6 +36,8 @@ class UserModel {
       'email': email,
       'phone': phone,
       'uid': uid,
+      'type': type,
+
       // 'bio': bio,
       // 'image': image,
       // 'cover': cover,

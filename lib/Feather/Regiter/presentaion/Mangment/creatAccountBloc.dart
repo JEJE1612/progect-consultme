@@ -7,12 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CreatAccount extends Cubit<CratAccountState> {
   CreatAccount() : super(InitalState());
   static CreatAccount get(context) => BlocProvider.of(context);
+  String? type;
+
+  changeIsAdmin(String value) {
+    type = value;
+    emit(changetypeState());
+  }
 
   void userRegister({
     required String email,
     required String password,
     required String phone,
     required String name,
+    required String type,
   }) {
     emit(CreatUserLodingState());
     FirebaseAuth.instance
@@ -26,6 +33,7 @@ class CreatAccount extends Cubit<CratAccountState> {
         name: name,
         phone: phone,
         uid: value.user!.uid,
+        type: type,
       );
       emit(ScafullCreatUserState());
     }).catchError((e) {
@@ -38,8 +46,10 @@ class CreatAccount extends Cubit<CratAccountState> {
     required String email,
     required String phone,
     required String uid,
+    required String type,
   }) {
     UserModel? model = UserModel(
+      type: type,
       email: email,
       name: name,
       phone: phone,

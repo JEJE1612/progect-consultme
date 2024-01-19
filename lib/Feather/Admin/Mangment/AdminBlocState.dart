@@ -15,3 +15,13 @@ class HomeErrorStata extends AdminState {
   final String Error;
   HomeErrorStata(this.Error);
 }
+
+class LodingGetAllConsltant extends AdminState {}
+
+class ScafullGetAllConsltant extends AdminState {}
+
+class LodingGetAlluser extends AdminState {}
+
+class ScafullGetAllUser extends AdminState {}
+
+class ErrorGetGetAllConsltant extends AdminState {}

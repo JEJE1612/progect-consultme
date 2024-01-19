@@ -21,3 +21,5 @@ class SaveDataFireStoreerror extends CratAccountState {
   final error;
   SaveDataFireStoreerror({this.error});
 }
+
+class changetypeState extends CratAccountState {}

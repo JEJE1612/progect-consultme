@@ -17,8 +17,9 @@ class Redister extends StatelessWidget {
   TextEditingController phone = TextEditingController();
   var formkey = GlobalKey<FormState>();
 
+  String? typeclient;
   Redister({super.key});
-
+  bool values = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -179,6 +180,58 @@ class Redister extends StatelessWidget {
                           SizedBox(
                             height: size.height * 0.022,
                           ),
+                          Text(
+                            "type of user:",
+                            style: Styles.textStyle18.copyWith(
+                              color: Theme.of(context).colorScheme.brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : ScoundColor,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 20),
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: RadioListTile(
+                                    selected: values,
+                                    title: Text(
+                                      'consulting',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    value: 'consulting',
+                                    onChanged: (value) {
+                                      values = true;
+                                      typeclient = "consulting";
+                                      CreatAccount.get(context)
+                                          .changeIsAdmin(typeclient!);
+                                    },
+                                    groupValue: typeclient,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: RadioListTile(
+                                    selected: values,
+                                    title: Text('client',
+                                        style: TextStyle(color: Colors.black)),
+                                    value: "client",
+                                    groupValue: typeclient,
+                                    onChanged: (value) {
+                                      values = true;
+                                      typeclient = value;
+                                      CreatAccount.get(context)
+                                          .changeIsAdmin(typeclient!);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: size.height * 0.022,
+                          ),
                           Container(
                             width: double.infinity,
                             child: CustomButtonAuth(
@@ -189,7 +242,8 @@ class Redister extends StatelessWidget {
                                       email: email.text,
                                       password: password.text,
                                       phone: phone.text,
-                                      name: namme.text);
+                                      name: namme.text,
+                                      type: typeclient!);
                                 }
                               },
                             ),

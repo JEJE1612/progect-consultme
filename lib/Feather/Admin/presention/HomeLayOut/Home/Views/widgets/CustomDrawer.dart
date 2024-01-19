@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/AddCatoies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/AdminSetting.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/DeleteCatroies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ShowCatroies/ShowCatroies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/ShowAllConsultant.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/profail.dart';
+import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -19,160 +24,186 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      curve: Curves.easeInOutCubic,
-      duration: const Duration(milliseconds: 500),
-      width: _isCollapsed ? 300 : 74,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomRight: Radius.circular(10),
-          topRight: Radius.circular(10),
-        ),
-        color: Color(0xFF141414),
-      ),
-      child: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          children: [
-            CustomDrawerHeader(isCollapsable: _isCollapsed),
-            const Divider(color: Colors.grey),
-            //MangmentCatroies
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.note_add_outlined,
-              title: 'Add Catroies',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NewCatroies(),
-                    ));
-              },
+    return BlocConsumer<AdminBloc, AdminState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return AnimatedContainer(
+          curve: Curves.easeInOutCubic,
+          duration: const Duration(milliseconds: 500),
+          width: _isCollapsed ? 300 : 74,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(10),
+              topRight: Radius.circular(10),
             ),
-
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.visibility_outlined,
-              title: 'Show Catroes',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShowCatroies(),
-                    ));
-              },
-            ),
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.delete_outline,
-              title: 'Delete Catroes',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DeleteCatroies(),
-                    ));
-              },
-            ),
-
-            const Divider(color: Colors.grey),
-
-            //Mangment Consultant
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.supervised_user_circle_sharp,
-              title: 'Show Consultant',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShowAllConaltant(),
-                    ));
-              },
-            ),
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.person_2_outlined,
-              title: 'Show User',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ShowAllConaltant(),
-                    ));
-              },
-            ),
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.contact_support_outlined,
-              title: 'Contact Us',
-              infoCount: 0,
-            ),
-
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.delete_outline,
-              title: 'Delete ',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DeleteCatroies(),
-                    ));
-              },
-            ),
-
-            const Divider(color: Colors.grey),
-
-            CustomListTile(
-              isCollapsed: _isCollapsed,
-              icon: Icons.settings_outlined,
-              title: 'Settings',
-              infoCount: 0,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AdminSetting(),
-                    ));
-              },
-            ),
-            OwnerInfo(isCollapsed: _isCollapsed),
-            Align(
-              alignment:
-                  _isCollapsed ? Alignment.bottomRight : Alignment.bottomCenter,
-              child: IconButton(
-                splashColor: Colors.transparent,
-                icon: Icon(
-                  _isCollapsed ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
-                  color: Colors.white,
-                  size: 16,
+            color: Color(0xFF141414),
+          ),
+          child: SafeArea(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              children: [
+                CustomDrawerHeader(
+                  isCollapsable: _isCollapsed,
+                  model: AdminBloc.get(context).usermodel!,
                 ),
-                onPressed: () {
-                  setState(() {
-                    _isCollapsed = !_isCollapsed;
-                  });
-                },
-              ),
-            ),
-          ]
-              .map(
-                (e) => Padding(
-                  padding: e is Drawer
-                      ? EdgeInsets.zero
-                      : const EdgeInsets.only(top: 10),
-                  child: e,
+                const Divider(color: Colors.grey),
+                //MangmentCatroies
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.note_add_outlined,
+                  title: 'Add Catroies',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewCatroies(),
+                        ));
+                  },
                 ),
-              )
-              .toList(),
-        ),
-      ),
+
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.visibility_outlined,
+                  title: 'Show Catroes',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShowCatroies(),
+                        ));
+                  },
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.delete_outline,
+                  title: 'Delete Catroes',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DeleteCatroies(),
+                        ));
+                  },
+                ),
+
+                const Divider(color: Colors.grey),
+
+                //Mangment Consultant
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.supervised_user_circle_sharp,
+                  title: 'Show Consultant',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShowAllConaltant(),
+                        ));
+                  },
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.person_2_outlined,
+                  title: 'Show User',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShowAllConaltant(),
+                        ));
+                  },
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.contact_support_outlined,
+                  title: 'Contact Us',
+                  infoCount: 0,
+                ),
+
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.delete_outline,
+                  title: 'Delete ',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DeleteCatroies(),
+                        ));
+                  },
+                ),
+
+                const Divider(color: Colors.grey),
+
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.settings_outlined,
+                  title: 'Settings',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AdminSetting(),
+                        ));
+                  },
+                ),
+                CustomListTile(
+                  isCollapsed: _isCollapsed,
+                  icon: Icons.settings_outlined,
+                  title: 'Profail',
+                  infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Profail(
+                            model: AdminBloc.get(context).usermodel!,
+                          ),
+                        ));
+                  },
+                ),
+                OwnerInfo(isCollapsed: _isCollapsed),
+                Align(
+                  alignment: _isCollapsed
+                      ? Alignment.bottomRight
+                      : Alignment.bottomCenter,
+                  child: IconButton(
+                    splashColor: Colors.transparent,
+                    icon: Icon(
+                      _isCollapsed
+                          ? Icons.arrow_back_ios
+                          : Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 16,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isCollapsed = !_isCollapsed;
+                      });
+                    },
+                  ),
+                ),
+              ]
+                  .map(
+                    (e) => Padding(
+                      padding: e is Drawer
+                          ? EdgeInsets.zero
+                          : const EdgeInsets.only(top: 10),
+                      child: e,
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -181,11 +212,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
 class CustomDrawerHeader extends StatelessWidget {
   final bool isCollapsable;
 
-  const CustomDrawerHeader({
+  CustomDrawerHeader({
     super.key,
     required this.isCollapsable,
+    required this.model,
   });
-
+  UserModel model;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -197,9 +229,9 @@ class CustomDrawerHeader extends StatelessWidget {
           OwnerAvatar(),
           if (isCollapsable) ...[
             const SizedBox(width: 10),
-            const Expanded(
+            Expanded(
               child: Text(
-                'ConsultMe',
+                "${model.name}",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,

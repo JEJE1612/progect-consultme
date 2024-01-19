@@ -167,8 +167,7 @@ class Login extends StatelessWidget {
                                       MaterialPageRoute(
                                         builder: (context) => AdminHome(),
                                       ));
-                                }
-                                if (formkey.currentState!.validate()) {
+                                } else if (formkey.currentState!.validate()) {
                                   LoginBloc.get(context).loginUser(
                                       email: email.text,
                                       password: password.text);

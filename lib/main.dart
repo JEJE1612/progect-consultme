@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
@@ -53,9 +54,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MyBloc(),
         ),
-        // BlocProvider(
-        //   create: (context) => AdminBloc(),
-        // ),
+        BlocProvider(
+          create: (context) => AdminBloc()..getUserData(),
+        ),
       ],
       child: BlocConsumer<MyBloc, MyState>(
         listener: (context, state) {},

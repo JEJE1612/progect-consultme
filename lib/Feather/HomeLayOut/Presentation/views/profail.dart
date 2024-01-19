@@ -1,32 +1,34 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/ChatDeatiles.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
-import 'package:flutter_application_1/core/utils/assets.dart';
-import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Profail extends StatefulWidget {
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/ChatSceen/ChatDeatiles.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
+import 'package:flutter_application_1/core/Model/usermodel.dart';
+import 'package:flutter_application_1/core/utils/assets.dart';
+import 'package:flutter_application_1/core/utils/styles.dart';
+
+class Profail extends StatelessWidget {
   static const String nameKey = "Profail";
 
-  const Profail({super.key});
-
-  @override
-  State<Profail> createState() => __ProfailState();
-}
-
-class __ProfailState extends State<Profail> {
   TextEditingController nameController = TextEditingController();
 
   TextEditingController bioController = TextEditingController();
 
   TextEditingController phoneController = TextEditingController();
 
+  UserModel? model;
+  Profail({
+    Key? key,
+    this.model,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return BlocConsumer<MyBloc, MyState>(
+    return BlocConsumer<AdminBloc, AdminState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -147,7 +149,7 @@ class __ProfailState extends State<Profail> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Ahmed Mohmed",
+                          "${model?.name}",
                           style: Styles.textStyle18,
                         ),
                         const SizedBox(
@@ -156,7 +158,7 @@ class __ProfailState extends State<Profail> {
                         SizedBox(
                           width: 150,
                           child: Text(
-                            "Adout And Some information ",
+                            "${model?.uid}",
                             style:
                                 Styles.textStyle14.copyWith(color: Colors.grey),
                           ),
@@ -174,7 +176,7 @@ class __ProfailState extends State<Profail> {
                               width: 2,
                             ),
                             Text(
-                              "01010657674",
+                              "${model?.phone}",
                               style: Styles.textStyle14
                                   .copyWith(color: Colors.grey),
                             ),

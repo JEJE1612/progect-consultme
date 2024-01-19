@@ -14,7 +14,7 @@ class MyBloc extends Cubit<MyState> {
   List<Widget> views = [
     const CatroiesScreen(),
     const ChatScreen(),
-    const Profail(),
+    Profail(),
     const Setting(),
   ];
 

@@ -25,3 +25,25 @@ class LodingGetAlluser extends AdminState {}
 class ScafullGetAllUser extends AdminState {}
 
 class ErrorGetGetAllConsltant extends AdminState {}
+
+class LodingGetProfailImage extends AdminState {}
+
+class ScafullGetProfailImage extends AdminState {}
+
+class ErrorGetProfailImage extends AdminState {}
+
+class ScafullGetCoverImage extends AdminState {}
+
+class ErrorGetCoverImage extends AdminState {}
+
+class LodingUdateAdminData extends AdminState {}
+
+class ScafullUdateAdminData extends AdminState {}
+
+class ErrorUdateAdminData extends AdminState {}
+
+class LodingUploadImageProfailState extends AdminState {}
+
+class ScafullUploadImageProfailState extends AdminState {}
+
+class ErrorUploadImageProfailState extends AdminState {}

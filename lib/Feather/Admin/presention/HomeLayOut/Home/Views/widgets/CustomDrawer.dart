@@ -4,9 +4,9 @@ import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/AddCatoies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/AdminSetting.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/DeleteCatroies.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ProfailAdmin/ProfailAdmin.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ShowCatroies/ShowCatroies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/ShowAllConsultant.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/profail.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
@@ -44,7 +44,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 CustomDrawerHeader(
                   isCollapsable: _isCollapsed,
-                  model: AdminBloc.get(context).usermodel!,
+                  model: AdminBloc.get(context).usermodel,
                 ),
                 const Divider(color: Colors.grey),
                 //MangmentCatroies
@@ -156,14 +156,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 ),
                 CustomListTile(
                   isCollapsed: _isCollapsed,
-                  icon: Icons.settings_outlined,
+                  icon: Icons.person_2_outlined,
                   title: 'Profail',
                   infoCount: 0,
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Profail(
+                          builder: (context) => ProfailAdmin(
                             model: AdminBloc.get(context).usermodel!,
                           ),
                         ));
@@ -217,7 +217,7 @@ class CustomDrawerHeader extends StatelessWidget {
     required this.isCollapsable,
     required this.model,
   });
-  UserModel model;
+  UserModel? model;
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -231,7 +231,7 @@ class CustomDrawerHeader extends StatelessWidget {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                "${model.name}",
+                "${model?.name}",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,

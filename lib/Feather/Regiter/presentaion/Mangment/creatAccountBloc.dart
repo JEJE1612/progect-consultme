@@ -54,11 +54,11 @@ class CreatAccount extends Cubit<CratAccountState> {
       name: name,
       phone: phone,
       uid: uid,
-      // bio: "writebio.",
-      // cover:
-      //     "https://images.pexels.com/photos/268941/pexels-photo-268941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      // image:
-      //     "https://images.pexels.com/photos/5588224/pexels-photo-5588224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      bio: "writebio.",
+      cover:
+          "https://images.pexels.com/photos/268941/pexels-photo-268941.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      image:
+          "https://images.pexels.com/photos/5588224/pexels-photo-5588224.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     );
     emit(SaveDataFireStoreLoding());
     FirebaseFirestore.instance

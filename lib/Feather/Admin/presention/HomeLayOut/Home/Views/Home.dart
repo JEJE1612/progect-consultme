@@ -3,7 +3,7 @@ import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/AdminViews.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Catroies/widgets/Logo.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

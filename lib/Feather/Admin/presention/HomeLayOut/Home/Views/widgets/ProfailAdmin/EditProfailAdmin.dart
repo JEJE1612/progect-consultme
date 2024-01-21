@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Widgets/CustomButton.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

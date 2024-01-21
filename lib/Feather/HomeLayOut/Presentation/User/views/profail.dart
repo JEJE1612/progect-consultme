@@ -1,15 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ProfailAdmin/EditProfailAdmin.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myBloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Editprofail.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
+import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
-class ProfailAdmin extends StatelessWidget {
+class Profail extends StatelessWidget {
   static const String nameKey = "Profail";
 
   TextEditingController nameController = TextEditingController();
@@ -19,7 +19,7 @@ class ProfailAdmin extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
 
   UserModel? model;
-  ProfailAdmin({
+  Profail({
     Key? key,
     this.model,
   }) : super(key: key);
@@ -27,10 +27,9 @@ class ProfailAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return BlocConsumer<AdminBloc, AdminState>(
+    return BlocConsumer<MyBloc, MyState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var model = AdminBloc.get(context).usermodel;
         return Scaffold(
           body: SingleChildScrollView(
             child: SafeArea(
@@ -45,30 +44,41 @@ class ProfailAdmin extends StatelessWidget {
                         clipBehavior: Clip.none,
                         margin: const EdgeInsets.symmetric(horizontal: 8.0),
                         elevation: 0.0,
-                        child: Container(
-                          height: size.height * 0.23,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                  "${model?.cover}",
-                                ),
-                                fit: BoxFit.cover),
+                        child: InkWell(
+                          onTap: () {
+                            // MyBloc.get(context).getCover();
+                          },
+                          child: Container(
+                            height: size.height * 0.23,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                                image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                AssetsData.backGroudprofail,
+                              ),
+                            )),
                           ),
                         ),
                       ),
                       Positioned(
                         bottom: -50,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              border: Border.all(width: 4, color: Colors.white),
-                              color: Colors.white),
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              "${model?.image}",
+                        child: InkWell(
+                          onTap: () {
+                            // MyBloc.get(context).getImageProfail();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                border:
+                                    Border.all(width: 4, color: Colors.white),
+                                color: Colors.white),
+                            child: const CircleAvatar(
+                              backgroundImage: AssetImage(
+                                AssetsData.testImage,
+                              ),
+                              radius: 48,
                             ),
-                            radius: 48,
                           ),
                         ),
                       ),
@@ -93,6 +103,16 @@ class ProfailAdmin extends StatelessWidget {
                                       ],
                                     ),
                                   ),
+                                  const PopupMenuItem(
+                                    value: 'Chat',
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.chat),
+                                        SizedBox(width: 5),
+                                        Text('Chat'),
+                                      ],
+                                    ),
+                                  ),
                                 ],
                                 onSelected: (value) {
                                   // Handle selection here
@@ -100,8 +120,14 @@ class ProfailAdmin extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            EditProfailAdmin(),
+                                        builder: (context) => EditProfail(),
+                                      ),
+                                    );
+                                  } else if (value == 'Chat') {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => chatDeatiles(),
                                       ),
                                     );
                                   }
@@ -122,7 +148,7 @@ class ProfailAdmin extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "${model?.name}",
+                          "${MyBloc.get(context).usermodel?.name}",
                           style: Styles.textStyle18,
                         ),
                         const SizedBox(
@@ -131,7 +157,7 @@ class ProfailAdmin extends StatelessWidget {
                         SizedBox(
                           width: 150,
                           child: Text(
-                            "${model?.bio}",
+                            "${model?.uid}",
                             style:
                                 Styles.textStyle14.copyWith(color: Colors.grey),
                           ),

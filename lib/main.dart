@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/mangment/myState.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/HomeLayOut.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/chat.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/profail.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myBloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/profail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
 import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register.dart';
 import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
@@ -31,6 +31,7 @@ void main() async {
 
   await CacheHealper.init();
   var uid = CacheHealper.getData("uid", key: "uid");
+  print(uid);
   // Widget widget;
   // if (uid != null) {
   //   widget = HomeLayOut();
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => MyBloc(),
+          create: (context) => MyBloc()..getUserData(),
         ),
         BlocProvider(
           create: (context) => AdminBloc()

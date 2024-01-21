@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/CustomDrawerHeader.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/CustomListTile.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/OwnerInfo.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/problemClient/problem.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/AddCatoies.dart';
-import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/AdminSetting.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/DeleteCatroies/DeleteCatroies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ProfailAdmin/ProfailAdmin.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ShowCatroies/ShowCatroies.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/ShowAllConsultant.dart';
-import 'package:flutter_application_1/core/Model/usermodel.dart';
-import 'package:flutter_application_1/core/utils/constant.dart';
-import 'package:flutter_application_1/core/utils/styles.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -30,7 +30,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         return AnimatedContainer(
           curve: Curves.easeInOutCubic,
           duration: const Duration(milliseconds: 500),
-          width: _isCollapsed ? 300 : 74,
+          width: _isCollapsed ? 300 : 80,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(10),
@@ -71,7 +71,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShowCatroies(),
+                          builder: (context) => const ShowCatroies(),
                         ));
                   },
                 ),
@@ -84,7 +84,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DeleteCatroies(),
+                          builder: (context) => const DeleteCatroies(),
                         ));
                   },
                 ),
@@ -101,7 +101,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShowAllConaltant(),
+                          builder: (context) => const ShowAllConaltant(),
                         ));
                   },
                 ),
@@ -114,7 +114,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ShowAllConaltant(),
+                          builder: (context) => const ShowAllConaltant(),
                         ));
                   },
                 ),
@@ -123,6 +123,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   icon: Icons.contact_support_outlined,
                   title: 'Contact Us',
                   infoCount: 0,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Prodlem(),
+                        ));
+                  },
                 ),
 
                 CustomListTile(
@@ -134,7 +141,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DeleteCatroies(),
+                          builder: (context) => const DeleteCatroies(),
                         ));
                   },
                 ),
@@ -156,7 +163,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         ));
                   },
                 ),
-                OwnerInfo(isCollapsed: _isCollapsed),
+                OwnerInfo(
+                  isCollapsed: _isCollapsed,
+                  model: AdminBloc.get(context).usermodel!,
+                ),
                 Align(
                   alignment: _isCollapsed
                       ? Alignment.bottomRight
@@ -191,238 +201,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
         );
       },
-    );
-  }
-}
-
-// owner header
-class CustomDrawerHeader extends StatelessWidget {
-  final bool isCollapsable;
-
-  CustomDrawerHeader({
-    super.key,
-    required this.isCollapsable,
-    required this.model,
-  });
-  UserModel? model;
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 500),
-      height: 60,
-      width: double.infinity,
-      child: Row(
-        children: [
-          OwnerAvatar(),
-          if (isCollapsable) ...[
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                "${model?.name}",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-// drawer list tile
-class CustomListTile extends StatelessWidget {
-  final bool isCollapsed;
-  final IconData icon;
-  final String title;
-  final bool forwardIos;
-  final int infoCount;
-  final void Function()? onTap;
-
-  const CustomListTile({
-    super.key,
-    required this.isCollapsed,
-    required this.icon,
-    required this.title,
-    this.forwardIos = false,
-    required this.infoCount,
-    this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      borderRadius: BorderRadius.circular(10),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(10),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
-          padding: const EdgeInsets.all(10),
-          width: isCollapsed ? 300 : 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Badge.count(
-                count: infoCount,
-                isLabelVisible: infoCount > 0,
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  overflow: TextOverflow.ellipsis,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 10,
-                ),
-                child: Icon(icon, color: Colors.white),
-              ),
-              if (isCollapsed) ...[
-                const Expanded(
-                  flex: 0,
-                  child: SizedBox(width: 10),
-                ),
-                Expanded(
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14,
-                    ),
-                    maxLines: 1,
-                  ),
-                ),
-                if (forwardIos)
-                  const Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.white,
-                    size: 16,
-                  ),
-              ],
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// owner info
-class OwnerInfo extends StatelessWidget {
-  final bool isCollapsed;
-
-  const OwnerInfo({
-    super.key,
-    required this.isCollapsed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 300),
-      height: isCollapsed ? 74 : 100,
-      width: double.infinity,
-      padding: isCollapsed
-          ? const EdgeInsets.symmetric(horizontal: 10)
-          : EdgeInsets.zero,
-      decoration: BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: isCollapsed
-          ? IntrinsicHeight(
-              child: Row(
-                children: [
-                  const Expanded(
-                    child: OwnerAvatar(),
-                  ),
-                  const SizedBox(width: 10),
-                  const Expanded(
-                    flex: 3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // name
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            "ConsultantMe",
-                            overflow: TextOverflow.clip,
-                            maxLines: 1,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-
-                        // username
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            '@gmail.com',
-                            overflow: TextOverflow.clip,
-                            maxLines: 1,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.logout,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : Column(
-              children: [
-                const Expanded(
-                  child: OwnerAvatar(),
-                ),
-                Expanded(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-    );
-  }
-}
-
-class OwnerAvatar extends StatelessWidget {
-  const OwnerAvatar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      decoration: BoxDecoration(
-          color: primarycolor, borderRadius: BorderRadius.circular(50)),
-      child: Text(
-        "C",
-        textAlign: TextAlign.center,
-        style: Styles.textStyle36.copyWith(color: Colors.white),
-      ),
     );
   }
 }

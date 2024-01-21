@@ -4,19 +4,35 @@ import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NewCatroies extends StatelessWidget {
+class NewCatroies extends StatefulWidget {
   static const String nameKey = "NewCatroies";
-  const NewCatroies({super.key});
+  NewCatroies({super.key});
+
+  @override
+  State<NewCatroies> createState() => _NewCatroiesState();
+}
+
+class _NewCatroiesState extends State<NewCatroies> {
+  var textControll = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var Size = MediaQuery.of(context).size;
-    var textControll = TextEditingController();
     DateTime time = DateTime.now();
     return BlocConsumer<AdminBloc, AdminState>(
       listener: (context, state) {
         if (state is RemovecatroiesImage) {
           AdminBloc.get(context).catroiesImage = null;
+        }
+        if (state is LodingUploadCrtroiesmageState) {
+          const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is ScafullUploadCatroiesImageState) {
+          AdminBloc.get(context).getCaroies();
+          AdminBloc.get(context).catroiesImage = null;
+          Navigator.pop(context);
         }
       },
       builder: (context, state) {
@@ -63,8 +79,14 @@ class NewCatroies extends StatelessWidget {
                     SizedBox(
                       height: Size.height * 0.025,
                     ),
+                  if (state is LodingUploadCrtroiesmageState)
+                    Center(child: CircularProgressIndicator()),
                   Expanded(
                     child: TextFormField(
+                      onChanged: (value) {
+                        // Update the value in the controller when the text changes
+                        textControll.text = value;
+                      },
                       controller: textControll,
                       decoration: const InputDecoration(
                         hintText: " Catroies Name",

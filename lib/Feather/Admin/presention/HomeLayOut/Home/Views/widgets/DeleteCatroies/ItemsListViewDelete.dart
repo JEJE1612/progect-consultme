@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/core/Model/CatroiesModel.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
 class ItemsListViewDelete extends StatelessWidget {
-  ItemsListViewDelete(this.model, {super.key});
+  ItemsListViewDelete(this.model, this.catroiesId, {Key? key})
+      : super(key: key);
 
-  CatroiesModel model;
-
+  final CatroiesModel model;
+  final String catroiesId;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,7 +40,10 @@ class ItemsListViewDelete extends StatelessWidget {
         CircleAvatar(
             backgroundColor: Colors.white,
             child: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.delete_outline))),
+                onPressed: () {
+                  AdminBloc.get(context).deleteCatroies(catroiesId);
+                },
+                icon: const Icon(Icons.delete_outline))),
       ],
     );
   }

@@ -77,3 +77,9 @@ class ScafullUploadCatroiesImageState extends AdminState {}
 class LodingGetcatroiesState extends AdminState {}
 
 class ScafullGetcatroiesstate extends AdminState {}
+
+class SuccessfulDeleteCatroiesState extends AdminState {}
+
+class ErrorDeleteCatroiesState extends AdminState {}
+
+class ScafullsignOut extends AdminState {}

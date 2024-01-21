@@ -15,9 +15,13 @@ class AdminViews extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.2,
-      decoration: const BoxDecoration(color: Colors.grey),
+      decoration: BoxDecoration(
+          color: Colors.grey, borderRadius: BorderRadius.circular(12)),
       child: Column(
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.04,
+          ),
           Text(
             name,
             style: Styles.textStyle20.copyWith(color: Colors.white),

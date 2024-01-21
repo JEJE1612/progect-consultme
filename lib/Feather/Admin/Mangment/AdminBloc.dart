@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/core/Model/CatroiesModel.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
@@ -15,6 +15,17 @@ class AdminBloc extends Cubit<AdminState> {
   static AdminBloc get(context) => BlocProvider.of(context);
   var uid = CacheHealper.getData("uid", key: "uid");
   UserModel? usermodel;
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      print("User signed out successfully");
+      emit(ScafullsignOut());
+    } catch (e) {
+      print("Error signing out: $e");
+    }
+  }
+
   void getUserData() {
     emit(LodingGetUserData());
     FirebaseFirestore.instance
@@ -140,11 +151,11 @@ class AdminBloc extends Cubit<AdminState> {
     });
   }
 
-  void uploadprofialImage(
-    @required String? name,
-    @required String? phone,
-    @required String? bio,
-  ) {
+  void uploadprofialImage({
+    required String? name,
+    required String? phone,
+    required String? bio,
+  }) {
     emit(LodingUploadImageProfailState());
     FirebaseStorage.instance
         .ref()
@@ -277,6 +288,8 @@ class AdminBloc extends Cubit<AdminState> {
   List catroies = [];
   List<String> catroiesnum = [];
   void getCaroies() async {
+    catroies.clear();
+    catroiesnum.clear();
     emit(LodingGetcatroiesState());
     await FirebaseFirestore.instance.collection('Catroies').get().then((value) {
       value.docs.forEach((element) {
@@ -285,5 +298,21 @@ class AdminBloc extends Cubit<AdminState> {
         emit(ScafullGetcatroiesstate());
       });
     }).catchError((e) {});
+  }
+
+  void deleteCatroies(String catroiesId) async {
+    catroies.clear();
+    catroiesnum.clear();
+    try {
+      await FirebaseFirestore.instance
+          .collection('Catroies')
+          .doc(catroiesId)
+          .delete();
+      getCaroies();
+      emit(SuccessfulDeleteCatroiesState());
+    } catch (e) {
+      print("Error deleting category: $e");
+      emit(ErrorDeleteCatroiesState());
+    }
   }
 }

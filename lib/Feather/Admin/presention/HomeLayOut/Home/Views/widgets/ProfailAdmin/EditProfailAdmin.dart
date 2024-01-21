@@ -64,6 +64,10 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       clipBehavior: Clip.none,
                       alignment: Alignment.bottomLeft,
                       children: [
+                        if (state is LodingUdateAdminData)
+                          Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         Card(
                           clipBehavior: Clip.none,
                           margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -130,19 +134,19 @@ class _EditProfailState extends State<EditProfailAdmin> {
                                     text: "image",
                                     onTap: () {
                                       AdminBloc.get(context).uploadprofialImage(
-                                        nameController.text.isNotEmpty
+                                        name: nameController.text.isNotEmpty
                                             ? nameController.text
                                             : AdminBloc.get(context)
                                                     .usermodel
                                                     ?.name ??
                                                 "",
-                                        phoneController.text.isNotEmpty
+                                        phone: phoneController.text.isNotEmpty
                                             ? phoneController.text
                                             : AdminBloc.get(context)
                                                     .usermodel
                                                     ?.phone ??
                                                 "",
-                                        bioController.text.isNotEmpty
+                                        bio: bioController.text.isNotEmpty
                                             ? bioController.text
                                             : AdminBloc.get(context)
                                                     .usermodel

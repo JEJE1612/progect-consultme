@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ProfailAdmin/EditProfailAdmin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Editprofail.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
-import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
 class ProfailAdmin extends StatelessWidget {
@@ -45,41 +45,30 @@ class ProfailAdmin extends StatelessWidget {
                         clipBehavior: Clip.none,
                         margin: const EdgeInsets.symmetric(horizontal: 8.0),
                         elevation: 0.0,
-                        child: InkWell(
-                          onTap: () {
-                            AdminBloc.get(context).getCover();
-                          },
-                          child: Container(
-                            height: size.height * 0.23,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                    "${model?.cover}",
-                                  ),
-                                  fit: BoxFit.cover),
-                            ),
+                        child: Container(
+                          height: size.height * 0.23,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                  "${model?.cover}",
+                                ),
+                                fit: BoxFit.cover),
                           ),
                         ),
                       ),
                       Positioned(
                         bottom: -50,
-                        child: InkWell(
-                          onTap: () {
-                            AdminBloc.get(context).getImageProfail();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                border:
-                                    Border.all(width: 4, color: Colors.white),
-                                color: Colors.white),
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                "${model?.image}",
-                              ),
-                              radius: 48,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              border: Border.all(width: 4, color: Colors.white),
+                              color: Colors.white),
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                              "${model?.image}",
                             ),
+                            radius: 48,
                           ),
                         ),
                       ),
@@ -111,7 +100,8 @@ class ProfailAdmin extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => EditProfail(),
+                                        builder: (context) =>
+                                            EditProfailAdmin(),
                                       ),
                                     );
                                   }

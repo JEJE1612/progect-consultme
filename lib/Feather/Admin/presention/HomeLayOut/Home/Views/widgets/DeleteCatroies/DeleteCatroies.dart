@@ -14,11 +14,15 @@ class DeleteCatroies extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                CustomAppBarAbmin(onPressed: () {}, title: "DeleteCatroies"),
+                CustomAppBarAbmin(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    title: "DeleteCatroies"),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                const ListViewCatriosDelet(),
+                ListViewCatriosDelet(),
               ],
             ),
           ),

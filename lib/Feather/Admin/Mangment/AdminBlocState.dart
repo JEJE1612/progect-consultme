@@ -2,6 +2,8 @@ abstract class AdminState {}
 
 class InitnalState extends AdminState {}
 
+class UserSignOut extends AdminState {}
+
 class LodingGetUserData extends AdminState {}
 
 class ScafullGetUserData extends AdminState {}
@@ -47,3 +49,31 @@ class LodingUploadImageProfailState extends AdminState {}
 class ScafullUploadImageProfailState extends AdminState {}
 
 class ErrorUploadImageProfailState extends AdminState {}
+
+class LodingUploadcoverAdminState extends AdminState {}
+
+class ScafullUploadcoverAdminState extends AdminState {}
+
+class ErorUploadcoverAdminState extends AdminState {}
+
+class RemovecatroiesImage extends AdminState {}
+
+class LodingGetCatroiesImage extends AdminState {}
+
+class ScafullGetCatroiesImage extends AdminState {}
+
+class ErorGetCatroiesImage extends AdminState {}
+
+class LodingCreatCatroies extends AdminState {}
+
+class ScafullCreatCatroies extends AdminState {}
+
+class ErrorCreatCatroies extends AdminState {}
+
+class LodingUploadCrtroiesmageState extends AdminState {}
+
+class ScafullUploadCatroiesImageState extends AdminState {}
+
+class LodingGetcatroiesState extends AdminState {}
+
+class ScafullGetcatroiesstate extends AdminState {}

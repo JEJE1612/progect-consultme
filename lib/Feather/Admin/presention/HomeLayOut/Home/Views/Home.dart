@@ -53,9 +53,9 @@ class AdminHome extends StatelessWidget {
                     SizedBox(
                       height: Size.height * 0.02,
                     ),
-                    const AdminViews(
+                    AdminViews(
                       name: "Numder Catroies",
-                      numder: "4",
+                      numder: "${AdminBloc.get(context).catroiesnum.length}",
                     ),
                     SizedBox(
                       height: Size.height * 0.02,

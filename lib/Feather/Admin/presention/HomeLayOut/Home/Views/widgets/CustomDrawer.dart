@@ -143,19 +143,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
                 CustomListTile(
                   isCollapsed: _isCollapsed,
-                  icon: Icons.settings_outlined,
-                  title: 'Settings',
-                  infoCount: 0,
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AdminSetting(),
-                        ));
-                  },
-                ),
-                CustomListTile(
-                  isCollapsed: _isCollapsed,
                   icon: Icons.person_2_outlined,
                   title: 'Profail',
                   infoCount: 0,

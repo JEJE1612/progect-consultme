@@ -14,11 +14,15 @@ class ShowCatroies extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                CustomAppBarAbmin(onPressed: () {}, title: "Show Catroies"),
+                CustomAppBarAbmin(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    title: "Show Catroies"),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.03,
                 ),
-                const ListViewCatriosShow(),
+                ListViewCatriosShow(),
               ],
             ),
           ),

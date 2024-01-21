@@ -1,268 +1,275 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
-// import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Widgets/CustomButton.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
+import 'package:flutter_application_1/core/utils/styles.dart';
 
-// class EditProfail extends StatelessWidget {
-//    EditProfail({super.key});
-//    TextEditingController nameController = TextEditingController();
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-//   TextEditingController bioController = TextEditingController();
+class EditProfailAdmin extends StatefulWidget {
+  const EditProfailAdmin({super.key});
 
-//   TextEditingController phoneController = TextEditingController();
+  @override
+  State<EditProfailAdmin> createState() => _EditProfailState();
+}
 
-//   @override
-//   Widget build(BuildContext context) {
-//     var size = MediaQuery.of(context).size;
-//     return BlocConsumer<AdminBloc, AdminState>(
-//       listener: (context, state) {
-//         // if (state is UdateUserDataLoding) {
-//         //   const CircularProgressIndicator();
-//         // }
-//       },
-//       builder: (context, state) {
-//         // var usermodel = SocailBloc.get(context).usermodel;
-//         // var imageProfail = SocailBloc.get(context).image;
-//         // var imagecover = SocailBloc.get(context).cover;
-//         // nameController.text = "${usermodel?.name}";
-//         // phoneController.text = "${usermodel?.phone}";
-//         // bioController.text = "${usermodel?.bio}";
+class _EditProfailState extends State<EditProfailAdmin> {
+  TextEditingController nameController = TextEditingController();
 
-//         return Scaffold(
-//           appBar: AppBar(
-//             leading: IconButton(
-//               onPressed: () {
-//                 Navigator.pop(context);
-//               },
-//               icon: const Icon(
-//                 Icons.arrow_back_ios_new_outlined,
-//               ),
-//             ),
-//             title: const Text(
-//               "EditProfail",
-//             ),
-//             actions: [
-//               TextButton(
-//                 onPressed: () {
-//                   // SocailBloc.get(context).udateUserData(
-//                   //   name: nameController.text,
-//                   //   phone: phoneController.text,
-//                   //   bio: bioController.text,
-//                   // );
-//                 },
-//                 child: const Text(
-//                   "Updat",
-//                   style: TextStyle(fontSize: 16),
-//                 ),
-//               ),
-//               const SizedBox(
-//                 width: 3,
-//               ),
-//             ],
-//           ),
-//           body: SingleChildScrollView(
-//             child: Column(
-//               children: [
-//                 Stack(
-//                   clipBehavior: Clip.none,
-//                   alignment: Alignment.bottomCenter,
-//                   children: [
-//                     Card(
-//                       clipBehavior: Clip.none,
-//                       margin: const EdgeInsets.symmetric(horizontal: 8.0),
-//                       elevation: 0.0,
-//                       child: InkWell(
-//                         onTap: () {
-//                        //   SocailBloc.get(context).getCover();
-//                         },
-//                         child: Container(
-//                           height: size.height * 0.23,
-//                           width: double.infinity,
-//                           decoration: BoxDecoration(
-//                             image: imagecover == null
-//                                 ? DecorationImage(
-//                                     image: NetworkImage(
-//                                       "${usermodel?.cover}",
-//                                     ),
-//                                     fit: BoxFit.cover)
-//                                 : DecorationImage(
-//                                     image: FileImage(imagecover),
-//                                     fit: BoxFit.cover,
-//                                   ),
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: -50,
-//                       child: InkWell(
-//                         onTap: () {
-//                         //  SocailBloc.get(context).getImageProfail();
-//                         },
-//                         child: Container(
-//                           decoration: BoxDecoration(
-//                               borderRadius: BorderRadius.circular(100),
-//                               border: Border.all(width: 4, color: Colors.white),
-//                               color: Colors.white),
-//                           // child: CircleAvatar(
-//                           //   backgroundImage: imageProfail == null
-//                           //       ? NetworkImage(
-//                           //           "${usermodel?.image}",
-//                           //         )
-//                           //       : FileImage(imageProfail) as ImageProvider,
-//                           //   radius: 48,
-//                           // ),
-//                           child: ,
-//                         ),
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//                 const SizedBox(
-//                   height: 60,
-//                 ),
-//                 if (SocailBloc.get(context).image != null ||
-//                     SocailBloc.get(context).cover != null)
-//                   Row(
-//                     children: [
-//                       if (SocailBloc.get(context).image != null)
-//                         Expanded(
-//                           child: Column(
-//                             children: [
-//                               customButton(
-//                                   text: "image",
-//                                   height: 40,
-//                                   onTap: () {
-//                                     SocailBloc.get(context).uploadprofialImage(
-//                                       name: nameController.text,
-//                                       phone: phoneController.text,
-//                                       bio: bioController.text,
-//                                     );
-//                                   }),
-//                               const SizedBox(
-//                                 width: 2,
-//                               ),
-//                               if (state is LodingUploadImageProfailState)
-//                                 const LinearProgressIndicator(),
-//                             ],
-//                           ),
-//                         ),
-//                       const SizedBox(
-//                         width: 5,
-//                       ),
-//                       if (SocailBloc.get(context).cover != null)
-//                         Expanded(
-//                           child: Column(
-//                             children: [
-//                               customButton(
-//                                   text: "cover",
-//                                   height: 40,
-//                                   onTap: () {
-//                                     SocailBloc.get(context).uploadCoverImage(
-//                                       name: nameController.text,
-//                                       phone: phoneController.text,
-//                                       bio: bioController.text,
-//                                     );
-//                                   }),
-//                               const SizedBox(
-//                                 width: 2,
-//                               ),
-//                               if (state is LodingUploadcoverProfailState)
-//                                 const LinearProgressIndicator(),
-//                             ],
-//                           ),
-//                         ),
-//                     ],
-//                   ),
-//                 const SizedBox(
-//                   height: 20,
-//                 ),
-//                 TextFormField(
-//                   onSaved: (value) {
-//                     nameController.text == value;
-//                   },
-//                   textCapitalization: TextCapitalization.sentences,
-//                   validator: (String? value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Pleas enter name';
-//                     }
-//                     return null;
-//                   },
-//                   controller: nameController,
-//                   decoration: InputDecoration(
-//                     fillColor: Colors.grey,
-//                     prefixIcon: const Icon(
-//                       Icons.person_2_outlined,
-//                     ),
-//                     hintText: "${usermodel?.name}",
-//                     border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(12),
-//                       borderSide: const BorderSide(
-//                         color: Colors.blue,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(
-//                   height: 20,
-//                 ),
-//                 TextFormField(
-//                   controller: bioController,
-//                   textCapitalization: TextCapitalization.sentences,
-//                   keyboardType: TextInputType.text,
-//                   decoration: InputDecoration(
-//                     hintText: "${usermodel?.bio}",
-//                     border: OutlineInputBorder(
-//                         borderRadius: BorderRadius.circular(10)),
-//                     prefixIcon: const Icon(Icons.notes_outlined),
-//                   ),
-//                   validator: (String? value) {
-//                     if (value == null || value.isEmpty) {
-//                       return 'Pleas enter bio';
-//                     }
-//                     return null;
-//                   },
-//                 ),
-//                 const SizedBox(
-//                   height: 20,
-//                 ),
-//                 TextFormField(
-//                   onFieldSubmitted: (value) {
-//                     bioController.text == value;
-//                   },
-//                   controller: phoneController,
-//                   decoration: InputDecoration(
-//                     fillColor: Colors.grey,
-//                     prefixIcon: const Icon(
-//                       Icons.phone,
-//                     ),
-//                     hintText: "${usermodel?.phone}",
-//                     border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(12),
-//                       borderSide: const BorderSide(
-//                         color: Colors.blue,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//                 const SizedBox(
-//                   height: 20,
-//                 ),
-//                 customButton(
-//                     text: "SignOut",
-//                     height: 40,
-//                     onTap: () {
-//                       SocailBloc.get(context).singnout();
-//                     }),
-//                 SizedBox(
-//                   height: MediaQuery.of(context).viewInsets.bottom,
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
+  TextEditingController bioController = TextEditingController();
+
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController jodController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return BlocConsumer<AdminBloc, AdminState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        var usermodel = AdminBloc.get(context).usermodel;
+        var imageProfail = AdminBloc.get(context).image;
+        var imagecover = AdminBloc.get(context).cover;
+
+        var Bloc = AdminBloc.get(context);
+        return Scaffold(
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                Icons.arrow_back_ios_new_outlined,
+                              ),
+                            ),
+                            Text(
+                              "Edit Profile",
+                              style: Styles.textStyle18,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Stack(
+                      clipBehavior: Clip.none,
+                      alignment: Alignment.bottomLeft,
+                      children: [
+                        Card(
+                          clipBehavior: Clip.none,
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          elevation: 0.0,
+                          child: InkWell(
+                            onTap: () {
+                              Bloc.getCover();
+                            },
+                            child: Container(
+                              height: size.height * 0.23,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                image: imagecover == null
+                                    ? DecorationImage(
+                                        image: NetworkImage(
+                                          "${usermodel?.cover}",
+                                        ),
+                                        fit: BoxFit.cover)
+                                    : DecorationImage(
+                                        image: FileImage(imagecover),
+                                        fit: BoxFit.cover,
+                                      ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: -50,
+                          child: InkWell(
+                            onTap: () {
+                              Bloc.getImageProfail();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  border:
+                                      Border.all(width: 4, color: Colors.white),
+                                  color: Colors.white),
+                              child: CircleAvatar(
+                                backgroundImage: imageProfail == null
+                                    ? NetworkImage(
+                                        "${usermodel?.image}",
+                                      )
+                                    : FileImage(imageProfail) as ImageProvider,
+                                radius: 48,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 60,
+                    ),
+                    if (AdminBloc.get(context).image != null ||
+                        AdminBloc.get(context).cover != null)
+                      Row(
+                        children: [
+                          if (AdminBloc.get(context).image != null)
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  CustomButton(
+                                    text: "image",
+                                    onTap: () {
+                                      AdminBloc.get(context).uploadprofialImage(
+                                        nameController.text.isNotEmpty
+                                            ? nameController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.name ??
+                                                "",
+                                        phoneController.text.isNotEmpty
+                                            ? phoneController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.phone ??
+                                                "",
+                                        bioController.text.isNotEmpty
+                                            ? bioController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.bio ??
+                                                "",
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          if (AdminBloc.get(context).cover != null)
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  CustomButton(
+                                    text: "cover",
+                                    onTap: () {
+                                      AdminBloc.get(context).uploadCoverImage(
+                                        name: nameController.text.isNotEmpty
+                                            ? nameController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.name ??
+                                                "",
+                                        phone: phoneController.text.isNotEmpty
+                                            ? phoneController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.phone ??
+                                                "",
+                                        bio: bioController.text.isNotEmpty
+                                            ? bioController.text
+                                            : AdminBloc.get(context)
+                                                    .usermodel
+                                                    ?.bio ??
+                                                "",
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
+                          if (state is LodingUploadcoverAdminState)
+                            const LinearProgressIndicator(),
+                        ],
+                      ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    CustomTextFoemaFaildEditProfail(
+                      prefixIcon: const Icon(
+                        Icons.person_2_outlined,
+                      ),
+                      textCapitalization: TextCapitalization.sentences,
+                      nameController: nameController,
+                      onSaved: (value) {
+                        nameController.text == value;
+                      },
+                      text: 'Pleas enter name',
+                      hintText: AdminBloc.get(context).usermodel?.name,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextFoemaFaildEditProfail(
+                      prefixIcon: const Icon(
+                        Icons.info_outline,
+                      ),
+                      textCapitalization: TextCapitalization.sentences,
+                      nameController: bioController,
+                      onSaved: (value) {
+                        nameController.text == value;
+                      },
+                      text: 'Pleas enter bio',
+                      hintText: AdminBloc.get(context).usermodel?.bio,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomTextFoemaFaildEditProfail(
+                      prefixIcon: const Icon(
+                        Icons.phone,
+                      ),
+                      textCapitalization: TextCapitalization.sentences,
+                      nameController: phoneController,
+                      onSaved: (value) {
+                        nameController.text == value;
+                      },
+                      text: 'Pleas enter Jod',
+                      hintText: AdminBloc.get(context).usermodel?.phone,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomButton(
+                      onTap: () {
+                        AdminBloc.get(context).udateAdminData(
+                          name: nameController.text.isNotEmpty
+                              ? nameController.text
+                              : AdminBloc.get(context).usermodel?.name ?? "",
+                          phone: phoneController.text.isNotEmpty
+                              ? phoneController.text
+                              : AdminBloc.get(context).usermodel?.phone ?? "",
+                          bio: bioController.text.isNotEmpty
+                              ? bioController.text
+                              : AdminBloc.get(context).usermodel?.bio ?? "",
+                        );
+                      },
+                      text: "Save",
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).viewInsets.bottom,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

@@ -58,7 +58,8 @@ class MyApp extends StatelessWidget {
           create: (context) => AdminBloc()
             ..getUserData()
             ..getconsultant()
-            ..getAllUser(),
+            ..getAllUser()
+            ..getCaroies(),
         ),
       ],
       child: BlocConsumer<MyBloc, MyState>(

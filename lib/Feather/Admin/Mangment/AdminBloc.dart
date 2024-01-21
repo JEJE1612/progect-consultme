@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
+import 'package:flutter_application_1/core/Model/CatroiesModel.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/sharedPresfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AdminBloc extends Cubit<AdminState> {
   AdminBloc() : super(InitnalState());
@@ -16,7 +19,7 @@ class AdminBloc extends Cubit<AdminState> {
     emit(LodingGetUserData());
     FirebaseFirestore.instance
         .collection('user')
-        .doc("5CHNt4H7q3URVzPH2QpNZT7Wxcg1")
+        .doc("yEJAMol8gmM2i9UCP4CNqZoDJSG2")
         .get()
         .then((value) {
       if (value.exists) {
@@ -83,6 +86,7 @@ class AdminBloc extends Cubit<AdminState> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       image = File(pickedFile.path);
+      print(image);
 
       emit(ScafullGetProfailImage());
     } else {
@@ -113,14 +117,15 @@ class AdminBloc extends Cubit<AdminState> {
   }) {
     emit(LodingUdateAdminData());
     UserModel model = UserModel(
-        name: name,
-        email: usermodel!.email,
-        phone: phone,
-        uid: uid,
-        type: "",
-        bio: bio,
-        image: image,
-        cover: cover);
+      name: name,
+      email: usermodel!.email,
+      phone: phone,
+      uid: usermodel!.uid,
+      type: "",
+      bio: bio,
+      image: image ?? usermodel!.image,
+      cover: cover ?? usermodel!.cover,
+    );
 
     FirebaseFirestore.instance
         .collection("user")
@@ -135,31 +140,150 @@ class AdminBloc extends Cubit<AdminState> {
     });
   }
 
-  // void uploadprofialImage({
-  //   required String? name,
-  //   required String? phone,
-  //   required String? bio,
-  // }) {
-  //   emit(LodingUploadImageProfailState());
-  //       FirebaseFirestore.instance
-  //       .ref()
-  //       .child("user/${Uri.file(image!.path).pathSegments.last}")
-  //       .putFile(image!)
-  //       .then((value) {
-  //     value.ref.getDownloadURL().then((value) {
-  //       emit(ScafullUploadImageProfailState());
-  //       print(value);
-  //       udateAdminData(
-  //         name: name!,
-  //         phone: phone!,
-  //         bio: bio!,
-  //         image: value,
-  //       );
-  //     }).catchError((e) {
-  //       emit(ErrorUploadImageProfailState());
-  //     });
-  //   }).catchError((e) {
-  //     emit(ErrorUploadImageProfailState());
-  //   });
-  // }
+  void uploadprofialImage(
+    @required String? name,
+    @required String? phone,
+    @required String? bio,
+  ) {
+    emit(LodingUploadImageProfailState());
+    FirebaseStorage.instance
+        .ref()
+        .child("user/${Uri.file(image!.path).pathSegments.last}")
+        .putFile(image!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        emit(ScafullUploadImageProfailState());
+        print(value);
+        udateAdminData(
+          name: name!,
+          phone: phone!,
+          bio: bio!,
+          image: value,
+        );
+        print(value);
+      }).catchError((e) {
+        emit(ErrorUploadImageProfailState());
+      });
+    }).catchError((e) {
+      print(e.toString());
+      emit(ErrorUploadImageProfailState());
+    });
+  }
+
+  void uploadCoverImage({
+    required String? name,
+    required String? phone,
+    required String? bio,
+  }) {
+    emit(LodingUploadcoverAdminState());
+    print("heloo");
+    FirebaseStorage.instance
+        .ref()
+        .child("user/${Uri.file(cover!.path).pathSegments.last}")
+        .putFile(cover!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        emit(ScafullUploadcoverAdminState());
+        print(value);
+        udateAdminData(
+          name: name!,
+          phone: phone!,
+          bio: bio!,
+          cover: value,
+        );
+      }).catchError((e) {
+        emit(ErorUploadcoverAdminState());
+      });
+    }).catchError((e) {
+      emit(ErorUploadcoverAdminState());
+    });
+  }
+
+  //finshEditProfail andGetuser
+
+//statrt MangmentCatroies
+
+  File? catroiesImage;
+
+  void removeImgePOst() {
+    catroiesImage == File('');
+    emit(RemovecatroiesImage());
+  }
+
+  Future<void> getcatroiesImage() async {
+    emit(LodingGetCatroiesImage());
+
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      catroiesImage = File(pickedFile.path);
+
+      emit(ScafullGetCatroiesImage());
+    } else {
+      print('No image selected.');
+      emit(ErorGetCatroiesImage());
+    }
+  }
+
+  void uploadCatroiesImageImage({
+    required String text,
+    required String date,
+    required String postImage,
+  }) {
+    emit(LodingUploadCrtroiesmageState());
+    FirebaseStorage.instance
+        .ref()
+        .child("user/${Uri.file(catroiesImage!.path).pathSegments.last}")
+        .putFile(catroiesImage!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        creatPost(
+          datetime: date,
+          text: text,
+          catroiesImage: value,
+        );
+        emit(ScafullUploadCatroiesImageState());
+      }).catchError((e) {
+        emit(ErrorUploadImageProfailState());
+      });
+    }).catchError((e) {
+      emit(ErrorUploadImageProfailState());
+    });
+  }
+
+  void creatPost({
+    required String text,
+    required String datetime,
+    String? catroiesImage,
+  }) {
+    emit(LodingCreatCatroies());
+    CatroiesModel model = CatroiesModel(
+      dateTime: datetime,
+      text: text,
+      uId: uid,
+      catoiesImage: catroiesImage ?? "",
+    );
+    FirebaseFirestore.instance
+        .collection("Catroies")
+        .add(model.toMap())
+        .then((value) {
+      print(value.id);
+      emit(ScafullCreatCatroies());
+    }).catchError((eror) {
+      print(eror.toString);
+      emit(ErrorCreatCatroies());
+    });
+  }
+
+  List catroies = [];
+  List<String> catroiesnum = [];
+  void getCaroies() async {
+    emit(LodingGetcatroiesState());
+    await FirebaseFirestore.instance.collection('Catroies').get().then((value) {
+      value.docs.forEach((element) {
+        catroies.add(CatroiesModel.fromJson(element.data()));
+        catroiesnum.add(element.id);
+        emit(ScafullGetcatroiesstate());
+      });
+    }).catchError((e) {});
+  }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/CustomDrawerHeader.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/CustomListTile.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/CustomDrawer/OwnerInfo.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/Client/showAllClient.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/Deleteuserclient.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/problemClient/problem.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
@@ -114,7 +116,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ShowAllConaltant(),
+                          builder: (context) => const ShowAllClient(),
                         ));
                   },
                 ),
@@ -141,7 +143,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const DeleteCatroies(),
+                          builder: (context) => DealtAllUser(),
                         ));
                   },
                 ),

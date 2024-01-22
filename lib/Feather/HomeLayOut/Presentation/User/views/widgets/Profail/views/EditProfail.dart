@@ -1,22 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
-
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
-import 'package:flutter_application_1/core/utils/styles.dart';
-
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EditProfailAdmin extends StatefulWidget {
-  const EditProfailAdmin({super.key});
+class EditProfailUser extends StatefulWidget {
+  const EditProfailUser({super.key});
 
   @override
-  State<EditProfailAdmin> createState() => _EditProfailState();
+  State<EditProfailUser> createState() => _EditProfailUserState();
 }
 
-class _EditProfailState extends State<EditProfailAdmin> {
+class _EditProfailUserState extends State<EditProfailUser> {
   TextEditingController nameController = TextEditingController();
 
   TextEditingController bioController = TextEditingController();
@@ -26,14 +24,18 @@ class _EditProfailState extends State<EditProfailAdmin> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return BlocConsumer<AdminBloc, AdminState>(
-      listener: (context, state) {},
+    return BlocConsumer<MyBloc, MyState>(
+      listener: (context, state) {
+        if (state is ScafullUploadImageProfailState) {
+          Navigator.pop(context);
+        }
+      },
       builder: (context, state) {
-        var usermodel = AdminBloc.get(context).usermodel;
-        var imageProfail = AdminBloc.get(context).image;
-        var imagecover = AdminBloc.get(context).cover;
+        var usermodel = MyBloc.get(context).usermodel;
+        var imageProfail = MyBloc.get(context).imageUser;
+        var imagecover = MyBloc.get(context).coverUser;
 
-        var Bloc = AdminBloc.get(context);
+        var Bloc = MyBloc.get(context);
         return Scaffold(
           body: SingleChildScrollView(
             child: SafeArea(
@@ -43,32 +45,19 @@ class _EditProfailState extends State<EditProfailAdmin> {
                   children: [
                     Row(
                       children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                              ),
-                            ),
-                            Text(
-                              "Edit Profile",
-                              style: Styles.textStyle18,
-                            ),
-                          ],
-                        ),
+                        CustomAppBarAbmin(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            title: "Edit Profile"),
                       ],
                     ),
+                    if (state is LodingudateUserData) LinearProgressIndicator(),
+                    SizedBox(height: 3),
                     Stack(
                       clipBehavior: Clip.none,
                       alignment: Alignment.bottomLeft,
                       children: [
-                        if (state is LodingUdateAdminData)
-                          Center(
-                            child: CircularProgressIndicator(),
-                          ),
                         Card(
                           clipBehavior: Clip.none,
                           margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -120,36 +109,36 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 60,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.09,
                     ),
-                    if (AdminBloc.get(context).image != null ||
-                        AdminBloc.get(context).cover != null)
+                    if (MyBloc.get(context).imageUser != null ||
+                        MyBloc.get(context).coverUser != null)
                       Row(
                         children: [
-                          if (AdminBloc.get(context).image != null)
+                          if (MyBloc.get(context).imageUser != null)
                             Expanded(
                               child: Column(
                                 children: [
                                   CustomButton(
                                     text: "image",
                                     onTap: () {
-                                      AdminBloc.get(context).uploadprofialImage(
+                                      MyBloc.get(context).uploadprofialImage(
                                         name: nameController.text.isNotEmpty
                                             ? nameController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.name ??
                                                 "",
                                         phone: phoneController.text.isNotEmpty
                                             ? phoneController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.phone ??
                                                 "",
                                         bio: bioController.text.isNotEmpty
                                             ? bioController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.bio ??
                                                 "",
@@ -162,29 +151,29 @@ class _EditProfailState extends State<EditProfailAdmin> {
                           const SizedBox(
                             width: 5,
                           ),
-                          if (AdminBloc.get(context).cover != null)
+                          if (MyBloc.get(context).coverUser != null)
                             Expanded(
                               child: Column(
                                 children: [
                                   CustomButton(
                                     text: "cover",
                                     onTap: () {
-                                      AdminBloc.get(context).uploadCoverImage(
+                                      MyBloc.get(context).uploadCoverImage(
                                         name: nameController.text.isNotEmpty
                                             ? nameController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.name ??
                                                 "",
                                         phone: phoneController.text.isNotEmpty
                                             ? phoneController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.phone ??
                                                 "",
                                         bio: bioController.text.isNotEmpty
                                             ? bioController.text
-                                            : AdminBloc.get(context)
+                                            : MyBloc.get(context)
                                                     .usermodel
                                                     ?.bio ??
                                                 "",
@@ -194,8 +183,6 @@ class _EditProfailState extends State<EditProfailAdmin> {
                                 ],
                               ),
                             ),
-                          if (state is LodingUploadcoverAdminState)
-                            const LinearProgressIndicator(),
                         ],
                       ),
                     const SizedBox(
@@ -211,7 +198,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         nameController.text == value;
                       },
                       text: 'Pleas enter name',
-                      hintText: AdminBloc.get(context).usermodel?.name,
+                      hintText: MyBloc.get(context).usermodel?.name,
                     ),
                     const SizedBox(
                       height: 20,
@@ -226,7 +213,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         nameController.text == value;
                       },
                       text: 'Pleas enter bio',
-                      hintText: AdminBloc.get(context).usermodel?.bio,
+                      hintText: MyBloc.get(context).usermodel?.bio,
                     ),
                     const SizedBox(
                       height: 20,
@@ -241,26 +228,27 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         nameController.text == value;
                       },
                       text: 'Pleas enter Jod',
-                      hintText: AdminBloc.get(context).usermodel?.phone,
+                      hintText: MyBloc.get(context).usermodel?.phone,
+                      // hintText: AdminBloc.get(context).usermodel?.phone,
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     CustomButton(
                       onTap: () {
-                        AdminBloc.get(context).udateAdminData(
+                        MyBloc.get(context).udateUserData(
                           name: nameController.text.isNotEmpty
                               ? nameController.text
-                              : AdminBloc.get(context).usermodel?.name ?? "",
+                              : MyBloc.get(context).usermodel?.name ?? "",
                           phone: phoneController.text.isNotEmpty
                               ? phoneController.text
-                              : AdminBloc.get(context).usermodel?.phone ?? "",
+                              : MyBloc.get(context).usermodel?.phone ?? "",
                           bio: bioController.text.isNotEmpty
                               ? bioController.text
-                              : AdminBloc.get(context).usermodel?.bio ?? "",
+                              : MyBloc.get(context).usermodel?.bio ?? "",
                         );
                       },
                       text: "Save",

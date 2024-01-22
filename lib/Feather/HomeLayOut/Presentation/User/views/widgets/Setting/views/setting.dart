@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';

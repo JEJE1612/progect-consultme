@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/ListViewCatroisBuild.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/Client/ListViewClientBuild%20.dart';
 
-class ShowAllConaltant extends StatelessWidget {
-  const ShowAllConaltant({super.key});
+class ShowAllClient extends StatelessWidget {
+  const ShowAllClient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,13 @@ class ShowAllConaltant extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              title: " All Conaltant",
+              // ignore: prefer_const_constructors
+              title: "All Client",
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-            ListViewCatroisBuild(),
+            ListViewClientBuild(),
           ]),
         ),
       ),

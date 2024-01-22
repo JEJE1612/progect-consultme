@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/BuildConsulat.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/consultantMangment/BuildConsultant.dart';
 
 class ListViewCatroisBuild extends StatelessWidget {
   const ListViewCatroisBuild({
@@ -10,11 +11,14 @@ class ListViewCatroisBuild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
-          itemBuilder: (context, index) => const BuildConsulat(),
-          separatorBuilder: (context, index) => const SizedBox(
-                height: 15,
-              ),
-          itemCount: 10),
+        itemBuilder: (context, index) => BuildConsulatAdmin(
+          i: index,
+        ),
+        separatorBuilder: (context, index) => const SizedBox(
+          height: 15,
+        ),
+        itemCount: AdminBloc.get(context).dataconsult.length,
+      ),
     );
   }
 }

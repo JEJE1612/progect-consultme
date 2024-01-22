@@ -3,10 +3,10 @@ import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeLayOut extends StatelessWidget {
-  static const String nameKey = "HomeLayOut";
+class HomeCosultant extends StatelessWidget {
+  static const String nameKey = "HomeCosultant";
 
-  const HomeLayOut({super.key});
+  const HomeCosultant({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class HomeLayOut extends StatelessWidget {
       builder: (context, state) {
         var bloc = MyBloc.get(context);
         return Scaffold(
-          body: bloc.views[bloc.currentindex],
+          body: bloc.viewsConsultant[bloc.currentindex],
           bottomNavigationBar: BottomNavigationBar(
               currentIndex: bloc.currentindex,
               onTap: (value) {

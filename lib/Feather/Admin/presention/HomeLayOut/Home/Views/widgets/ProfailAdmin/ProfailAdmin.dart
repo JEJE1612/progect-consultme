@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/ProfailAdmin/EditProfailAdmin.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,8 +66,8 @@ class ProfailAdmin extends StatelessWidget {
                               border: Border.all(width: 4, color: Colors.white),
                               color: Colors.white),
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              "${model?.image}",
+                            backgroundImage: CachedNetworkImageProvider(
+                              model!.image!,
                             ),
                             radius: 48,
                           ),

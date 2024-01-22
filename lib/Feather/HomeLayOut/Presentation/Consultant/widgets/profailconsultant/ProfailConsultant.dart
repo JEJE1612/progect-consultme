@@ -4,20 +4,16 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/RatingReviews.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Reating.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Editprofail.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
-class ConsltantProfail extends StatelessWidget {
-  const ConsltantProfail({super.key});
+class ProfailConsultant extends StatelessWidget {
+  const ProfailConsultant({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var primaryColor;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -91,32 +87,12 @@ class ConsltantProfail extends StatelessWidget {
                                 ),
                               ),
                               const PopupMenuItem(
-                                value: 'Chat',
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.chat),
-                                    SizedBox(width: 5),
-                                    Text('Counsult'),
-                                  ],
-                                ),
-                              ),
-                              const PopupMenuItem(
                                 value: 'NewPost',
                                 child: Row(
                                   children: [
                                     Icon(Icons.settings),
                                     SizedBox(width: 5),
                                     Text('NewPost'),
-                                  ],
-                                ),
-                              ),
-                              const PopupMenuItem(
-                                value: 'prodelm',
-                                child: Row(
-                                  children: [
-                                    Icon(Icons.horizontal_distribute),
-                                    SizedBox(width: 5),
-                                    Text('prodelm'),
                                   ],
                                 ),
                               ),
@@ -135,20 +111,6 @@ class ConsltantProfail extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => NewPost(),
-                                  ),
-                                );
-                              } else if (value == 'prodelm') {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Setting(),
-                                  ),
-                                );
-                              } else if (value == 'Chat') {
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => chatDeatiles(),
                                   ),
                                 );
                               }

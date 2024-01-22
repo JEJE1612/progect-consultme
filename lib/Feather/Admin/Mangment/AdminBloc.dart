@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBlocState.dart';
 import 'package:flutter_application_1/core/Model/CatroiesModel.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
@@ -187,7 +188,7 @@ class AdminBloc extends Cubit<AdminState> {
     required String? bio,
   }) {
     emit(LodingUploadcoverAdminState());
-    print("heloo");
+
     FirebaseStorage.instance
         .ref()
         .child("user/${Uri.file(cover!.path).pathSegments.last}")
@@ -287,6 +288,7 @@ class AdminBloc extends Cubit<AdminState> {
 
   List catroies = [];
   List<String> catroiesnum = [];
+
   void getCaroies() async {
     catroies.clear();
     catroiesnum.clear();
@@ -314,5 +316,38 @@ class AdminBloc extends Cubit<AdminState> {
       print("Error deleting category: $e");
       emit(ErrorDeleteCatroiesState());
     }
+  }
+
+//mangment User and Consultant
+
+  List allresult = [];
+  List resultlist = [];
+  TextEditingController searchword = TextEditingController();
+  List<String> emailblock = [''];
+
+  deletconsultant({required int index}) {
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(resultlist[index]['uid'])
+        .delete()
+        .then((value) {})
+        .catchError((e) {
+      print(e.toString());
+    });
+  }
+
+  searchResultlist() {
+    var showResult = [];
+    if (searchword.text != '') {
+      for (var userSnapShot in allresult) {
+        var name = userSnapShot['name'].toString().toLowerCase();
+        if (name.contains(searchword.text.toLowerCase())) {
+          showResult.add(userSnapShot);
+        }
+      }
+    } else {
+      showResult = List.from(allresult);
+    }
+    resultlist = showResult;
   }
 }

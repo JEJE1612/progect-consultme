@@ -6,6 +6,7 @@ import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
 import 'package:flutter_application_1/Feather/Login/mangment/LoginState.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomButtonAuth%20.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomTextForm.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/Forgetpassword.dart';
 import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register.dart';
 
 import 'package:flutter_application_1/core/utils/constant.dart';
@@ -133,7 +134,13 @@ class Login extends StatelessWidget {
                             obscureText: LoginBloc.get(context).obscureText,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Forgetpassword(),
+                                  ));
+                            },
                             child: Container(
                               margin:
                                   const EdgeInsets.only(top: 10, bottom: 20),

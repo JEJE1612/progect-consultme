@@ -53,7 +53,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => MyBloc()..getUserData(),
+          create: (context) => MyBloc()
+            ..getUserData()
+            ..getAsk(),
         ),
         BlocProvider(
           create: (context) => AdminBloc()

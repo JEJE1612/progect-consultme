@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/EditProfail.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/AskQustion.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 
 class BackGroundProfailUser extends StatelessWidget {
@@ -71,6 +72,16 @@ class BackGroundProfailUser extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const PopupMenuItem(
+                      value: 'Ask',
+                      child: Row(
+                        children: [
+                          Icon(Icons.question_mark),
+                          SizedBox(width: 5),
+                          Text('Ask Question'),
+                        ],
+                      ),
+                    ),
                   ],
                   onSelected: (value) {
                     // Handle selection here
@@ -81,6 +92,12 @@ class BackGroundProfailUser extends StatelessWidget {
                           builder: (context) => EditProfailUser(),
                         ),
                       );
+                    }else if (value == 'Ask'){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AskQustion(),
+                          ));
                     }
                   },
                 ),

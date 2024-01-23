@@ -11,6 +11,7 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/core/Model/AskQustion.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/sharedPresfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -201,5 +202,133 @@ class MyBloc extends Cubit<MyState> {
     }).catchError((e) {
       emit(ErorUploadcoverAdminState());
     });
+  }
+
+  File? imageAsk;
+
+  void removeimagephoto() {
+    imageAsk == File('');
+    emit(RemoveAskImage());
+  }
+
+  Future<void> getImagePhotogallery() async {
+    emit(LodingGetimageAsk());
+
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      imageAsk = File(pickedFile.path);
+
+      emit(ScafullGetimageAsk());
+    } else {
+      print('No image selected.');
+      emit(ErrorGetimageAsk());
+    }
+  }
+
+  void uploadAskImage({
+    required String text,
+    required String date,
+    required String postImage,
+  }) {
+    emit(LodingCreatAskUser());
+
+    FirebaseStorage.instance
+        .ref()
+        .child("user/${Uri.file(imageAsk!.path).pathSegments.last}")
+        .putFile(imageAsk!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        creatAddPhoto(
+          dateTime: date,
+          text: text,
+          postImge: value,
+        );
+        emit(ScafullUploadAskImageState());
+      }).catchError((e) {
+        emit(ErrorUploadImageProfailState());
+      });
+    }).catchError((e) {
+      emit(ErorUploadAskImageState());
+    });
+  }
+
+  List<AskModel> poto = [];
+  List potoId = [];
+
+  CollectionReference post = FirebaseFirestore.instance.collection('post');
+
+  void creatAddPhoto({
+    required String text,
+    String? postImge,
+    required String dateTime,
+  }) async {
+    AskModel model = AskModel(
+      uId: usermodel?.uid,
+      name: usermodel?.name,
+      text: text,
+      image: usermodel?.image,
+      postImage: postImge ?? "",
+      dateTime: dateTime,
+    );
+
+    emit(LodingCreatAskUser());
+    poto.clear();
+    potoId.clear();
+
+    try {
+      DocumentReference docRef = await post.add(model.toMap());
+
+      model.docId = docRef.id;
+
+      // Optionally, you can update the document in Firestore with the docId
+      await docRef.update({'docId': docRef.id});
+
+      getAsk();
+
+      emit(ScafullCreatAskUser());
+    } catch (e) {
+      emit(ErrorCreatAskUser());
+      print("Error in creating addPhoto: ${e.toString()}");
+    }
+  }
+
+  void getAsk() async {
+    emit(LodingGetListAsk());
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('post')
+          .where("uId", isEqualTo: uid)
+          .orderBy(
+            "dateTime",
+          )
+          .get();
+
+      querySnapshot.docs.forEach((element) {
+        poto.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
+        potoId.add(element.id);
+      });
+
+      emit(ScafullGetListAsk());
+    } catch (e) {
+      print("Error in getAsk: $e");
+    }
+  }
+
+  void deleteAsk(String docId) async {
+    try {
+      emit(LodingDeleteAskUser());
+
+      // Delete the document from Firestore
+      await post.doc(docId).delete();
+
+      // Remove the item from the local list based on the docId
+      poto.removeWhere((ask) => ask.docId == docId);
+      potoId.remove(docId);
+
+      emit(SuccessDeleteAskUser());
+    } catch (e) {
+      emit(ErrorDeleteAskUser());
+      print("Error in deleting ask: $e");
+    }
   }
 }

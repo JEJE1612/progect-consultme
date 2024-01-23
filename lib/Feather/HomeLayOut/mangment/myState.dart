@@ -45,3 +45,33 @@ class ScafullUploadImageProfailState extends MyState {}
 class ErrorUploadImageProfailState extends MyState {}
 
 class ErorUploadcoverAdminState extends MyState {}
+
+class LodingCreatAskUser extends MyState {}
+
+class ScafullCreatAskUser extends MyState {}
+
+class ErrorCreatAskUser extends MyState {}
+
+class RemoveAskImage extends MyState {}
+
+class LodingGetimageAsk extends MyState {}
+
+class ScafullGetimageAsk extends MyState {}
+
+class ErrorGetimageAsk extends MyState {}
+
+class LodingUploadAskImageState extends MyState {}
+
+class ScafullUploadAskImageState extends MyState {}
+
+class ErorUploadAskImageState extends MyState {}
+
+class LodingGetListAsk extends MyState {}
+
+class ScafullGetListAsk extends MyState {}
+
+class LodingDeleteAskUser extends MyState {}
+
+class SuccessDeleteAskUser extends MyState {}
+
+class ErrorDeleteAskUser extends MyState {}

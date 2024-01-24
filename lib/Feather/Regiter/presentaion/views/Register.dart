@@ -3,6 +3,7 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomButtonAuth%20.dart';
 import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/CustomTextForm.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
 import 'package:flutter_application_1/Feather/Regiter/presentaion/Mangment/CreatAccoubtState.dart';
 import 'package:flutter_application_1/Feather/Regiter/presentaion/Mangment/creatAccountBloc.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
@@ -35,7 +36,7 @@ class Redister extends StatelessWidget {
           } else if (state is ScafullCreatUserState) {
             tost(text: "Scaffull Login ", state: ToastStae.succes);
             Navigator.pushNamedAndRemoveUntil(
-                context, HomeLayOut.nameKey, (route) => false);
+                context, Login.nameKey, (route) => false);
           } else if (state is ErrorCrestLodingState) {
             tost(text: state.Error, state: ToastStae.eror);
           }

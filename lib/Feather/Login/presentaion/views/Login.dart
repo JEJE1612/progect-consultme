@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/Home.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/views/HomeLayOut.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/home/Home.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
@@ -36,8 +39,26 @@ class Login extends StatelessWidget {
           } else if (state is ScafullLoginState) {
             CacheHealper.SavedData(key: "uid", value: state.uid);
             tost(text: "Scaffull Login ", state: ToastStae.succes);
-            Navigator.pushNamedAndRemoveUntil(
-                context, HomeLayOut.nameKey, (route) => false);
+
+            FirebaseFirestore.instance
+                .collection("user")
+                .doc(state.uid)
+                .get()
+                .then((userData) {
+              var userRole = userData['type'];
+
+              if (userRole == 'consulting') {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeCosultant(),
+                    ),
+                    (route) => false);
+              } else {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, HomeLayOut.nameKey, (route) => false);
+              }
+            });
           } else if (state is ErrorLoginState) {
             tost(text: "Error Pleas try Again", state: ToastStae.eror);
           }

@@ -37,6 +37,6 @@ class LoginBloc extends Cubit<LoginState> {
     FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value) {
       Navigator.pop(context);
     });
-    emit(forgetpasswordstate());
+    emit(Forgetpasswordstate());
   }
 }

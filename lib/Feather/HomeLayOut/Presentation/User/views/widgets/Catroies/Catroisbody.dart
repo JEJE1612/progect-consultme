@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/CustomAppBarCatrois.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/ListOneCiral.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/GridViewBuilder.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/grid_view_builder.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
 class Catroisbody extends StatelessWidget {

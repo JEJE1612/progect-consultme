@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditProfailUser extends StatefulWidget {
@@ -52,8 +52,9 @@ class _EditProfailUserState extends State<EditProfailUser> {
                             title: "Edit Profile"),
                       ],
                     ),
-                    if (state is LodingudateUserData) LinearProgressIndicator(),
-                    SizedBox(height: 3),
+                    if (state is LodingudateUserData)
+                      const LinearProgressIndicator(),
+                    const SizedBox(height: 3),
                     Stack(
                       clipBehavior: Clip.none,
                       alignment: Alignment.bottomLeft,

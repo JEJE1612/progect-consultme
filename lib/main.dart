@@ -2,19 +2,19 @@ import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/AdminBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
-import 'package:flutter_application_1/Feather/Regiter/presentaion/views/Register.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/views/login_screen.dart';
+import 'package:flutter_application_1/Feather/Regiter/presentaion/views/register_screen.dart';
 import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
-import 'package:flutter_application_1/core/thems/Mytheam.dart';
-import 'package:flutter_application_1/core/utils/MyBlocObserver.dart';
-import 'package:flutter_application_1/core/utils/sharedPresfrace.dart';
+import 'package:flutter_application_1/core/thems/my_theam.dart';
+import 'package:flutter_application_1/core/utils/my_bloc_observer.dart';
+import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
@@ -30,8 +30,7 @@ void main() async {
       : await Firebase.initializeApp();
 
   await CacheHealper.init();
-  var uid = CacheHealper.getData("uid", key: "uid");
-  print(uid);
+  //var uid = CacheHealper.getData("uid", key: "uid");
   // Widget widget;
   // if (uid != null) {
   //   widget = HomeLayOut();
@@ -47,7 +46,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -55,7 +53,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => MyBloc()
             ..getUserData()
-            ..getAsk(),
+            ..getAsk()
+            ..getSomeWork(),
         ),
         BlocProvider(
           create: (context) => AdminBloc()
@@ -78,12 +77,12 @@ class MyApp extends StatelessWidget {
             initialRoute: SplashView.nameKey,
             routes: {
               SplashView.nameKey: (_) => const SplashView(),
-              Login.nameKey: (_) => Login(),
+              LoginScreen.nameKey: (_) => const LoginScreen(),
               HomeLayOut.nameKey: (_) => const HomeLayOut(),
-              Redister.nameKey: (_) => Redister(),
+              RegisterScreen.nameKey: (_) => const RegisterScreen(),
               Profail.nameKey: (_) => Profail(),
-              Setting.nameKey: (_) => Setting(),
-              ChatScreen.nameKey: (_) => ChatScreen(),
+              Setting.nameKey: (_) => const Setting(),
+              ChatScreen.nameKey: (_) => const ChatScreen(),
             },
           );
         },

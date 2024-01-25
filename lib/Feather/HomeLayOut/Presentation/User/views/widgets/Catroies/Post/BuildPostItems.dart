@@ -100,7 +100,7 @@ Card buildPostItems(BuildContext context) {
           child: Container(
             width: double.infinity,
             height: 220,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   AssetsData.backGroudprofail,

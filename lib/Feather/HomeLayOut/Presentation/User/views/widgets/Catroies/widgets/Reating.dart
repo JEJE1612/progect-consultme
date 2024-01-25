@@ -17,7 +17,7 @@ class BookReating extends StatelessWidget {
           style: Styles.textStyle16.copyWith(
             color: Theme.of(context).colorScheme.brightness == Brightness.dark
                 ? Colors.white
-                : ScoundColor,
+                : scoundColor,
           ),
         ),
         const SizedBox(

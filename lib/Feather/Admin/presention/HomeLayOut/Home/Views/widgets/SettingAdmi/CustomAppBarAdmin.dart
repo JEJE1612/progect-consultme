@@ -15,7 +15,7 @@ class CustomAppBarAbmin extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onPressed,
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
         ),
         const SizedBox(
           width: 5,

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/AddPost/NewPost.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/ListPost.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/list_post.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/RatingReviews.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/rating_Reviews.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Reating.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Editprofail.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
@@ -17,7 +16,6 @@ class ConsltantProfail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var primaryColor;
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -134,14 +132,14 @@ class ConsltantProfail extends StatelessWidget {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => NewPost(),
+                                    builder: (context) => const NewPost(),
                                   ),
                                 );
                               } else if (value == 'prodelm') {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Setting(),
+                                    builder: (context) => const Setting(),
                                   ),
                                 );
                               } else if (value == 'Chat') {

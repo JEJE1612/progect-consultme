@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
@@ -48,10 +48,10 @@ chatDeatiles() {
                         color: Theme.of(context).colorScheme.brightness ==
                                 Brightness.dark
                             ? Colors.white
-                            : ScoundColor,
+                            : scoundColor,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       onPressed: () {
                         // SocailBloc.get(context).getChatimage(
@@ -66,12 +66,12 @@ chatDeatiles() {
                         color: Theme.of(context).colorScheme.brightness ==
                                 Brightness.dark
                             ? Colors.white
-                            : ScoundColor,
+                            : scoundColor,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 3,
                 ),
                 Container(
@@ -84,7 +84,7 @@ chatDeatiles() {
                 ),
                 Expanded(
                   child: ListView.separated(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       itemBuilder: (context, index) {
                         return buildMessage();
                       },
@@ -119,7 +119,7 @@ chatDeatiles() {
                           color: Theme.of(context).colorScheme.brightness ==
                                   Brightness.dark
                               ? Colors.white
-                              : ScoundColor,
+                              : scoundColor,
                         )),
                     disabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -127,7 +127,7 @@ chatDeatiles() {
                           color: Theme.of(context).colorScheme.brightness ==
                                   Brightness.dark
                               ? Colors.white
-                              : ScoundColor,
+                              : scoundColor,
                         )),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
@@ -135,11 +135,11 @@ chatDeatiles() {
                           color: Theme.of(context).colorScheme.brightness ==
                                   Brightness.dark
                               ? Colors.white
-                              : ScoundColor,
+                              : scoundColor,
                         )),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 ),
               ],
@@ -165,7 +165,7 @@ Widget buildMessage() => Align(
                 bottomStart: Radius.circular(10),
               ),
             ),
-            child: Text(
+            child: const Text(
               "Hello",
               style: TextStyle(color: Colors.black54, fontSize: 16),
             ),
@@ -189,9 +189,9 @@ Widget buildMyMessage() => Align(
                 topStart: Radius.circular(10),
               ),
             ),
-            child: Text(
+            child: const Text(
               "Hi Ahmed",
-              style: const TextStyle(color: Colors.black54, fontSize: 16),
+              style: TextStyle(color: Colors.black54, fontSize: 16),
             ),
           ),
           const SizedBox(

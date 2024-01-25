@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/AskQustion.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/BackGroundProfailUser.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/InformationUser.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/ListPostItemsAsk.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/back_ground_profail_user.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/information_user.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/list_post_items_ask.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_application_1/core/Model/usermodel.dart';
-import 'package:flutter_application_1/core/utils/styles.dart';
 
 class Profail extends StatelessWidget {
   static const String nameKey = "Profail";
 
-  TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
-  TextEditingController bioController = TextEditingController();
+  final TextEditingController bioController = TextEditingController();
 
-  TextEditingController phoneController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
 
-  UserModel? model;
+  final UserModel? model;
   Profail({
     Key? key,
     this.model,
@@ -57,7 +54,7 @@ class Profail extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  ListPostItemsAsk(),
+                  const ListPostItemsAsk(),
                 ],
               ),
             ),

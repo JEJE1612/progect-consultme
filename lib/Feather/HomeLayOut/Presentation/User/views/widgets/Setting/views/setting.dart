@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myBloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/myState.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/views/login_screen.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +23,7 @@ class _SettingState extends State<Setting> {
       listener: (context, state) {
         if (state is ScafullsignOut) {
           Navigator.pushNamedAndRemoveUntil(
-              context, Login.nameKey, (route) => false);
+              context, LoginScreen.nameKey, (route) => false);
         }
       },
       builder: (context, state) {

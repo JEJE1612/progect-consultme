@@ -11,7 +11,7 @@ class CreatAccount extends Cubit<CratAccountState> {
 
   changeIsAdmin(String value) {
     type = value;
-    emit(changetypeState());
+    emit(ChangetypeState());
   }
 
   void userRegister({
@@ -37,7 +37,7 @@ class CreatAccount extends Cubit<CratAccountState> {
       );
       emit(ScafullCreatUserState());
     }).catchError((e) {
-      emit(ErrorCrestLodingState(Error: e.toString()));
+      emit(ErrorCrestLodingState(error: e.toString()));
     });
   }
 
@@ -69,8 +69,7 @@ class CreatAccount extends Cubit<CratAccountState> {
       print(uid);
       emit(SaveDataFireStoreScafull());
     }).catchError((eror) {
-      print(eror.toString());
-      emit(SaveDataFireStoreerror());
+      emit(SaveDataFireStoreerror(error: eror));
     });
   }
 }

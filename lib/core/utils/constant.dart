@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 const primarycolor = Colors.blue;
-const ScoundColor = Color(0xff05042C);
+const scoundColor = Color(0xff05042C);
 String emailAdimin = "consultme455@gmail.com";
 String passwordAdmin = "000000";
 

@@ -23,7 +23,7 @@ class SlidingText extends StatelessWidget {
                 color:
                     Theme.of(context).colorScheme.brightness == Brightness.dark
                         ? Colors.white
-                        : ScoundColor,
+                        : scoundColor,
               ),
               textAlign: TextAlign.center,
             ),

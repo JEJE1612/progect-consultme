@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/views/Login.dart';
+import 'package:flutter_application_1/Feather/Login/presentaion/views/login_screen.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
@@ -49,7 +48,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
           style: Styles.textStyle36.copyWith(
             color: Theme.of(context).colorScheme.brightness == Brightness.dark
                 ? Colors.white
-                : ScoundColor,
+                : scoundColor,
           ),
           textAlign: TextAlign.center,
         ),
@@ -79,7 +78,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
       const Duration(seconds: 2),
       () {
         Navigator.pushNamedAndRemoveUntil(
-            context, Login.nameKey, (route) => false);
+            context, LoginScreen.nameKey, (route) => false);
       },
     );
   }

@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 
-class PostItemsSomeWork extends StatelessWidget {
-  const PostItemsSomeWork({
+class PostItemsAllAsk extends StatelessWidget {
+  const PostItemsAllAsk({
     super.key,
     required this.model,
   });
@@ -58,20 +58,24 @@ class PostItemsSomeWork extends StatelessWidget {
               PopupMenuButton<String>(
                 itemBuilder: (context) => [
                   const PopupMenuItem(
-                    value: 'remove',
+                    value: 'chat',
                     child: Row(
                       children: [
-                        Icon(Icons.delete),
-                        SizedBox(width: 5),
-                        Text('Remove'),
+                        Icon(Icons.chat),
+                        SizedBox(width: 7),
+                        Text('chat'),
                       ],
                     ),
                   ),
                 ],
                 onSelected: (value) {
                   // Handle selection here
-                  if (value == 'remove') {
-                    MyBloc.get(context).deleteWork(model.docId!);
+                  if (value == 'chat') {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => chatDeatiles(),
+                        ));
                   }
                 },
               ),

@@ -315,6 +315,29 @@ class MyBloc extends Cubit<MyState> {
     }
   }
 
+  List<AskModel> allAsk = [];
+  List allAskid = [];
+  void getAllAsk() async {
+    emit(LodingGetListAllAsk());
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('post')
+          .orderBy(
+            "dateTime",
+          )
+          .get();
+
+      for (var element in querySnapshot.docs) {
+        allAsk.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
+        allAskid.add(element.id);
+      }
+
+      emit(ScafullGetListAllAsk());
+    } catch (e) {
+      print("Error in getAsk: $e");
+    }
+  }
+
   void deleteAsk(String docId) async {
     try {
       emit(LodingDeleteAskUser());
@@ -443,21 +466,23 @@ class MyBloc extends Cubit<MyState> {
     }
   }
 
-  void deletesomeWorkid(String docId) async {
+  void deleteWork(String docId) async {
+    emit(LodingDeletesomeWorkid());
+
     try {
-      emit(LodingDeletesomeWorkid());
+      await FirebaseFirestore.instance.collection('Work').doc(docId).delete();
 
-      // Delete the document from Firestore
-      await post.doc(docId).delete();
-
-      // Remove the item from the local list based on the docId
-      poto.removeWhere((ask) => ask.docId == docId);
-      potoId.remove(docId);
+      // Remove the deleted item from the local lists
+      int index = someWorkid.indexOf(docId);
+      if (index != -1) {
+        someWorkid.removeAt(index);
+        someWork.removeAt(index);
+      }
 
       emit(SuccessDeletesomeWorkid());
     } catch (e) {
       emit(ErrorDeletesomeWorkid());
-      print("Error in deleting ask: $e");
+      print("Error in deleteWork: $e");
     }
   }
 }

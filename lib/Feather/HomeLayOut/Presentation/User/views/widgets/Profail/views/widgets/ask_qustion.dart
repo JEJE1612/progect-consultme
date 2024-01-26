@@ -26,6 +26,7 @@ class _AskQustionState extends State<AskQustion> {
           MyBloc.get(context).imageAsk = null;
         } else if (state is ScafullUploadAskImageState) {
           Navigator.pop(context);
+          textControll.clear();
           MyBloc.get(context).imageAsk = null;
         } else if (state is ScafullCreatAskUser) {
           Navigator.pop(context);
@@ -61,7 +62,6 @@ class _AskQustionState extends State<AskQustion> {
                                 postImage: "",
                               );
                             }
-                            textControll.clear();
                           },
                           child: const Text(
                             "Ask",

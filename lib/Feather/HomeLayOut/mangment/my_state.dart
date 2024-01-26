@@ -103,3 +103,7 @@ class LodingDeletesomeWorkid extends MyState {}
 class SuccessDeletesomeWorkid extends MyState {}
 
 class ErrorDeletesomeWorkid extends MyState {}
+
+class LodingGetListAllAsk extends MyState {}
+
+class ScafullGetListAllAsk extends MyState {}

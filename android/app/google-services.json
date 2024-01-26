@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:469912997265:android:97de68703e0502f4c61e30",
+        "mobilesdk_app_id": "1:469912997265:android:95da741b95b76e64c61e30",
         "android_client_info": {
-          "package_name": "com.example.flutter_application_1"
+          "package_name": "com.example.consultMe"
         }
       },
       "oauth_client": [],

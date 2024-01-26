@@ -54,7 +54,8 @@ class MyApp extends StatelessWidget {
           create: (context) => MyBloc()
             ..getUserData()
             ..getAsk()
-            ..getSomeWork(),
+            ..getSomeWork()
+            ..getAllAsk(),
         ),
         BlocProvider(
           create: (context) => AdminBloc()

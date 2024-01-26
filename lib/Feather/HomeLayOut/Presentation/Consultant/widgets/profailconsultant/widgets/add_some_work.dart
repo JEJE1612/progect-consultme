@@ -25,9 +25,11 @@ class _AddSomeWorkState extends State<AddSomeWork> {
         if (state is Removeimagework) {
           MyBloc.get(context).imagework = null;
         } else if (state is ScafullUploadcreatSameWorkState) {
+          textControll.clear();
           Navigator.pop(context);
           MyBloc.get(context).imagework = null;
         } else if (state is ScafullCreatSomeWork) {
+          textControll.clear();
           Navigator.pop(context);
         }
       },
@@ -61,7 +63,6 @@ class _AddSomeWorkState extends State<AddSomeWork> {
                                 postImage: "",
                               );
                             }
-                            textControll.clear();
                           },
                           child: const Text(
                             "Addwork",

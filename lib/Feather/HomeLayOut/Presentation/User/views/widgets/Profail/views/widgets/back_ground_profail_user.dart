@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/widgets/add_some_work.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/EditProfail.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/ask_qustion.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
@@ -72,6 +73,7 @@ class BackGroundProfailUser extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (model?.type == 'client')
                     const PopupMenuItem(
                       value: 'Ask',
                       child: Row(
@@ -82,6 +84,23 @@ class BackGroundProfailUser extends StatelessWidget {
                         ],
                       ),
                     ),
+                    if (model?.type != 'client')
+                      const PopupMenuItem(
+                        value: 'work',
+                        child: Row(
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.note_add_outlined,
+                                ),
+                                SizedBox(width: 5),
+                                Text('Add Some Work'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                   ],
                   onSelected: (value) {
                     // Handle selection here
@@ -97,6 +116,12 @@ class BackGroundProfailUser extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const AskQustion(),
+                          ));
+                    } else if (value == "work") {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AddSomeWork(),
                           ));
                     }
                   },

@@ -219,6 +219,22 @@ class _EditProfailUserState extends State<EditProfailUser> {
                     const SizedBox(
                       height: 20,
                     ),
+                    if (MyBloc.get(context).usermodel?.type != 'client')
+                      CustomTextFoemaFaildEditProfail(
+                        prefixIcon: const Icon(
+                          Icons.work,
+                        ),
+                        textCapitalization: TextCapitalization.sentences,
+                        nameController: jodController,
+                        onSaved: (value) {
+                          nameController.text == value;
+                        },
+                        text: 'Pleas enter jod',
+                        hintText: 'Teather',
+                      ),
+                    const SizedBox(
+                      height: 18,
+                    ),
                     CustomTextFoemaFaildEditProfail(
                       prefixIcon: const Icon(
                         Icons.phone,
@@ -228,7 +244,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       onSaved: (value) {
                         nameController.text == value;
                       },
-                      text: 'Pleas enter Jod',
+                      text: 'Pleas enter phone',
                       hintText: MyBloc.get(context).usermodel?.phone,
                       // hintText: AdminBloc.get(context).usermodel?.phone,
                     ),
@@ -236,7 +252,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       height: MediaQuery.of(context).size.height * 0.06,
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     CustomButton(
                       onTap: () {

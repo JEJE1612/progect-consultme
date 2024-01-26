@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc_state.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
+import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc_state.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/consltantProfail.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +62,7 @@ class BuildClient extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Styles.textStyle16.copyWith(
-                            color: Color.fromARGB(255, 57, 68, 90),
+                            color: const Color.fromARGB(255, 57, 68, 90),
                           ),
                         ),
                         const SizedBox(

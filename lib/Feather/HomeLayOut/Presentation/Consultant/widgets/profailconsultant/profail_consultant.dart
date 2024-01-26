@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/widgets/add_some_work.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/widgets/edit_profail_consultant.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/widgets/list_post_Item_swork.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/Rating_Reviews.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/information_user.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
+import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_application_1/core/Model/usermodel.dart';
 
 class ProfailConsultant extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -174,7 +174,14 @@ class ProfailConsultant extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RatingReviews(),
+                              ),
+                            );
+                          },
                           child: Text(
                             "Reating",
                             style:

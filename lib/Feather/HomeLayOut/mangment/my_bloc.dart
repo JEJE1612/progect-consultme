@@ -6,11 +6,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/home/Home.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/profail_consultant.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/Catroieus.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
@@ -22,7 +22,8 @@ class MyBloc extends Cubit<MyState> {
   static MyBloc get(context) => BlocProvider.of(context);
 
   int currentindex = 0;
-
+  final ratingController = TextEditingController();
+  final ratingKey = GlobalKey<FormState>();
   List<Widget> views = [
     const CatroiesScreen(),
     const ChatScreen(),
@@ -303,10 +304,10 @@ class MyBloc extends Cubit<MyState> {
           )
           .get();
 
-      querySnapshot.docs.forEach((element) {
+      for (var element in querySnapshot.docs) {
         poto.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
         potoId.add(element.id);
-      });
+      }
 
       emit(ScafullGetListAsk());
     } catch (e) {
@@ -431,10 +432,10 @@ class MyBloc extends Cubit<MyState> {
           )
           .get();
 
-      querySnapshot.docs.forEach((element) {
+      for (var element in querySnapshot.docs) {
         someWork.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
         someWorkid.add(element.id);
-      });
+      }
 
       emit(ScafullGetSomeWork());
     } catch (e) {

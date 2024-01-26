@@ -251,6 +251,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                               ? bioController.text
                               : MyBloc.get(context).usermodel?.bio ?? "",
                         );
+                        Navigator.pop(context);
                       },
                       text: "Save",
                     ),

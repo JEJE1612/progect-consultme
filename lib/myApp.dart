@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
             ..getSomeWork()
             ..getAllAsk(),
         ),
+        BlocProvider(create: (context) => RatingCubit()),
         BlocProvider(
           create: (context) => AdminBloc()
             ..getUserData()

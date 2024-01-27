@@ -22,8 +22,7 @@ class MyBloc extends Cubit<MyState> {
   static MyBloc get(context) => BlocProvider.of(context);
 
   int currentindex = 0;
-  final ratingController = TextEditingController();
-  final ratingKey = GlobalKey<FormState>();
+  
   List<Widget> views = [
     const CatroiesScreen(),
     const ChatScreen(),

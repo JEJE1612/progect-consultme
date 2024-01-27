@@ -27,11 +27,11 @@ class Forgetpassword extends StatelessWidget {
             );
           } else if (state is ScafullLoginState) {
             CacheHealper.savedData(key: "uid", value: state.uid);
-            tost(text: "Scaffull Login ", state: ToastStae.succes);
+            tost(text: "Scaffull Login ", state: ToastState.succes);
             Navigator.pushNamedAndRemoveUntil(
                 context, HomeLayOut.nameKey, (route) => false);
           } else if (state is ErrorLoginState) {
-            tost(text: "Error Pleas try Again", state: ToastStae.eror);
+            tost(text: "Error Pleas try Again", state: ToastState.eror);
           }
         },
         builder: (context, state) {

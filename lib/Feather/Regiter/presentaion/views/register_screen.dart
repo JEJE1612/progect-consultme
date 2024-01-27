@@ -46,11 +46,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: CircularProgressIndicator(),
             );
           } else if (state is ScafullCreatUserState) {
-            tost(text: "Scaffull Login ", state: ToastStae.succes);
+            tost(text: "Scaffull Login ", state: ToastState.succes);
             Navigator.pushNamedAndRemoveUntil(
                 context, LoginScreen.nameKey, (route) => false);
           } else if (state is ErrorCrestLodingState) {
-            tost(text: state.error, state: ToastStae.eror);
+            tost(text: state.error, state: ToastState.eror);
           }
         },
         builder: (context, state) {
@@ -107,7 +107,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (val == "") {
                                 tost(
                                     text: "Name Cant de empety",
-                                    state: ToastStae.eror);
+                                    state: ToastState.eror);
                               }
                               return null;
                             },
@@ -133,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (val == "") {
                                 tost(
                                     text: "Email Cant de empety",
-                                    state: ToastStae.eror);
+                                    state: ToastState.eror);
                               }
                               return null;
                             },
@@ -159,7 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (val == "") {
                                 tost(
                                     text: "Phone Cant de empety",
-                                    state: ToastStae.eror);
+                                    state: ToastState.eror);
                               }
                               return null;
                             },
@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               if (val == "") {
                                 tost(
                                     text: "password Cant de empety",
-                                    state: ToastStae.eror);
+                                    state: ToastState.eror);
                               }
                               return null;
                             },

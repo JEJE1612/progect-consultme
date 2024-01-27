@@ -8,7 +8,7 @@ String passwordAdmin = "000000";
 
 Future<bool?> tost({
   required text,
-  required ToastStae state,
+  required ToastState state,
 }) =>
     Fluttertoast.showToast(
       msg: text,
@@ -20,18 +20,18 @@ Future<bool?> tost({
       fontSize: 16.0,
     );
 
-enum ToastStae { succes, eror, waring }
+enum ToastState { succes, eror, waring }
 
-Color chooseColor(ToastStae state) {
+Color chooseColor(ToastState state) {
   Color? color;
   switch (state) {
-    case ToastStae.succes:
+    case ToastState.succes:
       color = Colors.green;
       break;
-    case ToastStae.eror:
+    case ToastState.eror:
       color = Colors.red;
       break;
-    case ToastStae.waring:
+    case ToastState.waring:
       color = Colors.amber;
       break;
   }

@@ -5,10 +5,9 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/list_post_items_ask.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
+import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_application_1/core/Model/usermodel.dart';
 
 class Profail extends StatelessWidget {
   static const String nameKey = "Profail";
@@ -33,7 +32,7 @@ class Profail extends StatelessWidget {
         if (state is SuccessDeleteAskUser) {
           tost(
             text: "Scafull Dealt",
-            state: ToastStae.succes,
+            state: ToastState.succes,
           );
         }
       },

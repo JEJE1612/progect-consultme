@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/rating_view.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/widgets/list_post_Item_swork.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/rating/presentation/views/rating_Reviews.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/back_ground_profail_user.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/information_user.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
@@ -138,32 +138,7 @@ class _ProfailConsultantState extends State<ProfailConsultant> {
                 ),
                 const customLine(),
                 const SizedBox(height: 10),
-                isSomeWorkPressed
-                    ? const ListPostItemswork()
-                    : BlocBuilder<RatingCubit, RatingState>(
-                        builder: (context, state) {
-                          if (state is RatingLoading) {
-                            return CircularProgressIndicator();
-                          } else if (state is RatingSucess) {
-                            return RatingView(
-                              allRating: state.allRating,
-                            );
-                          } else if (state is RatingFailure) {
-                            return Center(child: Text(state.errorMessage));
-                          } else {
-                            return Center(
-                              child: MaterialButton(
-                                onPressed: () async {
-                                  await BlocProvider.of<RatingCubit>(context)
-                                      .getAllRating();
-                                },
-                                child: Text("Update"),
-                                color: Colors.grey,
-                              ),
-                            );
-                          }
-                        },
-                      ),
+                isSomeWorkPressed ? const ListPostItemswork() : RatingReviews()
               ],
             ),
           ),

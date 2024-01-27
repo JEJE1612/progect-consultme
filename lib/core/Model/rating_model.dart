@@ -4,9 +4,11 @@ class RatingModel {
   final String describe;
   final String image;
   final String uid;
+  final String documentId;
   final DateTime date;
   RatingModel._(
       {required this.userName,
+      required this.documentId,
       required this.date,
       required this.uid,
       required this.rateValue,
@@ -14,13 +16,13 @@ class RatingModel {
       required this.image});
   factory RatingModel.fromjson({required Map<String, dynamic> rate}) {
     return RatingModel._(
-      describe: rate[kDescribeRating],
-      userName: rate[kUserName],
-      rateValue: double.parse(rate[kRateValue]),
-      image: rate[kImage],
-      uid: rate["uid"],
-      date: rate['dateTime'].toDate(),
-    );
+        describe: rate[kDescribeRating],
+        userName: rate[kUserName],
+        rateValue: double.parse(rate[kRateValue]),
+        image: rate[kImage],
+        uid: rate["uid"],
+        date: rate['dateTime'].toDate(),
+        documentId: rate['documentId']);
   }
 }
 

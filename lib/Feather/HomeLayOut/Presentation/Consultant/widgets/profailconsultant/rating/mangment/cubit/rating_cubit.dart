@@ -14,7 +14,7 @@ class RatingCubit extends Cubit<RatingState> {
   Future<void> addRating(BuildContext context) async {
     CollectionReference rating =
         FirebaseFirestore.instance.collection("rating");
-    await rating.add(
+    await rating.doc(rating.doc().id).set(
       {
         "uid": BlocProvider.of<MyBloc>(context).usermodel!.uid,
         kDescribeRating: ratingController.text,
@@ -22,8 +22,31 @@ class RatingCubit extends Cubit<RatingState> {
         kUserName: BlocProvider.of<MyBloc>(context).usermodel!.name,
         kImage: BlocProvider.of<MyBloc>(context).usermodel!.image,
         "dateTime": DateTime.now(),
+        "documentId": rating.doc().id,
       },
     );
+  }
+
+  Future<void> updateRate(RatingModel rate) async {
+    CollectionReference rating =
+        FirebaseFirestore.instance.collection("rating");
+    await rating.doc(rate.documentId).update({
+      "dateTime": DateTime.now(),
+      kRateValue: ratingValue.toString(),
+      kDescribeRating: ratingController.text,
+      kUserName: rate.userName,
+      "documentId": rate.documentId,
+      kImage: rate.image,
+      'uid': rate.uid,
+    });
+    await getAllRating();
+  }
+
+  Future<void> deleteRate(String documentId) async {
+    CollectionReference rating =
+        FirebaseFirestore.instance.collection("rating");
+    await rating.doc(documentId).delete();
+    await getAllRating();
   }
 
   Future<void> getAllRating() async {

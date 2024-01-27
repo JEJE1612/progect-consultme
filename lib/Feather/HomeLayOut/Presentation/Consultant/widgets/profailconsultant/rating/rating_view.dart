@@ -11,6 +11,7 @@ class RatingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListView.builder(
             shrinkWrap: true,

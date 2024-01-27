@@ -6,8 +6,10 @@ import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_t
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddRatingView extends StatelessWidget {
-  const AddRatingView({super.key});
-
+  const AddRatingView(
+      {super.key, required this.onPressed, required this.buttonName});
+  final VoidCallback onPressed;
+  final String buttonName;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,12 +41,13 @@ class AddRatingView extends StatelessWidget {
         const RatingBarView(),
         const SizedBox(height: 16),
         CreateRatingButton(
+          buttonName: buttonName,
           onPressed: () async {
             if (BlocProvider.of<RatingCubit>(context)
                 .ratingKey
                 .currentState!
                 .validate()) {
-              BlocProvider.of<RatingCubit>(context).addRating(context);
+              onPressed();
               Navigator.pop(context);
             }
           },

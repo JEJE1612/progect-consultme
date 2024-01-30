@@ -8,4 +8,5 @@ class AssetsData {
   static const user = 'assets/images/user.png';
   static const list = 'assets/images/list.png';
   static const setting = 'assets/images/setting.png';
+  static const allCatrois_icon = 'assets/images/allCatroies.webp';
 }

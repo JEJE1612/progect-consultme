@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
             ..getUserData()
             ..getAsk()
             ..getSomeWork()
-            ..getAllAsk(),
+            ..getAllAsk()
+            ..getCaroies()
+            ..getconsultantbloc()
+            ..getCaroiestouser(),
         ),
         BlocProvider(create: (context) => RatingCubit()),
         BlocProvider(

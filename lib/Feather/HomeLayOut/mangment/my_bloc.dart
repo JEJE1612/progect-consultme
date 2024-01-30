@@ -12,6 +12,7 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
+import 'package:flutter_application_1/core/Model/catroies_model.dart';
 import 'package:flutter_application_1/core/Model/chat_model.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
@@ -617,6 +618,83 @@ class MyBloc extends Cubit<MyState> {
       });
     }).catchError((e) {
       emit(ErorrUploadChatImageState());
+    });
+  }
+
+// catroies task
+
+  void choosemycategory(String mychoose) {
+    FirebaseFirestore.instance
+        .collection('user')
+        .doc(uid)
+        .set({'category': mychoose}, SetOptions(merge: true)).then((value) {
+      //Do your stuff.
+    });
+  }
+
+  List catroies = [];
+  List<String> catroiesnum = [];
+
+  void getCaroies() async {
+    emit(LodingGetcatroiesState());
+    FirebaseFirestore.instance.collection('Catroies').get().then((value) {
+      for (var element in value.docs) {
+        catroies.add(element);
+        catroiesnum.add(element.id);
+
+        emit(ScafullGetcatroiesstate());
+      }
+    }).catchError((e) {
+      ErrorGetcatroiesstate(e.toString());
+    });
+  }
+
+  List catroiesuser = [];
+  List<QueryDocumentSnapshot> datagenaralconsult = [];
+  List<QueryDocumentSnapshot> dataanyconsult = [];
+
+  void getCaroiestouser() async {
+    emit(LodingGetcatroiesState());
+    FirebaseFirestore.instance.collection('Catroies').get().then((value) {
+      for (var element in value.docs) {
+        catroiesuser.add(CatroiesModel.fromJson(element.data()));
+        emit(ScafullGetcatroiesstate());
+      }
+    }).catchError((e) {});
+  }
+
+  getconsultantbloc() async {
+    emit(LodingGetAllConsltant());
+    FirebaseFirestore.instance
+        .collection('user')
+        .where('type', isEqualTo: 'consulting')
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        datagenaralconsult.add(element);
+      }
+      debugPrint(value.toString());
+      emit(ScafullGetAllConsltant());
+    }).catchError((e) {
+      emit(ErrorGetGetAllConsltant(e.toString()));
+    });
+  }
+
+  getAllcosultant(String? typecategory) async {
+    emit(LodingGettypeconsultant());
+    FirebaseFirestore.instance
+        .collection('user')
+        .where('type', isEqualTo: 'consulting')
+        .where('category', isEqualTo: typecategory)
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        dataanyconsult.add(element);
+      }
+      debugPrint(value.toString());
+      emit(ScafullGettypeconslutant());
+    }).catchError((e) {
+      emit(ErrorGettypeconslutant(e.toString()));
     });
   }
 }

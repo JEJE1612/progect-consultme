@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/Catroisbody.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/catroiesnew/catrois_body.dart';
 
 class CatroiesScreen extends StatelessWidget {
   const CatroiesScreen({super.key});
@@ -7,7 +7,7 @@ class CatroiesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Catroisbody(),
+      body: Catroisbodynew(),
     );
   }
 }

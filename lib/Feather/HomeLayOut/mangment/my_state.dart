@@ -134,3 +134,30 @@ class LodingUploadChatImageState extends MyState {}
 class ScafullUploadChatImageState extends MyState {}
 
 class ErorrUploadChatImageState extends MyState {}
+
+class LodingGetcatroiesState extends MyState {}
+
+class ScafullGetcatroiesstate extends MyState {}
+
+class ErrorGetcatroiesstate extends MyState {
+  final String eror;
+  ErrorGetcatroiesstate(this.eror);
+}
+
+class LodingGetAllConsltant extends MyState {}
+
+class ScafullGetAllConsltant extends MyState {}
+
+class ErrorGetGetAllConsltant extends MyState {
+  final String eror;
+  ErrorGetGetAllConsltant(this.eror);
+}
+
+class LodingGettypeconsultant extends MyState {}
+
+class ScafullGettypeconslutant extends MyState {}
+
+class ErrorGettypeconslutant extends MyState {
+  final String eror;
+  ErrorGettypeconslutant(this.eror);
+}

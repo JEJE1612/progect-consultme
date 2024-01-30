@@ -11,15 +11,27 @@ class CustomButtonAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       height: 45,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       color: primarycolor,
       textColor: Colors.white,
       onPressed: onPressed,
-      child: Text(
-        title,
-        style: GoogleFonts.poppins(
-          fontSize: 18,
-        ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                title,
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+          ),
+          Icon(
+            Icons.arrow_forward,
+          ),
+        ],
       ),
     );
   }

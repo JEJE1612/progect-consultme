@@ -7,6 +7,7 @@ import 'package:flutter_application_1/Feather/Login/presentaion/views/login_scre
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:gap/gap.dart';
 
 import 'sliding_text.dart';
 
@@ -44,9 +45,7 @@ class _SplashViewbodyState extends State<SplashViewbody>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Logo(),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.16,
-        ),
+        Gap(30),
         Text(
           "Consult Me",
           style: Styles.textStyle36.copyWith(

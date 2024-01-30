@@ -19,18 +19,19 @@ class CustomTextForm extends StatelessWidget {
       this.suffixIcon,
       required this.obscureText,
       this.minlines,
-      this.maxlines, this.textAlign});
+      this.maxlines,
+      this.textAlign});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textAlign: textAlign??TextAlign.start,
+      textAlign: textAlign ?? TextAlign.start,
       validator: validator,
       controller: mycontroller,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      minLines: minlines ,
-      maxLines: maxlines ,
+      minLines: minlines,
+      maxLines: maxlines,
       decoration: InputDecoration(
         hintText: hinttext,
         suffixIcon: suffixIcon,
@@ -38,12 +39,12 @@ class CustomTextForm extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
         filled: true,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
               color: Colors.grey,
             )),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(
             color: Colors.grey,
           ),

@@ -7,8 +7,8 @@ class LoginBloc extends Cubit<LoginState> {
   LoginBloc() : super(InitalState());
   static LoginBloc get(context) => BlocProvider.of(context);
 
-  bool obscureText = false;
-  IconData icon = Icons.visibility_outlined;
+  bool obscureText = true;
+  IconData icon = Icons.visibility_off_outlined;
 
   void changepassWord() {
     obscureText = !obscureText;

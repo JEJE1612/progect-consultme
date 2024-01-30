@@ -107,3 +107,30 @@ class ErrorDeletesomeWorkid extends MyState {}
 class LodingGetListAllAsk extends MyState {}
 
 class ScafullGetListAllAsk extends MyState {}
+
+class LodingGetUserDataChat extends MyState {}
+
+class ScafullGetUserDataChat extends MyState {}
+
+class EroorGetUserDataChat extends MyState {
+  final String error;
+  EroorGetUserDataChat(this.error);
+}
+
+class ScafullSendMessageState extends MyState {}
+
+class ErrorSendMessageState extends MyState {}
+
+class GetMessageScafull extends MyState {}
+
+class LodinggetChatimageState extends MyState {}
+
+class ScafulltChatimageState extends MyState {}
+
+class ErrorChatimageState extends MyState {}
+
+class LodingUploadChatImageState extends MyState {}
+
+class ScafullUploadChatImageState extends MyState {}
+
+class ErorrUploadChatImageState extends MyState {}

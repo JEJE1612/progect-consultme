@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:gap/gap.dart';

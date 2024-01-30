@@ -12,6 +12,7 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
+import 'package:flutter_application_1/core/Model/chat_model.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,7 @@ class MyBloc extends Cubit<MyState> {
   static MyBloc get(context) => BlocProvider.of(context);
 
   int currentindex = 0;
-  
+
   List<Widget> views = [
     const CatroiesScreen(),
     const ChatScreen(),
@@ -38,6 +39,9 @@ class MyBloc extends Cubit<MyState> {
   ];
 
   void changeBootomSheet(int index) {
+    if (index == 1) {
+      getAllUser();
+    }
     currentindex = index;
     emit(ChangeBottonSheet());
   }
@@ -483,5 +487,136 @@ class MyBloc extends Cubit<MyState> {
       emit(ErrorDeletesomeWorkid());
       print("Error in deleteWork: $e");
     }
+  }
+
+  List<UserModel> user = [];
+  void getAllUser() {
+    emit(LodingGetUserDataChat());
+    if (user.isEmpty) {
+      FirebaseFirestore.instance.collection("user").get().then((value) {
+        for (var element in value.docs) {
+          if (element.data()["uid"] != usermodel?.uid) {
+            user.add(UserModel.fromJson(element.data()));
+            emit(ScafullGetUserDataChat());
+          }
+        }
+      }).catchError((e) {
+        emit(EroorGetUserDataChat(e.toString()));
+      });
+    }
+  }
+
+  void sendMessagechat({
+    required String reseverId,
+    required String dateTime,
+    required String text,
+    String? chatImge,
+  }) {
+    ChatModel model = ChatModel(
+        senderId: uid,
+        reseverId: reseverId,
+        chatImage: chatImge ?? "",
+        dateTime: dateTime,
+        text: text);
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(uid)
+        .collection("chats")
+        .doc(reseverId)
+        .collection("Message")
+        .add(model.toMap())
+        .then((value) {
+      emit(ScafullSendMessageState());
+    }).catchError((e) {
+      emit(ErrorSendMessageState());
+    });
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(reseverId)
+        .collection("chats")
+        .doc(uid)
+        .collection("Message")
+        .add(model.toMap())
+        .then((value) {
+      emit(ScafullSendMessageState());
+      print(usermodel?.uid);
+    }).catchError((e) {
+      emit(ErrorSendMessageState());
+    });
+  }
+
+  List<ChatModel> messages = [];
+
+  void getmessages({required String resiverId}) {
+    messages.clear();
+    FirebaseFirestore.instance
+        .collection("user")
+        .doc(uid)
+        .collection("chats")
+        .doc(resiverId)
+        .collection("Message")
+        .orderBy('dateTime')
+        .snapshots()
+        .listen((event) {
+      messages.clear();
+      event.docs.forEach((element) {
+        messages.add(ChatModel.fromJson(element.data()));
+      });
+      emit(GetMessageScafull());
+    });
+  }
+
+  File? chatimage;
+
+  Future<void> getChatimage({
+    required String text,
+    required String dateTime,
+    required String chatImage,
+    required String reseverId,
+  }) async {
+    emit(LodinggetChatimageState());
+
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      chatimage = File(pickedFile.path);
+
+      emit(ScafulltChatimageState());
+      uploadpChatImageImage(
+          text: text,
+          dateTime: dateTime,
+          chatImage: chatImage,
+          reseverId: reseverId);
+    } else {
+      print('No image selected.');
+      emit(ErrorChatimageState());
+    }
+  }
+
+  void uploadpChatImageImage({
+    required String text,
+    required String dateTime,
+    required String chatImage,
+    required String reseverId,
+  }) {
+    emit(LodingUploadChatImageState());
+    FirebaseStorage.instance
+        .ref()
+        .child("user/chat/${Uri.file(chatimage!.path).pathSegments.last}")
+        .putFile(chatimage!)
+        .then((value) {
+      value.ref.getDownloadURL().then((value) {
+        sendMessagechat(
+          dateTime: dateTime,
+          reseverId: reseverId,
+          text: text,
+          chatImge: value,
+        );
+        emit(ScafullUploadChatImageState());
+      }).catchError((e) {
+        emit(ErorrUploadChatImageState());
+      });
+    }).catchError((e) {
+      emit(ErorrUploadChatImageState());
+    });
   }
 }

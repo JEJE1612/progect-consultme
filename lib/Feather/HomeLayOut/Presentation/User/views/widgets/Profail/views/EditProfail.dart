@@ -15,7 +15,7 @@ class EditProfailUser extends StatefulWidget {
 }
 
 class _EditProfailUserState extends State<EditProfailUser> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController namecontroller = TextEditingController();
 
   TextEditingController bioController = TextEditingController();
 
@@ -125,8 +125,8 @@ class _EditProfailUserState extends State<EditProfailUser> {
                                     text: "image",
                                     onTap: () {
                                       MyBloc.get(context).uploadprofialImage(
-                                        name: nameController.text.isNotEmpty
-                                            ? nameController.text
+                                        name: namecontroller.text.isNotEmpty
+                                            ? namecontroller.text
                                             : MyBloc.get(context)
                                                     .usermodel
                                                     ?.name ??
@@ -160,8 +160,8 @@ class _EditProfailUserState extends State<EditProfailUser> {
                                     text: "cover",
                                     onTap: () {
                                       MyBloc.get(context).uploadCoverImage(
-                                        name: nameController.text.isNotEmpty
-                                            ? nameController.text
+                                        name: namecontroller.text.isNotEmpty
+                                            ? namecontroller.text
                                             : MyBloc.get(context)
                                                     .usermodel
                                                     ?.name ??
@@ -194,9 +194,9 @@ class _EditProfailUserState extends State<EditProfailUser> {
                         Icons.person_2_outlined,
                       ),
                       textCapitalization: TextCapitalization.sentences,
-                      nameController: nameController,
+                      nameController: namecontroller,
                       onSaved: (value) {
-                        nameController.text == value;
+                        namecontroller.text == value;
                       },
                       text: 'Pleas enter name',
                       hintText: MyBloc.get(context).usermodel?.name,
@@ -211,7 +211,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: bioController,
                       onSaved: (value) {
-                        nameController.text == value;
+                        namecontroller.text == value;
                       },
                       text: 'Pleas enter bio',
                       hintText: MyBloc.get(context).usermodel?.bio,
@@ -227,7 +227,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                         textCapitalization: TextCapitalization.sentences,
                         nameController: jodController,
                         onSaved: (value) {
-                          nameController.text == value;
+                          namecontroller.text == value;
                         },
                         text: 'Pleas enter jod',
                         hintText: 'Teather',
@@ -242,7 +242,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: phoneController,
                       onSaved: (value) {
-                        nameController.text == value;
+                        phoneController.text == value;
                       },
                       text: 'Pleas enter phone',
                       hintText: MyBloc.get(context).usermodel?.phone,
@@ -257,8 +257,8 @@ class _EditProfailUserState extends State<EditProfailUser> {
                     CustomButton(
                       onTap: () {
                         MyBloc.get(context).udateUserData(
-                          name: nameController.text.isNotEmpty
-                              ? nameController.text
+                          name: phoneController.text.isNotEmpty
+                              ? phoneController.text
                               : MyBloc.get(context).usermodel?.name ?? "",
                           phone: phoneController.text.isNotEmpty
                               ? phoneController.text

@@ -2,12 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc_state.dart';
+import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
 
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomButton.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
-import 'package:flutter_application_1/core/utils/styles.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class EditProfailAdmin extends StatefulWidget {
   const EditProfailAdmin({super.key});
@@ -41,25 +42,11 @@ class _EditProfailState extends State<EditProfailAdmin> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back_ios_new_outlined,
-                              ),
-                            ),
-                            Text(
-                              "Edit Profile",
-                              style: Styles.textStyle18,
-                            ),
-                          ],
-                        ),
-                      ],
+                    CustomAppBarAbmin(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      title: "Edit Profile",
                     ),
                     Stack(
                       clipBehavior: Clip.none,
@@ -83,8 +70,10 @@ class _EditProfailState extends State<EditProfailAdmin> {
                               decoration: BoxDecoration(
                                 image: imagecover == null
                                     ? DecorationImage(
-                                        image: NetworkImage(
+                                        image: CachedNetworkImageProvider(
                                           "${usermodel?.cover}",
+                                          errorListener: (p0) =>
+                                              Text("Click To Add Photo"),
                                         ),
                                         fit: BoxFit.cover)
                                     : DecorationImage(
@@ -120,9 +109,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 60,
-                    ),
+                    Gap(60),
                     if (AdminBloc.get(context).image != null ||
                         AdminBloc.get(context).cover != null)
                       Row(
@@ -198,9 +185,9 @@ class _EditProfailState extends State<EditProfailAdmin> {
                             const LinearProgressIndicator(),
                         ],
                       ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    Gap(10),
+                    if (State is ScafullUdateAdminData)
+                      LinearProgressIndicator(),
                     CustomTextFoemaFaildEditProfail(
                       prefixIcon: const Icon(
                         Icons.person_2_outlined,
@@ -213,9 +200,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       text: 'Pleas enter name',
                       hintText: AdminBloc.get(context).usermodel?.name,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(20),
                     CustomTextFoemaFaildEditProfail(
                       prefixIcon: const Icon(
                         Icons.info_outline,
@@ -228,9 +213,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       text: 'Pleas enter bio',
                       hintText: AdminBloc.get(context).usermodel?.bio,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(20),
                     CustomTextFoemaFaildEditProfail(
                       prefixIcon: const Icon(
                         Icons.phone,
@@ -243,12 +226,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       text: 'Pleas enter Jod',
                       hintText: AdminBloc.get(context).usermodel?.phone,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Gap(40),
                     CustomButton(
                       onTap: () {
                         AdminBloc.get(context).udateAdminData(
@@ -264,9 +242,6 @@ class _EditProfailState extends State<EditProfailAdmin> {
                         );
                       },
                       text: "Save",
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).viewInsets.bottom,
                     ),
                   ],
                 ),

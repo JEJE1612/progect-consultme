@@ -7,8 +7,8 @@ import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/views/login_screen.dart';
-import 'package:flutter_application_1/Feather/Regiter/presentaion/views/register_screen.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/views/login_screen.dart';
+import 'package:flutter_application_1/Feather/Authe/Regiter/presentaion/views/register_screen.dart';
 import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

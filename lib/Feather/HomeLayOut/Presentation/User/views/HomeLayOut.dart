@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
+import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeLayOut extends StatelessWidget {
@@ -17,6 +18,8 @@ class HomeLayOut extends StatelessWidget {
         return Scaffold(
           body: bloc.views[bloc.currentindex],
           bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: primarycolor,
+              unselectedItemColor: Colors.grey,
               currentIndex: bloc.currentindex,
               onTap: (value) {
                 bloc.changeBootomSheet(value);

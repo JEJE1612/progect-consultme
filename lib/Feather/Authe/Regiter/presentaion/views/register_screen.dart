@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/text_login.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_button_auth%20.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_text_form.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/views/login_screen.dart';
-import 'package:flutter_application_1/Feather/Regiter/presentaion/Mangment/CreatAccoubtState.dart';
-import 'package:flutter_application_1/Feather/Regiter/presentaion/Mangment/creatAccountBloc.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_button_auth%20.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_text_form.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/views/login_screen.dart';
+import 'package:flutter_application_1/Feather/Authe/Regiter/presentaion/Mangment/CreatAccoubtState.dart';
+import 'package:flutter_application_1/Feather/Authe/Regiter/presentaion/Mangment/creatAccountBloc.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String nameKey = "RedisterScreen";
@@ -28,15 +30,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController phone = TextEditingController();
 
   var formkey = GlobalKey<FormState>();
-
   String? typeclient;
-
   bool values = false;
-
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
     return BlocProvider(
       create: (context) => CreatAccount(),
       child: BlocConsumer<CreatAccount, CratAccountState>(
@@ -58,10 +55,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             body: SafeArea(
               child: ListView(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Form(
-                      key: formkey,
+                  Form(
+                    key: formkey,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -69,26 +68,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: const Icon(Icons.arrow_back_ios)),
+                              icon: const Icon(Icons.arrow_back)),
                           const Logo(),
-                          const SizedBox(
-                            height: 20,
-                          ),
+                          Gap(16),
                           Center(
-                            child: Text(
-                              'Sign Up',
-                              style: Styles.textStyle36.copyWith(
-                                color:
-                                    Theme.of(context).colorScheme.brightness ==
-                                            Brightness.dark
-                                        ? Colors.white
-                                        : scoundColor,
-                              ),
+                            child: TextLogin(
+                              text: "Sign Up",
                             ),
                           ),
-                          SizedBox(
-                            height: size.height * 0.072,
-                          ),
+                          Gap(10),
                           Text(
                             "Name",
                             style: Styles.textStyle18.copyWith(
@@ -112,9 +100,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(
-                            height: size.height * 0.022,
-                          ),
+                          Gap(10),
                           Text(
                             "Email",
                             style: Styles.textStyle18.copyWith(
@@ -138,9 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(
-                            height: size.height * 0.022,
-                          ),
+                          Gap(10),
                           Text(
                             "Phone",
                             style: Styles.textStyle18.copyWith(
@@ -164,9 +148,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(
-                            height: size.height * 0.022,
-                          ),
+                          Gap(10),
                           Text(
                             "password",
                             style: Styles.textStyle18.copyWith(
@@ -190,11 +172,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               return null;
                             },
                           ),
-                          SizedBox(
-                            height: size.height * 0.022,
-                          ),
+                          Gap(15),
                           Text(
-                            "type of user:",
+                            "type:",
                             style: Styles.textStyle18.copyWith(
                               color: Theme.of(context).colorScheme.brightness ==
                                       Brightness.dark
@@ -202,49 +182,43 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   : scoundColor,
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: RadioListTile(
-                                    selected: values,
-                                    title: const Text(
-                                      'consulting',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    value: 'consulting',
-                                    onChanged: (value) {
-                                      values = true;
-                                      typeclient = "consulting";
-                                      CreatAccount.get(context)
-                                          .changeIsAdmin(typeclient!);
-                                    },
-                                    groupValue: typeclient,
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: RadioListTile(
+                                  selected: values,
+                                  title: const Text(
+                                    'consulting',
+                                    style: TextStyle(color: Colors.black),
                                   ),
+                                  value: 'consulting',
+                                  onChanged: (value) {
+                                    values = true;
+                                    typeclient = "consulting";
+                                    CreatAccount.get(context)
+                                        .changeIsAdmin(typeclient!);
+                                  },
+                                  groupValue: typeclient,
                                 ),
-                                Expanded(
-                                  child: RadioListTile(
-                                    selected: values,
-                                    title: const Text('client',
-                                        style: TextStyle(color: Colors.black)),
-                                    value: "client",
-                                    groupValue: typeclient,
-                                    onChanged: (value) {
-                                      values = true;
-                                      typeclient = value;
-                                      CreatAccount.get(context)
-                                          .changeIsAdmin(typeclient!);
-                                    },
-                                  ),
+                              ),
+                              Expanded(
+                                child: RadioListTile(
+                                  selected: values,
+                                  title: const Text('client',
+                                      style: TextStyle(color: Colors.black)),
+                                  value: "client",
+                                  groupValue: typeclient,
+                                  onChanged: (value) {
+                                    values = true;
+                                    typeclient = value;
+                                    CreatAccount.get(context)
+                                        .changeIsAdmin(typeclient!);
+                                  },
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: size.height * 0.022,
-                          ),
+                          Gap(15),
                           SizedBox(
                             width: double.infinity,
                             child: CustomButtonAuth(

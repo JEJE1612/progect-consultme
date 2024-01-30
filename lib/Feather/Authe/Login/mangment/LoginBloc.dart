@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Login/mangment/LoginState.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/mangment/LoginState.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Cubit<LoginState> {
   LoginBloc() : super(InitalState());
   static LoginBloc get(context) => BlocProvider.of(context);
 
-  bool obscureText = true;
-  IconData icon = Icons.visibility_off_outlined;
+  bool obscureText = false;
+  IconData icon = Icons.visibility_outlined;
 
   void changepassWord() {
     obscureText = !obscureText;

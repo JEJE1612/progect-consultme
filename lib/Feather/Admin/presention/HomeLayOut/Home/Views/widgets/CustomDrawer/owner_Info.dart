@@ -5,7 +5,7 @@ import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/V
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../../core/Model/usermodel.dart';
-import '../../../../../../../Login/presentaion/views/login_screen.dart';
+import '../../../../../../../Authe/Login/presentaion/views/login_screen.dart';
 
 class OwnerInfo extends StatelessWidget {
   final bool isCollapsed;

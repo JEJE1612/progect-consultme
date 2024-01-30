@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:gap/gap.dart';
 
 class InformationUser extends StatelessWidget {
   const InformationUser({
@@ -23,9 +25,7 @@ class InformationUser extends StatelessWidget {
                 Icons.person,
                 color: Colors.grey,
               ),
-              const SizedBox(
-                width: 5,
-              ),
+              Gap(5),
               Text(
                 "${model?.name}",
                 style: Styles.textStyle18,
@@ -34,9 +34,7 @@ class InformationUser extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          Gap(10),
           Row(
             children: [
               const Icon(
@@ -44,9 +42,7 @@ class InformationUser extends StatelessWidget {
                 color: Colors.grey,
                 size: 16,
               ),
-              const SizedBox(
-                width: 5,
-              ),
+              Gap(5),
               Text(
                 "${model?.bio}",
                 maxLines: 1,
@@ -55,30 +51,25 @@ class InformationUser extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            children: [
-              const Icon(
-                Icons.work,
-                color: Colors.grey,
-                size: 16,
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Text(
-                "Job title",
-                style: Styles.textStyle14.copyWith(color: Colors.grey),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
+          Gap(5),
+          if (MyBloc.get(context).usermodel?.type != 'client')
+            Row(
+              children: [
+                const Icon(
+                  Icons.work,
+                  color: Colors.grey,
+                  size: 16,
+                ),
+                Gap(5),
+                Text(
+                  "Admin",
+                  style: Styles.textStyle14.copyWith(color: Colors.grey),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          Gap(5),
           Row(
             children: [
               const Icon(
@@ -86,9 +77,7 @@ class InformationUser extends StatelessWidget {
                 color: Colors.grey,
                 size: 16,
               ),
-              const SizedBox(
-                width: 5,
-              ),
+              Gap(5),
               Text(
                 "${model?.phone}",
                 style: Styles.textStyle14.copyWith(color: Colors.grey),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/add_Rate/widgets/create_rate_button.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/add_Rate/widgets/rating_bar_view.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_text_form.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_text_form.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddRatingView extends StatelessWidget {

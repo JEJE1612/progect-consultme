@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/ChatSceen/ChatDeatiles.dart';
 import 'package:flutter_application_1/core/Model/ask_model.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:gap/gap.dart';
 
 class PostItemsAllAsk extends StatelessWidget {
   const PostItemsAllAsk({
@@ -18,9 +19,7 @@ class PostItemsAllAsk extends StatelessWidget {
       elevation: 20.0,
       child: Column(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
+          Gap(10),
           Row(
             children: [
               CircleAvatar(
@@ -29,9 +28,7 @@ class PostItemsAllAsk extends StatelessWidget {
                 ),
                 radius: 25,
               ),
-              const SizedBox(
-                width: 10,
-              ),
+              Gap(10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,9 +39,7 @@ class PostItemsAllAsk extends StatelessWidget {
                           "${model.name}",
                           style: Styles.textStyle16,
                         ),
-                        const SizedBox(
-                          width: 3,
-                        ),
+                        Gap(5),
                       ],
                     ),
                     Text(
@@ -55,29 +50,12 @@ class PostItemsAllAsk extends StatelessWidget {
                   ],
                 ),
               ),
-              PopupMenuButton<String>(
-                itemBuilder: (context) => [
-                  const PopupMenuItem(
-                    value: 'chat',
-                    child: Row(
-                      children: [
-                        Icon(Icons.chat),
-                        SizedBox(width: 7),
-                        Text('chat'),
-                      ],
-                    ),
-                  ),
-                ],
-                onSelected: (value) {
-                  // Handle selection here
-                  if (value == 'chat') {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => chatDeatiles(),
-                        ));
-                  }
-                },
+              //add catroies imge
+              CircleAvatar(
+                backgroundImage: CachedNetworkImageProvider(
+                  "${model.image}",
+                ),
+                radius: 20,
               ),
             ],
           ),

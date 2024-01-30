@@ -15,15 +15,18 @@ class ListAllAskUser extends StatelessWidget {
     if (myBloc.allAsk.isEmpty) {
       return Center(
         child: Text(
-          ' Add Some Work ',
+          'Check',
           style: Styles.textStyle20,
         ),
       );
     }
 
     return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 5,
+      separatorBuilder: (context, index) => Container(
+        margin: EdgeInsets.symmetric(vertical: 15),
+        height: 0.5,
+        width: double.infinity,
+        decoration: BoxDecoration(color: Colors.grey),
       ),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/home_screen.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
-import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_button_auth%20.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_text_form.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/forget_password.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/text_login.dart';
-import 'package:flutter_application_1/Feather/Regiter/presentaion/views/register_screen.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/mangment/LoginBloc.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_button_auth%20.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_text_form.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/forget_password.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/text_login.dart';
+import 'package:flutter_application_1/Feather/Authe/Regiter/presentaion/views/register_screen.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:gap/gap.dart';
@@ -38,7 +38,7 @@ class LoginBody extends StatelessWidget {
                   children: [
                     Gap(16),
                     const Logo(),
-                    Gap(10),
+                    Gap(30),
                     Center(
                       child: TextLogin(text: "Login"),
                     ),

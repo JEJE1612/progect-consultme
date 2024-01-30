@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
 import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
-import 'package:flutter_application_1/Feather/Login/mangment/LoginBloc.dart';
-import 'package:flutter_application_1/Feather/Login/mangment/LoginState.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_button_auth%20.dart';
-import 'package:flutter_application_1/Feather/Login/presentaion/Widgets/custom_text_form.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/mangment/LoginBloc.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/mangment/LoginState.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_button_auth%20.dart';
+import 'package:flutter_application_1/Feather/Authe/Login/presentaion/Widgets/custom_text_form.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';

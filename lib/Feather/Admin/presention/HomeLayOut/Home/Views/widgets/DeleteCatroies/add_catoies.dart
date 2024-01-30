@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc_state.dart';
 import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
 import 'package:flutter_application_1/Feather/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
+import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewCatroies extends StatefulWidget {
@@ -38,10 +39,9 @@ class _NewCatroiesState extends State<NewCatroies> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Padding(
-            padding:
-                const EdgeInsets.only(top: 8, left: 16, right: 16, bottom: 5),
-            child: SafeArea(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   Row(
@@ -131,19 +131,36 @@ class _NewCatroiesState extends State<NewCatroies> {
                         ],
                       ),
                     ),
+                  if (AdminBloc.get(context).catroiesImage == null)
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      margin: EdgeInsets.only(bottom: 50),
+                      decoration: BoxDecoration(
+                          color: primarycolor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: Text(
+                        "Pleas choose photo!!",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   const Divider(height: 20, thickness: 0.5, color: Colors.grey),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
+                  CircleAvatar(
+                    backgroundColor: primarycolor,
+                    radius: 30,
+                    child: Center(
+                      child: IconButton(
                           onPressed: () {
                             AdminBloc.get(context).getcatroiesImage();
                           },
                           icon: const Icon(
                             Icons.camera_alt_outlined,
                             size: 34,
+                            color: Colors.white,
                           )),
-                    ],
+                    ),
                   ),
                 ],
               ),

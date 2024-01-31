@@ -161,3 +161,9 @@ class ErrorGettypeconslutant extends MyState {
   final String eror;
   ErrorGettypeconslutant(this.eror);
 }
+
+class LodingGetPrivateworkConsultant extends MyState {}
+
+class ScafullGetPrivateworkConsultant extends MyState {}
+
+class ErrorGetPrivateworkConsultant extends MyState {}

@@ -696,4 +696,42 @@ class MyBloc extends Cubit<MyState> {
       emit(ErrorGettypeconslutant(e.toString()));
     });
   }
+
+  List<QueryDocumentSnapshot> listPrivateworkConsultant = [];
+
+  getPrivateworkConsultant({required String? uid}) async {
+    print("hello");
+    emit(LodingGetPrivateworkConsultant());
+    FirebaseFirestore.instance
+        .collection('Work')
+        .where('uId', isEqualTo: "aFppoU09bhOg93gde1VjY1AaGui1")
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        listPrivateworkConsultant.add(element);
+      }
+      print(listPrivateworkConsultant);
+      emit(ScafullGettypeconslutant());
+    }).catchError((e) {
+      emit(ErrorGettypeconslutant(e.toString()));
+    });
+  }
+
+  List<QueryDocumentSnapshot> listPrivateReatingConsultant = [];
+  getPrivateReatingConsultant(String? uid) async {
+    emit(LodingGettypeconsultant());
+    FirebaseFirestore.instance
+        .collection('rating')
+        .where('uId', isEqualTo: 'uid')
+        .get()
+        .then((value) {
+      for (var element in value.docs) {
+        listPrivateworkConsultant.add(element);
+      }
+      debugPrint(value.toString());
+      emit(ScafullGettypeconslutant());
+    }).catchError((e) {
+      emit(ErrorGettypeconslutant(e.toString()));
+    });
+  }
 }

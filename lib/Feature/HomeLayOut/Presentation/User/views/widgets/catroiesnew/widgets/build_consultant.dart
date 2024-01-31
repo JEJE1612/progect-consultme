@@ -8,8 +8,8 @@ import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildConsulatNew extends StatelessWidget {
-  int i;
   BuildConsulatNew({super.key, required this.i});
+  final int i;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +82,7 @@ class BuildConsulatNew extends StatelessWidget {
                         ],
                       ),
                     ),
+                    const BookReating(),
                   ],
                 ),
               ),

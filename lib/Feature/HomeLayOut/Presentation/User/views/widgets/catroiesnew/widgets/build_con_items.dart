@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/consltantProfail.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/catroiesnew/widgets/show_con_profail.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
@@ -24,7 +24,10 @@ class Buildconsultantgeneral extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ConsltantProfail(),
+                  builder: (context) => ConsltantProfailgrenal(
+                    i: i!,
+                    uid: MyBloc.get(context).listshowAllConsltant[i!]['bio'],
+                  ),
                 ));
           },
           child: Container(

@@ -7,7 +7,10 @@ import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllConaltanttogatogry extends StatelessWidget {
-  AllConaltanttogatogry({required this.model, required this.name});
+  AllConaltanttogatogry({
+    required this.model,
+    required this.name,
+  });
   final CatroiesModel? model;
   final String name;
 
@@ -32,7 +35,7 @@ class AllConaltanttogatogry extends StatelessWidget {
                                   Navigator.pop(context);
                                 },
                                 icon: const Icon(
-                                  Icons.arrow_back_ios,
+                                  Icons.arrow_back,
                                 )),
                             Text(
                               name,

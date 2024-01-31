@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/Admin/Mangment/admin_bloc.dart';
 import 'package:flutter_application_1/Feature/Admin/Mangment/admin_bloc_state.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Reating.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/consltantProfail.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,7 +82,7 @@ class BuildConsulatAdmin extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const BookReating(),
+                 
                 ],
               ),
             ),

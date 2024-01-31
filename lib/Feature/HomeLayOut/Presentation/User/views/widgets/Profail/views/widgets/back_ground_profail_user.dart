@@ -30,7 +30,7 @@ class BackGroundProfailUser extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(
+                  image: CachedNetworkImageProvider(
                     "${model?.cover}",
                   ),
                   fit: BoxFit.cover),

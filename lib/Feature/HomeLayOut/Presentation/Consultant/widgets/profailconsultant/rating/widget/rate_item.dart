@@ -12,14 +12,12 @@ class RateItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      margin: EdgeInsets.symmetric(horizontal: 8.0),
+      margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       elevation: 20.0,
       //color: Colors.white,
       child: Column(
         children: [
-          SizedBox(
-            height: 10,
-          ),
+          SizedBox(height: 10),
           Row(
             children: [
               RaterImage(image: rate.image),

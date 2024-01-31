@@ -5,7 +5,6 @@ import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Profail/views/widgets/list_post_items_ask.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
-import 'package:flutter_application_1/core/Model/usermodel.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,48 +17,51 @@ class Profail extends StatelessWidget {
 
   final TextEditingController phoneController = TextEditingController();
 
-  final UserModel? model;
-  Profail({
-    Key? key,
-    this.model,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return BlocConsumer<MyBloc, MyState>(
       listener: (context, state) {
         if (state is SuccessDeleteAskUser) {
           tost(
-            text: "Scafull Dealt",
+            text: "SuccessFul Delete",
             state: ToastState.succes,
           );
         }
       },
       builder: (context, state) {
-        var model = MyBloc.get(context).usermodel;
         return Scaffold(
-          body: SingleChildScrollView(
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BackGroundProfailUser(size: size, model: model),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  InformationUser(model: model),
-                  const customLine(),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const ListPostItemsAsk(),
-                ],
-              ),
-            ),
-          ),
+          body: ProfileViewBody(),
         );
       },
+    );
+  }
+}
+
+class ProfileViewBody extends StatelessWidget {
+  const ProfileViewBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var model = MyBloc.get(context).usermodel;
+    var size = MediaQuery.of(context).size;
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BackGroundProfailUser(size: size, model: model),
+            const SizedBox(
+              height: 50,
+            ),
+            InformationUser(model: model),
+            const customLine(),
+            const SizedBox(
+              height: 10,
+            ),
+            const ListPostItemsAsk(),
+          ],
+        ),
+      ),
     );
   }
 }

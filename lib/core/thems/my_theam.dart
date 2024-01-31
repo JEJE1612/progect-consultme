@@ -3,6 +3,8 @@ import 'package:flutter_application_1/core/utils/constant.dart';
 
 class MyThemData {
   static ThemeData lightThem = ThemeData(
+    popupMenuTheme:
+        PopupMenuThemeData(color: Colors.grey, iconColor: Colors.black),
     scaffoldBackgroundColor: const Color(0xffFFFFFF),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       type: BottomNavigationBarType.fixed,
@@ -19,14 +21,16 @@ class MyThemData {
       error: Colors.red,
       onError: Colors.white10,
       background: Colors.black,
-      onBackground: Colors.transparent,
-      onSurface: Colors.white10,
-      surface: Colors.transparent,
+      onBackground: Colors.white,
+      onSurface: Colors.black,
+      surface: Colors.grey,
     ).copyWith(background: const Color(0xffDFECDB)),
   );
 
   static ThemeData darkTheam = ThemeData(
     scaffoldBackgroundColor: scoundColor,
+    popupMenuTheme:
+        PopupMenuThemeData(color: scoundColor, iconColor: Colors.white),
     appBarTheme: const AppBarTheme(
       toolbarHeight: 100,
       color: Color(0xff4083D9),
@@ -52,10 +56,10 @@ class MyThemData {
       onSecondary: Colors.black,
       error: Colors.red,
       onError: Colors.white10,
-      background: Colors.transparent,
-      onBackground: Colors.transparent,
-      onSurface: Colors.white10,
-      surface: Colors.transparent,
+      background: Colors.black,
+      onBackground: Colors.white,
+      onSurface: Colors.white,
+      surface: scoundColor,
     ).copyWith(background: scoundColor),
   );
 }

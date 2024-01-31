@@ -11,6 +11,7 @@ class RatingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
+        
         itemCount: allRating.length,
         itemBuilder: (context, index) => RateItem(
           rate: allRating[index],

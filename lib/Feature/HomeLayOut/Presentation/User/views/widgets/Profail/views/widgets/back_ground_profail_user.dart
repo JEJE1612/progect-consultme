@@ -58,74 +58,73 @@ class BackGroundProfailUser extends StatelessWidget {
           child: Row(
             children: [
               const SizedBox(width: 5),
-              Material(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(50),
-                child: PopupMenuButton<String>(
-                  itemBuilder: (context) => [
+              PopupMenuButton<String>(
+                icon: Icon(Icons.person_2_rounded),
+                iconColor: Colors.white,
+                iconSize: 32,
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 'update',
+                    child: Row(
+                      children: [
+                        Icon(Icons.edit),
+                        SizedBox(width: 5),
+                        Text('Edit profail'),
+                      ],
+                    ),
+                  ),
+                  if (model?.type == 'client')
                     const PopupMenuItem(
-                      value: 'update',
+                      value: 'Ask',
                       child: Row(
                         children: [
-                          Icon(Icons.edit),
+                          Icon(Icons.question_mark),
                           SizedBox(width: 5),
-                          Text('Edit profail'),
+                          Text('Ask Question'),
                         ],
                       ),
                     ),
-                    if (model?.type == 'client')
-                      const PopupMenuItem(
-                        value: 'Ask',
-                        child: Row(
-                          children: [
-                            Icon(Icons.question_mark),
-                            SizedBox(width: 5),
-                            Text('Ask Question'),
-                          ],
-                        ),
+                  if (model?.type != 'client')
+                    const PopupMenuItem(
+                      value: 'work',
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.note_add_outlined,
+                              ),
+                              SizedBox(width: 5),
+                              Text('Add Some Work'),
+                            ],
+                          ),
+                        ],
                       ),
-                    if (model?.type != 'client')
-                      const PopupMenuItem(
-                        value: 'work',
-                        child: Row(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.note_add_outlined,
-                                ),
-                                SizedBox(width: 5),
-                                Text('Add Some Work'),
-                              ],
-                            ),
-                          ],
-                        ),
+                    ),
+                ],
+                onSelected: (value) {
+                  // Handle selection here
+                  if (value == 'update') {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditProfailUser(),
                       ),
-                  ],
-                  onSelected: (value) {
-                    // Handle selection here
-                    if (value == 'update') {
-                      Navigator.push(
+                    );
+                  } else if (value == 'Ask') {
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => EditProfailUser(),
-                        ),
-                      );
-                    } else if (value == 'Ask') {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AskQustion(),
-                          ));
-                    } else if (value == "work") {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AddSomeWork(),
-                          ));
-                    }
-                  },
-                ),
+                          builder: (context) => const AskQustion(),
+                        ));
+                  } else if (value == "work") {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddSomeWork(),
+                        ));
+                  }
+                },
               ),
             ],
           ),

@@ -10,6 +10,7 @@ import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/Feature/splach/presentaion/views/splash_view.dart';
+import 'package:flutter_application_1/core/thems/my_theam.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatelessWidget {
@@ -42,11 +43,11 @@ class MyApp extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return MaterialApp(
-            title: 'Consult_me ',
+            title: 'Consult_me',
             debugShowCheckedModeBanner: false,
             home: const SplashView(),
-            theme: ThemeData.light(), //MyThemData.lightThem,
-            darkTheme: ThemeData.dark(), //MyThemData.darkTheam,
+            theme: MyThemData.lightThem,
+            darkTheme: MyThemData.darkTheam,
             themeMode: MyBloc.get(context).themeMode,
             initialRoute: SplashView.nameKey,
             routes: {

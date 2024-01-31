@@ -43,8 +43,7 @@ class PostItemsAllAsk extends StatelessWidget {
                     ),
                     Text(
                       "${model.dateTime?.substring(0, 10)}",
-                      style:
-                          const TextStyle(fontSize: 12, color: Colors.black38),
+                      style: const TextStyle(fontSize: 12),
                     ),
                   ],
                 ),

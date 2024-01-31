@@ -16,15 +16,11 @@ class GradViewBuilderNew extends StatelessWidget {
         builder: (context, state) {
           return InkWell(
               onTap: () {
-                MyBloc.get(context).dataanyconsult.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AllConaltanttogatogry(
-                      '',
-                      model: model,
-                    ),
-                  ),
+                      builder: (context) => AllConaltanttogatogry(
+                          model: model, name: model.text!)),
                 );
               },
               child: Container(

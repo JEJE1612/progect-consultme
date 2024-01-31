@@ -17,7 +17,7 @@ class ListViewConsultantBuild extends StatelessWidget {
           separatorBuilder: (context, index) => const SizedBox(
                 height: 15,
               ),
-          itemCount: MyBloc.get(context).datagenaralconsult.length),
+          itemCount: MyBloc.get(context).listshowAllConsltant.length),
     );
   }
 }

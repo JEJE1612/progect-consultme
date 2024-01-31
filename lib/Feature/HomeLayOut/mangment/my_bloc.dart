@@ -636,22 +636,21 @@ class MyBloc extends Cubit<MyState> {
   List<String> catroiesnum = [];
 
   void getCaroies() async {
+    catroies.clear();
+    catroiesnum.clear();
     emit(LodingGetcatroiesState());
-    FirebaseFirestore.instance.collection('Catroies').get().then((value) {
+    await FirebaseFirestore.instance.collection('Catroies').get().then((value) {
       for (var element in value.docs) {
-        catroies.add(element);
+        catroies.add(CatroiesModel.fromJson(element.data()));
         catroiesnum.add(element.id);
-
         emit(ScafullGetcatroiesstate());
       }
-    }).catchError((e) {
-      ErrorGetcatroiesstate(e.toString());
-    });
+    }).catchError((e) {});
   }
 
   List catroiesuser = [];
-  List<QueryDocumentSnapshot> datagenaralconsult = [];
-  List<QueryDocumentSnapshot> dataanyconsult = [];
+  List<QueryDocumentSnapshot> listshowAllConsltant = [];
+  List<QueryDocumentSnapshot> listcatroiesconsultant = [];
 
   void getCaroiestouser() async {
     emit(LodingGetcatroiesState());
@@ -663,7 +662,7 @@ class MyBloc extends Cubit<MyState> {
     }).catchError((e) {});
   }
 
-  getconsultantbloc() async {
+  showAllConsltant() async {
     emit(LodingGetAllConsltant());
     FirebaseFirestore.instance
         .collection('user')
@@ -671,7 +670,7 @@ class MyBloc extends Cubit<MyState> {
         .get()
         .then((value) {
       for (var element in value.docs) {
-        datagenaralconsult.add(element);
+        listshowAllConsltant.add(element);
       }
       debugPrint(value.toString());
       emit(ScafullGetAllConsltant());
@@ -680,7 +679,7 @@ class MyBloc extends Cubit<MyState> {
     });
   }
 
-  getAllcosultant(String? typecategory) async {
+  getAllcosultantinCatroies(String? typecategory) async {
     emit(LodingGettypeconsultant());
     FirebaseFirestore.instance
         .collection('user')
@@ -689,7 +688,7 @@ class MyBloc extends Cubit<MyState> {
         .get()
         .then((value) {
       for (var element in value.docs) {
-        dataanyconsult.add(element);
+        listcatroiesconsultant.add(element);
       }
       debugPrint(value.toString());
       emit(ScafullGettypeconslutant());

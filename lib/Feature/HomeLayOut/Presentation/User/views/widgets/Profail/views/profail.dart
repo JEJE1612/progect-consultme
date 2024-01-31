@@ -51,7 +51,7 @@ class ProfileViewBody extends StatelessWidget {
           children: [
             BackGroundProfailUser(size: size, model: model),
             const SizedBox(
-              height: 50,
+              height: 20,
             ),
             InformationUser(model: model),
             const customLine(),

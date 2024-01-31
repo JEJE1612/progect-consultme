@@ -44,7 +44,7 @@ class Buildconsultantgeneral extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                       image: DecorationImage(
                         image: CachedNetworkImageProvider(
-                          MyBloc.get(context).datagenaralconsult[i!]['image'],
+                          MyBloc.get(context).listshowAllConsltant[i!]['image'],
                         ),
                       ),
                     ),
@@ -58,7 +58,7 @@ class Buildconsultantgeneral extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          MyBloc.get(context).datagenaralconsult[i!]['name'],
+                          MyBloc.get(context).listshowAllConsltant[i!]['name'],
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Styles.textStyle16.copyWith(
@@ -69,7 +69,7 @@ class Buildconsultantgeneral extends StatelessWidget {
                           height: 5,
                         ),
                         Text(
-                          MyBloc.get(context).datagenaralconsult[i!]['bio'],
+                          MyBloc.get(context).listshowAllConsltant[i!]['bio'],
                           style: Styles.textStyle14.copyWith(
                             color: Theme.of(context).colorScheme.brightness ==
                                     Brightness.dark

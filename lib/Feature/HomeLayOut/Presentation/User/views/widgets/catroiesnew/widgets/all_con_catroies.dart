@@ -7,46 +7,48 @@ import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AllConaltanttogatogry extends StatelessWidget {
-  AllConaltanttogatogry(String? text, {super.key, required this.model});
-  final CatroiesModel model;
+  AllConaltanttogatogry({required this.model, required this.name});
+  final CatroiesModel? model;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MyBloc, MyState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          MyBloc.get(context).getAllcosultant(model.text);
-          return Scaffold(
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                MyBloc.get(context).dataanyconsult.clear;
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back_ios,
-                              )),
-                          Text(
-                            "All conslutant",
-                            style: Styles.textStyle20,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      ListViewConsultantincategory(),
-                    ]),
+    return BlocProvider(
+      create: (context) => MyBloc()..getAllcosultantinCatroies(name),
+      child: BlocConsumer<MyBloc, MyState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return Scaffold(
+              body: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back_ios,
+                                )),
+                            Text(
+                              name,
+                              style: Styles.textStyle20,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03,
+                        ),
+                        ListViewConsultantincategory(),
+                      ]),
+                ),
               ),
-            ),
-          );
-        });
+            );
+          }),
+    );
   }
 }

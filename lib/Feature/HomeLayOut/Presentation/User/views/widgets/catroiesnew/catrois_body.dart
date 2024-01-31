@@ -30,40 +30,7 @@ class Catroisbodynew extends StatelessWidget {
                     style: Styles.textStyle20,
                   ),
                   Gap(16),
-                  InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const ShowAllcon(),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.25,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                              AssetsData.allCatrois_icon,
-                            ),
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 4,
-                              offset: Offset(4, 8), // Shadow position
-                            ),
-                          ],
-                        ),
-                        child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "AllConsultant",
-                              style: Styles.textStyle18
-                                  .copyWith(color: Colors.white),
-                            )),
-                      )),
+                  GenralConSultant(),
                   Gap(20),
                   GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
@@ -77,7 +44,6 @@ class Catroisbodynew extends StatelessWidget {
                       crossAxisSpacing: 10,
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      MyBloc.get(context).getCaroiestouser();
                       return GradViewBuilderNew(
                         model: bloc.catroiesuser[index],
                       );
@@ -88,5 +54,48 @@ class Catroisbodynew extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+class GenralConSultant extends StatelessWidget {
+  const GenralConSultant({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ShowAllcon(),
+            ),
+          );
+        },
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.25,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            image: const DecorationImage(
+              image: AssetImage(
+                AssetsData.allCatrois_icon,
+              ),
+            ),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.grey,
+                blurRadius: 4,
+                offset: Offset(4, 8), // Shadow position
+              ),
+            ],
+          ),
+          child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                "AllConsultant",
+                style: Styles.textStyle18.copyWith(color: Colors.white),
+              )),
+        ));
   }
 }

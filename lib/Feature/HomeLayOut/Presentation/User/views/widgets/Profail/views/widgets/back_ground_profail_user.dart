@@ -59,7 +59,7 @@ class BackGroundProfailUser extends StatelessWidget {
             children: [
               const SizedBox(width: 5),
               PopupMenuButton<String>(
-                icon: Icon(Icons.person_2_rounded),
+                icon: CircleAvatar(child: Icon(Icons.person_2_rounded)),
                 iconColor: Colors.white,
                 iconSize: 32,
                 itemBuilder: (context) => [

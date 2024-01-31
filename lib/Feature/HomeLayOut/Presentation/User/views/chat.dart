@@ -32,6 +32,12 @@ class ChatScreen extends StatelessWidget {
                     ],
                   ),
                   Gap(10),
+                  // TextField(
+                  //   onChanged: (value) {},
+                  //   decoration: InputDecoration(
+                  //     hintText: 'Search...',
+                  //   ),
+                  // ),
                   Expanded(
                     child: ListView.separated(
                       physics: const BouncingScrollPhysics(),

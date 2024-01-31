@@ -4,12 +4,10 @@ import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/Model/usermodel.dart';
-import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 chatDeatiles(UserModel? user) {
   var massageController = TextEditingController();
-  var uid = CacheHealper.getData(key: "uid", "uid");
 
   return BlocProvider(
     create: (context) => MyBloc()
@@ -84,24 +82,24 @@ chatDeatiles(UserModel? user) {
                 TextFormField(
                   controller: massageController,
                   decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        MyBloc.get(context).sendMessagechat(
-                          text: massageController.text,
-                          dateTime: DateTime.now().toString(),
-                          reseverId: user!.uid!,
-                        );
-                        massageController.clear();
-                      },
-                      icon: const Icon(
-                        Icons.send,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          MyBloc.get(context).sendMessagechat(
+                            text: massageController.text,
+                            dateTime: DateTime.now().toString(),
+                            reseverId: user!.uid!,
+                          );
+                          massageController.clear();
+                        },
+                        icon: const Icon(
+                          Icons.send,
+                        ),
                       ),
-                    ),
-                    hintText: "message",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
+                      hintText: "message",
+                      focusedBorder: customStyleBorderchat(),
+                      disabledBorder: customStyleBorderchat(),
+                      border: customStyleBorderchat(),
+                      enabledBorder: customStyleBorderchat()),
                 ),
               ],
             ),
@@ -112,8 +110,14 @@ chatDeatiles(UserModel? user) {
   );
 }
 
-// class ChatDeatils extends StatelessWidget {
-//   const ChatDeatils({super.key});
+OutlineInputBorder customStyleBorderchat() {
+  return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+      borderSide: BorderSide(color: Colors.black));
+}
+
+
+
 //   final UserModel model;
 //   @override
 //   Widget build(BuildContext context) {

@@ -41,7 +41,8 @@ class BuildConsulatNew extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         image: DecorationImage(
                           image: CachedNetworkImageProvider(
-                            MyBloc.get(context).dataanyconsult[i]['image'],
+                            MyBloc.get(context).listcatroiesconsultant[i]
+                                ['image'],
                           ),
                         ),
                       ),
@@ -55,7 +56,8 @@ class BuildConsulatNew extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            MyBloc.get(context).dataanyconsult[i]['name'],
+                            MyBloc.get(context).listcatroiesconsultant[i]
+                                ['name'],
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Styles.textStyle16.copyWith(
@@ -66,7 +68,8 @@ class BuildConsulatNew extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                            MyBloc.get(context).dataanyconsult[i]['bio'],
+                            MyBloc.get(context).listcatroiesconsultant[i]
+                                ['bio'],
                             style: Styles.textStyle14.copyWith(
                               color: Theme.of(context).colorScheme.brightness ==
                                       Brightness.dark
@@ -79,7 +82,6 @@ class BuildConsulatNew extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const BookReating(),
                   ],
                 ),
               ),

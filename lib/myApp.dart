@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feather/Admin/Mangment/admin_bloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/chat.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_bloc.dart';
-import 'package:flutter_application_1/Feather/HomeLayOut/mangment/my_state.dart';
-import 'package:flutter_application_1/Feather/Authe/Login/presentaion/views/login_screen.dart';
-import 'package:flutter_application_1/Feather/Authe/Regiter/presentaion/views/register_screen.dart';
-import 'package:flutter_application_1/Feather/splach/presentaion/views/splash_view.dart';
+import 'package:flutter_application_1/Feature/Admin/Mangment/admin_bloc.dart';
+import 'package:flutter_application_1/Feature/Auth/Login/presentaion/views/login_screen.dart';
+import 'package:flutter_application_1/Feature/Auth/Regiter/presentaion/views/register_screen.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/HomeLayOut.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/chat.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Profail/views/profail.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
+import 'package:flutter_application_1/Feature/splach/presentaion/views/splash_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatelessWidget {

@@ -5,6 +5,7 @@ import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class AskQustion extends StatefulWidget {
   const AskQustion({super.key});
@@ -52,6 +53,7 @@ class _AskQustionState extends State<AskQustion> {
                           onPressed: () {
                             if (MyBloc.get(context).imageAsk == null) {
                               MyBloc.get(context).creatAddPhoto(
+                                imagecat: "",
                                 dateTime: time.toString(),
                                 text: textControll.text,
                               );
@@ -62,6 +64,12 @@ class _AskQustionState extends State<AskQustion> {
                                 postImage: "",
                               );
                             }
+                            // MyBloc.get(context)
+                            //     .choosemycategoryinAsk(
+                            //       selectedType['text'],
+
+                            //       );
+                            Navigator.pop(context);
                           },
                           child: const Text(
                             "Ask",
@@ -70,7 +78,7 @@ class _AskQustionState extends State<AskQustion> {
                         ),
                       ],
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     const SizedBox(
                       height: 2,
                     ),
@@ -79,6 +87,52 @@ class _AskQustionState extends State<AskQustion> {
                     SizedBox(
                       height: size.height * 0.03,
                     ),
+                    // DropdownButton(
+                    //   items: MyBloc.get(context).catroies.map((value) {
+                    //     return DropdownMenuItem(
+                    //       value: value,
+                    //       child: Text(
+                    //         '${value['text']}',
+                    //         style: const TextStyle(color: primarycolor),
+                    //       ),
+                    //     );
+                    //   }).toList(),
+                    //   onChanged: (selectedAccountType) {
+                    //     print('$selectedAccountType');
+                    //     setState(() {
+                    //       selectedType = selectedAccountType;
+                    //     });
+                    //   },
+                    //   value: selectedType,
+                    //   isExpanded: false,
+                    //   hint: Text(
+                    //     'Choose Your Category',
+                    //     style: Styles.textStyle20,
+                    //   ),
+                    // ),
+                    Gap(10),
+                    // SizedBox(
+                    //   height: MediaQuery.of(context).size.height * 0.13,
+                    //   child: ListView.separated(
+                    //     scrollDirection: Axis.horizontal,
+                    //     separatorBuilder: (context, index) => SizedBox(
+                    //       width: 5,
+                    //     ),
+                    //     itemBuilder: (context, index) => ShowCatroiesIemsAsk(
+                    //       model: MyBloc.get(context).catroies[index],
+                    //       ontap: () {
+                    //         if (index == 0) {
+                    //           MyBloc.get(context).imageCatroiesAsk =
+                    //               "https://firebasestorage.googleapis.com/v0/b/consultme-2be0e.appspot.com/o/user%2FIMG_20240131_230205_486.jpg?alt=media&token=9a180f15-4d97-4fd4-a571-8897779d53a7";
+                    //         } if (index == 1) {
+                    //           MyBloc.get(context).imageCatroiesAsk =
+                    //               "https://firebasestorage.googleapis.com/v0/b/consultme-2be0e.appspot.com/o/user%2FIMG_20240131_230205_486.jpg?alt=media&token=9a180f15-4d97-4fd4-a571-8897779d53a7";
+                    //         }
+                    //       },
+                    //     ),
+                    //     itemCount: MyBloc.get(context).catroies.length,
+                    //   ),
+                    // ),
                     TextField(
                       onChanged: (value) {
                         textControll.text = value;
@@ -95,7 +149,7 @@ class _AskQustionState extends State<AskQustion> {
                     SizedBox(
                       height: size.height * 0.03,
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     InkWell(
                       onTap: () {
                         MyBloc.get(context).getImagePhotogallery();
@@ -107,7 +161,7 @@ class _AskQustionState extends State<AskQustion> {
                         ),
                       ),
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     SizedBox(
                       height: size.height * 0.03,
                     ),
@@ -128,7 +182,7 @@ class _AskQustionState extends State<AskQustion> {
                             ),
                             IconButton(
                               onPressed: () {
-                                MyBloc.get(context).removeimagephoto();
+                                MyBloc.get(context).removeImageAsk();
                               },
                               icon: const CircleAvatar(
                                 child: Icon(
@@ -147,3 +201,26 @@ class _AskQustionState extends State<AskQustion> {
     );
   }
 }
+
+// class ShowCatroiesIemsAsk extends StatelessWidget {
+//   const ShowCatroiesIemsAsk({
+//     super.key,
+//     required this.model,
+//     required this.ontap,
+//   });
+//   final CatroiesModel model;
+//   final VoidCallback ontap;
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: ontap,
+//       child: CircleAvatar(
+//         backgroundImage: CachedNetworkImageProvider(
+//           model.catoiesImage ?? AssetsData.allCatrois_icon,
+//         ),
+//         radius: 40,
+//         child: Text('${model.text}'),
+//       ),
+//     );
+//   }
+// }

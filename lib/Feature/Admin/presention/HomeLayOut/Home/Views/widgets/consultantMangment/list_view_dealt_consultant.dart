@@ -13,7 +13,7 @@ class ListViewDealtConsultant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      separatorBuilder: (context, index) => customLine(),
+      separatorBuilder: (context, index) => CustomLine(),
       itemBuilder: (context, index) {
         return DealtItemslist(
           resultlist: resultlist,

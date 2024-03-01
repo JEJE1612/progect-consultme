@@ -48,13 +48,6 @@ class PostItemsAllAsk extends StatelessWidget {
                   ],
                 ),
               ),
-              //add catroies imge
-              CircleAvatar(
-                backgroundImage: CachedNetworkImageProvider(
-                  "${model.image}",
-                ),
-                radius: 20,
-              ),
             ],
           ),
           Padding(

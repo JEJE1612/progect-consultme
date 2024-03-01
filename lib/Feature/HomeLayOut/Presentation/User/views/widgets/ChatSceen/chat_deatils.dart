@@ -47,7 +47,7 @@ chatDeatiles(UserModel? user) {
             actions: [
               IconButton(
                 onPressed: () {
-                  MyBloc.get(context).getChatimage(
+                  MyBloc.get(context).getChatImage(
                     chatImage: '',
                     reseverId: user!.uid!,
                     dateTime: DateTime.now().toString(),

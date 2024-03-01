@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/add_Rate/add_rate_view.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_application_1/core/Model/rating_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,7 +57,7 @@ class EditRate extends StatelessWidget {
           );
         } else if (value == 'remove') {
           await BlocProvider.of<RatingCubit>(context)
-              .deleteRate(rate.documentId);
+              .deleteRate(documentId: rate.documentId);
         }
       },
     );

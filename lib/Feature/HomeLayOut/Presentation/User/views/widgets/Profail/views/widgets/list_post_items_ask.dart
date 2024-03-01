@@ -12,7 +12,7 @@ class ListPostItemsAsk extends StatelessWidget {
   Widget build(BuildContext context) {
     final myBloc = MyBloc.get(context);
 
-    if (myBloc.potoId.isEmpty) {
+    if (myBloc.photoId.isEmpty) {
       return Center(
         child: Text(
           'No items available',
@@ -27,9 +27,9 @@ class ListPostItemsAsk extends StatelessWidget {
       ),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: myBloc.potoId.length,
+      itemCount: myBloc.photoId.length,
       itemBuilder: (context, index) => PostItemsAsk(
-        model: myBloc.poto[index],
+        model: myBloc.photo[index],
       ),
     );
   }

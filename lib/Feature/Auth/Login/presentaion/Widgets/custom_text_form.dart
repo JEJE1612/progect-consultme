@@ -25,6 +25,7 @@ class CustomTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       textAlign: textAlign ?? TextAlign.start,
       validator: validator,
       controller: mycontroller,
@@ -35,7 +36,9 @@ class CustomTextForm extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hinttext,
         suffixIcon: suffixIcon,
-        hintStyle: const TextStyle(fontSize: 16, color: Colors.black),
+        hintStyle: const TextStyle(
+          fontSize: 16,
+        ),
         contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
         filled: true,
         border: OutlineInputBorder(

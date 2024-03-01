@@ -6,6 +6,7 @@ class AskModel {
   String? dateTime;
   String? text;
   String? docId;
+  String? imagecat;
 
   AskModel({
     required this.name,
@@ -14,6 +15,7 @@ class AskModel {
     required this.image,
     required this.postImage,
     required this.dateTime,
+    required this.imagecat,
     this.docId,
   });
   AskModel.fromJson(Map<String, dynamic> json) {
@@ -24,9 +26,11 @@ class AskModel {
     image = json['image'];
     dateTime = json['dateTime'];
     docId = json['docId'];
+    imagecat = json['imagecat'];
   }
   Map<String, dynamic> toMap() {
     return {
+      'imagecat': imagecat,
       'name': name,
       'uId': uId,
       'image': image,

@@ -2,7 +2,7 @@ abstract class CratAccountState {}
 
 class InitalState extends CratAccountState {}
 
-class CreatUserLodingState extends CratAccountState {}
+class CreatUserLoadingState extends CratAccountState {}
 
 class ScafullCreatUserState extends CratAccountState {}
 

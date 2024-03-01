@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/mangment/LoginState.dart';
@@ -5,6 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginBloc extends Cubit<LoginState> {
   LoginBloc() : super(InitalState());
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
+
+  var formkey = GlobalKey<FormState>();
   static LoginBloc get(context) => BlocProvider.of(context);
 
   bool obscureText = false;
@@ -17,26 +23,46 @@ class LoginBloc extends Cubit<LoginState> {
     emit(ChangeIconSuffix());
   }
 
-  void loginUser({
-    required String email,
-    required String password,
-  }) {
+  Future<void> loginUser() async {
     emit(LodingLoginState());
-    FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      emit(ScafullLoginState(
-        uid: value.user!.uid,
-      ));
-    }).catchError((e) {
-      emit(ErrorLoginState());
-    });
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: email.text, password: password.text)
+          .then((value) {
+        emit(LoginSucssesState(
+          uid: value.user!.uid,
+        ));
+      });
+    } catch (e) {
+      emit(LoginFailureState());
+    }
   }
 
-  void resetpassword(String email, BuildContext context) {
+  void resetPassword(String email, BuildContext context) {
     FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value) {
       Navigator.pop(context);
     });
     emit(Forgetpasswordstate());
+  }
+
+  Future<void> getUserType({required String uid}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("user")
+          .doc(uid)
+          .get()
+          .then((userData) {
+        var userRole = userData['type'];
+
+        if (userRole == 'consulting') {
+          emit(LoginAsConsltent());
+        } else {
+          emit(LoginAsClint());
+        }
+      });
+    } catch (e) {
+      emit(LoginFailureState());
+    }
   }
 }

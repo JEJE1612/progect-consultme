@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/AddPost/NewPost.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/Post/list_post.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/rating/presentation/views/rating_Reviews.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Reating.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Setting/views/setting.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
@@ -231,7 +230,7 @@ class ConsltantProfail extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const customLine(),
+              const CustomLine(),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 28),
                 child: Row(
@@ -248,7 +247,7 @@ class ConsltantProfail extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const RatingReviews(),
+                            builder: (context) => const SizedBox(),
                           ),
                         );
                       },
@@ -261,7 +260,7 @@ class ConsltantProfail extends StatelessWidget {
                   ],
                 ),
               ),
-              const customLine(),
+              const CustomLine(),
               const SizedBox(
                 height: 5,
               ),

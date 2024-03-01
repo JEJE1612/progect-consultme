@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/widget/rate_item.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/widget/rate_item.dart';
 import 'package:flutter_application_1/core/Model/rating_model.dart';
 
 class ReatingScreen extends StatelessWidget {

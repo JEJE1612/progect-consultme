@@ -1,27 +1,43 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/Admin/presention/HomeLayOut/Home/Views/widgets/SettingAdmi/CustomAppBarAdmin.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/bloc/problem_bloc.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/bloc/problem_bloc_state.dart';
+import 'package:flutter_application_1/core/Model/block-model.dart';
 import 'package:flutter_application_1/core/utils/assets.dart';
+import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Prodlem extends StatelessWidget {
   const Prodlem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          CustomAppBarAbmin(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              title: "Prodlem"),
-          const SizedBox(
-            height: 10,
-          ),
-          const ListViewProdlem(),
-        ],
-      )),
+    return BlocProvider(
+      create: (context) => ProblemBloc()..getAllProblem(),
+      child: BlocConsumer<ProblemBloc, Prodlemstae>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return Scaffold(
+            body: SafeArea(
+                child: Column(
+              children: [
+                CustomAppBarAbmin(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    title: "Prodlem"),
+                const SizedBox(
+                  height: 10,
+                ),
+                ListViewProdlem(
+                  allproblem: ProblemBloc.get(context).allproblem,
+                ),
+              ],
+            )),
+          );
+        },
+      ),
     );
   }
 }
@@ -29,17 +45,22 @@ class Prodlem extends StatelessWidget {
 class ListViewProdlem extends StatelessWidget {
   const ListViewProdlem({
     super.key,
+    required this.allproblem,
   });
+
+  final List<ProblemModel> allproblem;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.separated(
-        itemCount: 3,
+        itemCount: ProblemBloc.get(context).allproblem.length,
         separatorBuilder: (context, index) => const SizedBox(
           height: 3,
         ),
-        itemBuilder: (context, index) => const ProdlemItems(),
+        itemBuilder: (context, index) => ProdlemItems(
+          model: ProblemBloc.get(context).allproblem[index],
+        ),
       ),
     );
   }
@@ -48,11 +69,12 @@ class ListViewProdlem extends StatelessWidget {
 class ProdlemItems extends StatelessWidget {
   const ProdlemItems({
     super.key,
+    required this.model,
   });
-
+  final ProblemModel? model;
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       margin: EdgeInsets.symmetric(horizontal: 8.0),
       elevation: 20.0,
@@ -67,8 +89,8 @@ class ProdlemItems extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: AssetImage(
-                    AssetsData.testImage,
+                  backgroundImage: CachedNetworkImageProvider(
+                    model?.image ?? "",
                   ),
                   radius: 25,
                 ),
@@ -80,15 +102,11 @@ class ProdlemItems extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "AhmedMohmed",
+                        model?.name ?? "",
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,
                             color: Colors.black),
-                      ),
-                      Text(
-                        "20/5/20210",
-                        style: TextStyle(fontSize: 12, color: Colors.black38),
                       ),
                     ],
                   ),
@@ -98,8 +116,12 @@ class ProdlemItems extends StatelessWidget {
             SizedBox(
               height: 3,
             ),
-            Text(
-              "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ",
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+              child: SizedBox(
+                width: double.infinity,
+                child: Text("${model?.text}", style: Styles.textStyle16),
+              ),
             ),
             SizedBox(
               height: 10,
@@ -109,8 +131,9 @@ class ProdlemItems extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(
-                      AssetsData.logo,
+                    backgroundImage: CachedNetworkImageProvider(
+                      "${model?.imageco}",
+                      errorListener: (p0) => AssetsData.logo,
                     ),
                     radius: 25,
                   ),
@@ -122,7 +145,7 @@ class ProdlemItems extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "AhmedMohmed",
+                          "${model?.namco}",
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,

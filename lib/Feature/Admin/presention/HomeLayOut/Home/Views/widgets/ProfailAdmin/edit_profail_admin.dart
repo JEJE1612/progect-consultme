@@ -193,7 +193,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: nameController,
                       onSaved: (value) {
-                        nameController.text == value;
+                        nameController.text = value!;
                       },
                       text: 'Pleas enter name',
                       hintText: AdminBloc.get(context).usermodel?.name,
@@ -206,7 +206,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: bioController,
                       onSaved: (value) {
-                        nameController.text == value;
+                        nameController.text = value!;
                       },
                       text: 'Pleas enter bio',
                       hintText: AdminBloc.get(context).usermodel?.bio,
@@ -219,7 +219,7 @@ class _EditProfailState extends State<EditProfailAdmin> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: phoneController,
                       onSaved: (value) {
-                        nameController.text == value;
+                        nameController.text = value!;
                       },
                       text: 'Pleas enter Jod',
                       hintText: AdminBloc.get(context).usermodel?.phone,

@@ -26,7 +26,7 @@ class Buildconsultantgeneral extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ConsltantProfailgrenal(
                     i: i!,
-                    uid: MyBloc.get(context).listshowAllConsltant[i!]['bio'],
+                    // uid: MyBloc.get(context).listshowAllConsltant[i!]['uId'],
                   ),
                 ));
           },
@@ -61,7 +61,9 @@ class Buildconsultantgeneral extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          MyBloc.get(context).listshowAllConsltant[i!]['name'],
+                          MyBloc.get(context).listshowAllConsltant[i!]
+                                  ['name'] ??
+                              "ali",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Styles.textStyle16.copyWith(

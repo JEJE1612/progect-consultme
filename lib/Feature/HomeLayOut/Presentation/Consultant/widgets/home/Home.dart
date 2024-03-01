@@ -7,8 +7,9 @@ class HomeCuslatant extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var Size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
+     
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -20,7 +21,7 @@ class HomeCuslatant extends StatelessWidget {
                   style: Styles.textStyle20,
                 ),
                 SizedBox(
-                  height: Size.height * 0.03,
+                  height: size.height * 0.03,
                 ),
                 // ignore: prefer_const_constructors
                 ListAllAskUser(),

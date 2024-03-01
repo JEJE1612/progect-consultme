@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Reating.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/consltantProfail.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/catroiesnew/widgets/show_con_profail.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
@@ -21,7 +21,7 @@ class BuildConsulatNew extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ConsltantProfail(),
+                    builder: (context) => ConsltantProfailgrenal(i: i),
                   ));
             },
             child: Container(
@@ -57,7 +57,8 @@ class BuildConsulatNew extends StatelessWidget {
                         children: [
                           Text(
                             MyBloc.get(context).listcatroiesconsultant[i]
-                                ['name'],
+                                    ['name'] ??
+                                'ahmed',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: Styles.textStyle16.copyWith(

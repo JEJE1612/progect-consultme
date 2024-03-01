@@ -215,7 +215,7 @@ class AdminBloc extends Cubit<AdminState> {
   File? catroiesImage;
 
   void removeImgePOst() {
-    catroiesImage == File('');
+    catroiesImage = File('');
     emit(RemovecatroiesImage());
   }
 

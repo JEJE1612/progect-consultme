@@ -44,7 +44,10 @@ class ItemsListViewDelete extends StatelessWidget {
                 onPressed: () {
                   AdminBloc.get(context).deleteCatroies(catroiesId);
                 },
-                icon: const Icon(Icons.delete_outline))),
+                icon: const Icon(
+                  Icons.delete_outline,
+                  color: Colors.black,
+                ))),
       ],
     );
   }

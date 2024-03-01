@@ -9,13 +9,17 @@ class ChangeIconSuffix extends LoginState {}
 
 class LodingLoginState extends LoginState {}
 
-class ScafullLoginState extends LoginState {
+class LoginSucssesState extends LoginState {
   final String uid;
-  ScafullLoginState({
+  LoginSucssesState({
     required this.uid,
   });
 }
 
-class ErrorLoginState extends LoginState {}
+class LoginFailureState extends LoginState {}
 
 class Forgetpasswordstate extends LoginState {}
+
+class LoginAsClint extends LoginState {}
+
+class LoginAsConsltent extends LoginState {}

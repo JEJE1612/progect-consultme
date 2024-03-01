@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/rating_view.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/mangment/cubit/rating_cubit.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/rating_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Ratingviews extends StatelessWidget {
-  const Ratingviews({super.key});
-
+  const Ratingviews({super.key, required this.consltantUid});
+  final String consltantUid;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RatingCubit, RatingState>(
@@ -25,7 +25,8 @@ class Ratingviews extends StatelessWidget {
           return Center(
             child: MaterialButton(
               onPressed: () async {
-                await BlocProvider.of<RatingCubit>(context).getAllRating();
+                await BlocProvider.of<RatingCubit>(context)
+                    .getAllRating(uidd: consltantUid);
               },
               child: Text("Update"),
               color: Colors.grey,

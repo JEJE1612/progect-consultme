@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/mangment/LoginBloc.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/mangment/LoginState.dart';
@@ -9,21 +8,10 @@ import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/shared_presfrace.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   static const String nameKey = "LoginScreen";
 
   const LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController email = TextEditingController();
-
-  TextEditingController password = TextEditingController();
-
-  var formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,41 +19,28 @@ class _LoginScreenState extends State<LoginScreen> {
       create: (context) => LoginBloc(),
       child: BlocConsumer<LoginBloc, LoginState>(
         listener: (context, state) {
-          if (state is LodingLoginState) {
-            const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is ScafullLoginState) {
+          if (state is LoginSucssesState) {
             CacheHealper.savedData(key: "uid", value: state.uid);
-            tost(text: "Scaffull Login ", state: ToastState.succes);
-
-            FirebaseFirestore.instance
-                .collection("user")
-                .doc(state.uid)
-                .get()
-                .then((userData) {
-              var userRole = userData['type'];
-
-              if (userRole == 'consulting') {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomeCosultant(),
-                    ),
-                    (route) => false);
-                CacheHealper.savedData(key: "AccountType", value: "consulting");
-              } else {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomeLayOut.nameKey, (route) => false);
-                CacheHealper.savedData(key: "AccountType", value: "client");
-              }
-            });
-          } else if (state is ErrorLoginState) {
-            tost(text: "Error Pleas try Again", state: ToastState.eror);
+            tost(text: "Login ", state: ToastState.succes);
+            BlocProvider.of<LoginBloc>(context).getUserType(uid: state.uid);
+          } else if (state is LoginFailureState) {
+            tost(text: "Error Please try Again", state: ToastState.eror);
+          } else if (state is LoginAsClint) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, HomeLayOut.nameKey, (route) => false);
+            CacheHealper.savedData(key: "AccountType", value: "client");
+          } else if (state is LoginAsConsltent) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomeCosultant(),
+                ),
+                (route) => false);
+            CacheHealper.savedData(key: "AccountType", value: "consulting");
           }
         },
         builder: (context, state) {
-          return LoginBody(formkey: formkey, email: email, password: password);
+          return LoginBody();
         },
       ),
     );

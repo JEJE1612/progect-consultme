@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class customLine extends StatelessWidget {
-  const customLine({
+class CustomLine extends StatelessWidget {
+  const CustomLine({
     super.key,
   });
 

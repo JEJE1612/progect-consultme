@@ -14,8 +14,7 @@ class HomeCosultant extends StatelessWidget {
     return BlocConsumer<MyBloc, MyState>(
       listener: (context, state) {},
       builder: (context, state) {
-        var bloc = MyBloc.get(context);
-        return HomeConsultantBody(bloc: bloc);
+        return HomeConsultantBody();
       },
     );
   }

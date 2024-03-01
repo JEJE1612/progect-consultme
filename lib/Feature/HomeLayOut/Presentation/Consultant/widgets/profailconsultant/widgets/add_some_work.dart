@@ -55,6 +55,7 @@ class _AddSomeWorkState extends State<AddSomeWork> {
                               MyBloc.get(context).creatSameWork(
                                 dateTime: time.toString(),
                                 text: textControll.text,
+                                imagecat: '',
                               );
                             } else {
                               MyBloc.get(context).uploadimagework(
@@ -71,7 +72,7 @@ class _AddSomeWorkState extends State<AddSomeWork> {
                         ),
                       ],
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     const SizedBox(
                       height: 2,
                     ),
@@ -99,7 +100,7 @@ class _AddSomeWorkState extends State<AddSomeWork> {
                     SizedBox(
                       height: size.height * 0.03,
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     InkWell(
                       onTap: () {
                         MyBloc.get(context).getimagework();
@@ -111,7 +112,7 @@ class _AddSomeWorkState extends State<AddSomeWork> {
                         ),
                       ),
                     ),
-                    const customLine(),
+                    const CustomLine(),
                     SizedBox(
                       height: size.height * 0.03,
                     ),

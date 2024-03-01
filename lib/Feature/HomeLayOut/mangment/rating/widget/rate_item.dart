@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/widget/edit_rating.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/widget/rate_describetion.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/widget/rater_image.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/widget/rating_icon.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/widget/rate_describetion.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/widget/rater_image.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/widget/rating_icon.dart';
 import 'package:flutter_application_1/core/Model/rating_model.dart';
 
 class RateItem extends StatelessWidget {
@@ -62,9 +61,9 @@ class RateItem extends StatelessWidget {
                   ],
                 ),
               ),
-              EditRate(
-                rate: rate,
-              )
+              // EditRate(
+              //   rate: rate,
+              // )
             ],
           ),
           RateDescribetion(

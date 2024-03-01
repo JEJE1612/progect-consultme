@@ -11,15 +11,14 @@ class RatingCubit extends Cubit<RatingState> {
   final ratingController = TextEditingController();
   final ratingKey = GlobalKey<FormState>();
   double ratingValue = 0.0;
-  
-  Future<void> addRating(BuildContext context) async {
+  Future<void> addRating(BuildContext context,{required String uid}) async {
     emit(RatingLoading());
     CollectionReference rating =
         FirebaseFirestore.instance.collection("rating");
     try {
       await rating.doc(rating.doc().id).set(
         {
-          "uid": BlocProvider.of<MyBloc>(context).usermodel!.uid,
+          "uid": uid,
           kDescribeRating: ratingController.text,
           kRateValue: ratingValue.toString(),
           kUserName: BlocProvider.of<MyBloc>(context).usermodel!.name,
@@ -48,24 +47,25 @@ class RatingCubit extends Cubit<RatingState> {
         kImage: rate.image,
         'uid': rate.uid,
       });
-      await getAllRating();
+      await getAllRating(uidd: "");
     } on Exception catch (e) {
       emit(RatingFailure(errorMessage: e.toString()));
     }
   }
 
-  Future<void> deleteRate(String documentId) async {
+  Future<void> deleteRate({required String documentId}) async {
     CollectionReference rating =
         FirebaseFirestore.instance.collection("rating");
     try {
       await rating.doc(documentId).delete();
-      await getAllRating();
+      await getAllRating(uidd: "");
     } on Exception catch (e) {
       emit(RatingFailure(errorMessage: e.toString()));
     }
   }
 
-  Future<void> getAllRating() async {
+  // MyBloc.get(context).listshowAllConsltant[widget.i]['uid'],
+  Future<void> getAllRating({required String uidd}) async {
     emit(RatingLoading());
     CollectionReference rating =
         FirebaseFirestore.instance.collection("rating");
@@ -76,8 +76,12 @@ class RatingCubit extends Cubit<RatingState> {
           .get()
           .then((QuerySnapshot querySnapshot) {
         querySnapshot.docs.forEach((doc) {
-          allRating.add(
-              RatingModel.fromjson(rate: doc.data() as Map<String, dynamic>));
+         Map<String, dynamic> data=doc.data() as Map<String, dynamic>;
+          if (data["uid"]==uidd) {
+            allRating.add(RatingModel.fromjson(
+              rate: data));
+          }
+          
         });
       });
       emit(RatingSucess(allRating: allRating));

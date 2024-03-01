@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/Consultant/widgets/profailconsultant/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/add_Rate/add_rate_view.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/mangment/cubit/rating_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddRatingButton extends StatefulWidget {
-  const AddRatingButton({super.key});
-
+  const AddRatingButton({super.key, required this.uid});
+  final String uid;
   @override
   State<AddRatingButton> createState() => _AddRatingButtonState();
 }
@@ -26,7 +26,8 @@ class _AddRatingButtonState extends State<AddRatingButton> {
             child: AddRatingView(
               buttonName: "Create",
               onPressed: () async {
-                await BlocProvider.of<RatingCubit>(context).addRating(context);
+                await BlocProvider.of<RatingCubit>(context)
+                    .addRating(context, uid: widget.uid);
               },
             ),
           ),

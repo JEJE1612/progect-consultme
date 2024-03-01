@@ -108,7 +108,7 @@ class BackGroundProfailUser extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => EditProfailUser(),
+                        builder: (context) => EditProfileUser(),
                       ),
                     );
                   } else if (value == 'Ask') {
@@ -119,10 +119,11 @@ class BackGroundProfailUser extends StatelessWidget {
                         ));
                   } else if (value == "work") {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AddSomeWork(),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddSomeWork(),
+                      ),
+                    );
                   }
                 },
               ),

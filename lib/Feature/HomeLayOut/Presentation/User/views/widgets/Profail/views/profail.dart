@@ -54,7 +54,7 @@ class ProfileViewBody extends StatelessWidget {
               height: 20,
             ),
             InformationUser(model: model),
-            const customLine(),
+            const CustomLine(),
             const SizedBox(
               height: 10,
             ),

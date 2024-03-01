@@ -17,13 +17,12 @@ class ShowAllcon extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              // ignore: prefer_const_constructors
               title: "AllConsultant",
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-            const ListViewConsultantBuild(),
+            ListViewConsultantBuild(),
           ]),
         ),
       ),

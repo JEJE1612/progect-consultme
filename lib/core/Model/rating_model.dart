@@ -14,7 +14,9 @@ class RatingModel {
       required this.rateValue,
       required this.describe,
       required this.image});
-  factory RatingModel.fromjson({required Map<String, dynamic> rate}) {
+
+  factory RatingModel.fromjson(
+      {required Map<String, dynamic> rate}) {
     return RatingModel._(
         describe: rate[kDescribeRating],
         userName: rate[kUserName],

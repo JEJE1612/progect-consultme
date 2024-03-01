@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Feature/Admin/presention/HomeLayOut/Home/Views/home_screen.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/mangment/LoginBloc.dart';
+import 'package:flutter_application_1/Feature/Auth/Login/mangment/LoginState.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/presentaion/Widgets/custom_button_auth%20.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/presentaion/Widgets/custom_text_form.dart';
 import 'package:flutter_application_1/Feature/Auth/Login/presentaion/Widgets/forget_password.dart';
@@ -9,22 +10,19 @@ import 'package:flutter_application_1/Feature/Auth/Regiter/presentaion/views/reg
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/widgets/Logo.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({
     super.key,
-    required this.formkey,
-    required this.email,
-    required this.password,
   });
-
-  final GlobalKey<FormState> formkey;
-  final TextEditingController email;
-  final TextEditingController password;
 
   @override
   Widget build(BuildContext context) {
+    var email = BlocProvider.of<LoginBloc>(context).email;
+    var password = BlocProvider.of<LoginBloc>(context).password;
+    var formkey = BlocProvider.of<LoginBloc>(context).formkey;
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -32,7 +30,7 @@ class LoginBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Form(
-                key: formkey,
+                key: BlocProvider.of<LoginBloc>(context).formkey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -57,7 +55,7 @@ class LoginBody extends StatelessWidget {
                       obscureText: false,
                       keyboardType: TextInputType.emailAddress,
                       hinttext: "ُEnter Your Email",
-                      mycontroller: email,
+                      mycontroller: BlocProvider.of<LoginBloc>(context).email,
                       validator: (val) {
                         if (val == "") {
                           tost(
@@ -78,25 +76,29 @@ class LoginBody extends StatelessWidget {
                       ),
                     ),
                     Gap(3),
-                    CustomTextForm(
-                      suffixIcon: IconButton(
-                        onPressed: () {
-                          LoginBloc.get(context).changepassWord();
-                        },
-                        icon: Icon(LoginBloc.get(context).icon),
-                      ),
-                      keyboardType: TextInputType.visiblePassword,
-                      hinttext: "ُEnter Your password",
-                      mycontroller: password,
-                      validator: (val) {
-                        if (val == "") {
-                          tost(
-                              text: "Email Cant de password",
-                              state: ToastState.eror);
-                        }
-                        return null;
+                    BlocBuilder<LoginBloc, LoginState>(
+                      builder: (context, state) {
+                        return PasswordTextFiled(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              LoginBloc.get(context).changepassWord();
+                            },
+                            icon: Icon(LoginBloc.get(context).icon),
+                          ),
+                          keyboardType: TextInputType.visiblePassword,
+                          hinttext: "ُEnter Your password",
+                          mycontroller: password,
+                          validator: (val) {
+                            if (val == "") {
+                              tost(
+                                  text: "Email Cant de password",
+                                  state: ToastState.eror);
+                            }
+                            return null;
+                          },
+                          obscureText: LoginBloc.get(context).obscureText,
+                        );
                       },
-                      obscureText: LoginBloc.get(context).obscureText,
                     ),
                     InkWell(
                       onTap: () {
@@ -136,12 +138,9 @@ class LoginBody extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder: (context) => AdminHome(),
                                 ));
-                            tost(
-                                text: "Succesfull login Admin",
-                                state: ToastState.succes);
+                            tost(text: "login Admin", state: ToastState.succes);
                           } else if (formkey.currentState!.validate()) {
-                            LoginBloc.get(context).loginUser(
-                                email: email.text, password: password.text);
+                            LoginBloc.get(context).loginUser();
                           }
                         },
                       ),
@@ -178,6 +177,55 @@ class LoginBody extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class PasswordTextFiled extends StatelessWidget {
+  const PasswordTextFiled(
+      {super.key,
+      required this.hinttext,
+      required this.mycontroller,
+      this.validator,
+      this.keyboardType,
+      this.suffixIcon,
+      required this.obscureText,
+      this.textAlign});
+  final String hinttext;
+  final TextEditingController mycontroller;
+  final String? Function(String?)? validator;
+  final TextInputType? keyboardType;
+  final Widget? suffixIcon;
+  final bool? obscureText;
+  final TextAlign? textAlign;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      textAlign: textAlign ?? TextAlign.start,
+      validator: validator,
+      controller: mycontroller,
+      keyboardType: keyboardType,
+      obscureText: obscureText ?? false,
+      decoration: InputDecoration(
+        hintText: hinttext,
+        suffixIcon: suffixIcon,
+        hintStyle: const TextStyle(
+          fontSize: 16,
+        ),
+        contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+        filled: true,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Colors.grey,
+            )),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(
+            color: Colors.grey,
+          ),
         ),
       ),
     );

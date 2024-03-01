@@ -25,12 +25,12 @@ class Forgetpassword extends StatelessWidget {
             const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is ScafullLoginState) {
+          } else if (state is LoginSucssesState) {
             CacheHealper.savedData(key: "uid", value: state.uid);
             tost(text: "Scaffull Login ", state: ToastState.succes);
             Navigator.pushNamedAndRemoveUntil(
                 context, HomeLayOut.nameKey, (route) => false);
-          } else if (state is ErrorLoginState) {
+          } else if (state is LoginFailureState) {
             tost(text: "Error Pleas try Again", state: ToastState.eror);
           }
         },
@@ -104,7 +104,7 @@ class Forgetpassword extends StatelessWidget {
                               title: "send",
                               onPressed: () {
                                 LoginBloc.get(context)
-                                    .resetpassword(email.text, context);
+                                    .resetPassword(email.text, context);
                               },
                             ),
                           ),

@@ -1,18 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/add_Rate/widgets/add_rate_button.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Catroies/customLine.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/catroiesnew/widgets/block_con.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/catroiesnew/widgets/build_list_con_work.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/catroiesnew/widgets/postItems_some_work_con.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/bloc-get_con/get_con_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
-
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/mangment/cubit/rating_cubit.dart';
+import 'package:flutter_application_1/Feature/HomeLayOut/mangment/rating/widget/rating_reviews.dart';
 import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_application_1/core/utils/styles.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class ConsltantProfailgrenal extends StatefulWidget {
-  const ConsltantProfailgrenal({super.key, required this.i, required this.uid});
+  const ConsltantProfailgrenal({
+    super.key,
+    required this.i,
+  });
   final int i;
-  final String uid;
 
   @override
   State<ConsltantProfailgrenal> createState() => _ConsltantProfailgrenalState();
@@ -27,6 +35,8 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
+            floatingActionButton: AddRatingButton(uid: MyBloc.get(context)
+                                    .listshowAllConsltant[widget.i]['uid']),
             body: SingleChildScrollView(
               child: SafeArea(
                 child: Column(
@@ -40,43 +50,33 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
                           clipBehavior: Clip.none,
                           margin: const EdgeInsets.symmetric(horizontal: 8.0),
                           elevation: 0.0,
-                          child: InkWell(
-                            onTap: () {
-                              // SocailBloc.get(context).getCover();
-                            },
-                            child: Container(
-                              height: size.height * 0.23,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: CachedNetworkImageProvider(
-                                  MyBloc.get(context)
-                                      .listshowAllConsltant[widget.i]['cover'],
-                                ),
-                              )),
-                            ),
+                          child: Container(
+                            height: size.height * 0.23,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: CachedNetworkImageProvider(
+                                MyBloc.get(context)
+                                    .listshowAllConsltant[widget.i]['cover'],
+                              ),
+                            )),
                           ),
                         ),
                         Positioned(
                           bottom: -50,
-                          child: InkWell(
-                            onTap: () {
-                              // SocailBloc.get(context).getImageProfail();
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  border:
-                                      Border.all(width: 4, color: Colors.white),
-                                  color: Colors.white),
-                              child: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  MyBloc.get(context)
-                                      .listshowAllConsltant[widget.i]['image'],
-                                ),
-                                radius: 48,
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                border:
+                                    Border.all(width: 4, color: Colors.white),
+                                color: Colors.white),
+                            child: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                MyBloc.get(context)
+                                    .listshowAllConsltant[widget.i]['image'],
                               ),
+                              radius: 48,
                             ),
                           ),
                         ),
@@ -92,17 +92,7 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
                                 child: PopupMenuButton<String>(
                                   itemBuilder: (context) => [
                                     const PopupMenuItem(
-                                      value: 'Chat',
-                                      child: Row(
-                                        children: [
-                                          Icon(Icons.chat),
-                                          SizedBox(width: 5),
-                                          Text('Chat'),
-                                        ],
-                                      ),
-                                    ),
-                                    const PopupMenuItem(
-                                      value: 'prodelm',
+                                      value: 'Probelm',
                                       child: Row(
                                         children: [
                                           Icon(Icons.horizontal_distribute),
@@ -114,19 +104,18 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
                                   ],
                                   onSelected: (value) {
                                     if (value == 'prodelm') {
-                                      // Navigator.pushReplacement(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) => const Setting(),
-                                      //   ),
-                                      // );
-                                    } else if (value == 'Chat') {
-                                      // Navigator.pushReplacement(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) => chatDeatiles(),
-                                      //   ),
-                                      // );
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Blockconsultant(
+                                              name: MyBloc.get(context)
+                                                      .listshowAllConsltant[
+                                                  widget.i]['name'],
+                                              imageco: MyBloc.get(context)
+                                                      .listshowAllConsltant[
+                                                  widget.i]['image']),
+                                        ),
+                                      );
                                     }
                                   },
                                 ),
@@ -209,78 +198,94 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
                       ),
                     ),
                     Gap(10),
-                    const customLine(),
+                    const CustomLine(),
                     Row(
                       children: [
-                        Expanded(
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                isSomeWorkPressed = !isSomeWorkPressed;
-                                // Reset the other button state
-                              });
-                            },
-                            child: Column(
-                              children: [
-                                Text(
-                                  "SomeWork",
-                                  style: Styles.textStyle18.copyWith(
-                                    color: Colors.grey,
+                        InkWell(
+                          child: Column(
+                            children: [
+                              Column(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        isSomeWorkPressed = !isSomeWorkPressed;
+                                        // Reset the other button state
+                                      });
+                                    },
+                                    child: Text(
+                                      "SomeWork",
+                                      style: Styles.textStyle18.copyWith(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 2,
-                                ),
-                                Container(
-                                  color: isSomeWorkPressed
-                                      ? primarycolor
-                                      : Colors.transparent,
-                                  height: 2,
-                                  width: double.infinity,
-                                ),
-                              ],
-                            ),
+                                  Gap(5),
+                                  Container(
+                                    height: 2,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
+                                    color: isSomeWorkPressed
+                                        ? primarycolor
+                                        : Colors.transparent,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: TextButton(
-                            onPressed: () {},
-                            child: Expanded(
-                              child: Column(
+                        InkWell(
+                          onTap: () async {
+                            await BlocProvider.of<RatingCubit>(context)
+                                .getAllRating(
+                                    uidd: MyBloc.get(context)
+                                        .listshowAllConsltant[widget.i]['uid']);
+                            setState(() {
+                              isSomeWorkPressed = !isSomeWorkPressed;
+
+                              // Reset the other button state
+                            });
+                          },
+                          child: Column(
+                            children: [
+                              Column(
                                 children: [
                                   Text(
-                                    "Rating",
+                                    "Reating ",
                                     style: Styles.textStyle18.copyWith(
                                       color: Colors.grey,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 2,
-                                  ),
+                                  Gap(5),
                                   Container(
+                                    height: 2,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.5,
                                     color: isSomeWorkPressed
                                         ? Colors.transparent
                                         : primarycolor,
-                                    height: 2,
-                                    width: double.infinity,
                                   ),
                                 ],
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                    const customLine(),
+                    Gap(2),
+                    const CustomLine(),
                     const SizedBox(
                       height: 5,
                     ),
+                    Gap(5),
                     isSomeWorkPressed
-                        ? ListPostItemsworkcon(
+                        ? BuildListConWork(
                             uid: MyBloc.get(context)
                                 .listshowAllConsltant[widget.i]['uid'],
                           )
-                        : Text("00000000000")
+                        : Ratingviews(
+                            consltantUid: MyBloc.get(context)
+                                .listshowAllConsltant[widget.i]['uid']),
                   ],
                 ),
               ),
@@ -290,111 +295,30 @@ class _ConsltantProfailgrenalState extends State<ConsltantProfailgrenal> {
   }
 }
 
-class ListPostItemsworkcon extends StatelessWidget {
-  const ListPostItemsworkcon({
-    super.key,
-    required this.uid,
-  });
-  final String uid;
-  @override
-  Widget build(BuildContext context) {
-    final myBloc = MyBloc.get(context);
-
-    if (myBloc.listPrivateworkConsultant.isEmpty) {
-      return Center(
-        child: Text(
-          uid,
-          style: Styles.textStyle20,
-        ),
-      );
-    }
-
-    return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 5,
-      ),
-      itemCount: myBloc.listPrivateworkConsultant.length,
-      itemBuilder: (context, index) => PostItemsSomeWork(),
-    );
-  }
-}
-
-class PostItemsSomeWork extends StatelessWidget {
-  const PostItemsSomeWork({
+class Ratingviewscon extends StatelessWidget {
+  const Ratingviewscon({
     super.key,
   });
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      margin: const EdgeInsets.symmetric(horizontal: 8.0),
-      elevation: 20.0,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              CircleAvatar(
-                backgroundImage: CachedNetworkImageProvider(
-                  "",
-                ),
-                radius: 25,
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          "",
-                          style: Styles.textStyle16,
-                        ),
-                        const SizedBox(
-                          width: 3,
-                        ),
-                      ],
-                    ),
-                    Text(
-                      "Ahmed",
-                      style:
-                          const TextStyle(fontSize: 12, color: Colors.black38),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            child: SizedBox(
-              width: double.infinity,
-              child: Text("{model.text}", style: Styles.textStyle16),
+    return BlocProvider(
+      create: (context) => RatingCubit(),
+      child: BlocConsumer<RatingCubit, RatingState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) => PostItemsSomeWorkCon(
+              model: GetConsultnt.get(context).someWorkco[index],
             ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 220,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: CachedNetworkImageProvider(
-                  "{model.postImage}",
-                ),
-                fit: BoxFit.cover,
-              ),
+            separatorBuilder: (context, index) => SizedBox(
+              height: 5,
             ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 1,
-            color: Colors.black38.withOpacity(0.2),
-          ),
-        ],
+            itemCount: GetConsultnt.get(context).someWorkco.length,
+          );
+        },
       ),
     );
   }

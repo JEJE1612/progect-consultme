@@ -5,16 +5,18 @@ import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views
 import 'package:flutter_application_1/Feature/HomeLayOut/Presentation/User/views/widgets/Setting/views/Widgets/CustomTextFoemaFaildEditProfail.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_bloc.dart';
 import 'package:flutter_application_1/Feature/HomeLayOut/mangment/my_state.dart';
+import 'package:flutter_application_1/core/utils/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EditProfailUser extends StatefulWidget {
-  const EditProfailUser({super.key});
+class EditProfileUser extends StatefulWidget {
+  const EditProfileUser({super.key});
 
   @override
-  State<EditProfailUser> createState() => _EditProfailUserState();
+  State<EditProfileUser> createState() => _EditProfileUserState();
 }
 
-class _EditProfailUserState extends State<EditProfailUser> {
+class _EditProfileUserState extends State<EditProfileUser> {
+  var selectedType;
   TextEditingController namecontroller = TextEditingController();
 
   TextEditingController bioController = TextEditingController();
@@ -35,7 +37,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
         var imageProfail = MyBloc.get(context).imageUser;
         var imagecover = MyBloc.get(context).coverUser;
 
-        var Bloc = MyBloc.get(context);
+        var bloc = MyBloc.get(context);
         return Scaffold(
           body: SingleChildScrollView(
             child: SafeArea(
@@ -65,7 +67,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                           elevation: 0.0,
                           child: InkWell(
                             onTap: () {
-                              Bloc.getCover();
+                              bloc.getCover();
                             },
                             child: Container(
                               height: size.height * 0.23,
@@ -89,7 +91,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                           bottom: -50,
                           child: InkWell(
                             onTap: () {
-                              Bloc.getImageProfail();
+                              bloc.getImageProfail();
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -124,7 +126,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                                   CustomButton(
                                     text: "image",
                                     onTap: () {
-                                      MyBloc.get(context).uploadprofialImage(
+                                      MyBloc.get(context).uploadProfileImage(
                                         name: namecontroller.text.isNotEmpty
                                             ? namecontroller.text
                                             : MyBloc.get(context)
@@ -196,7 +198,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: namecontroller,
                       onSaved: (value) {
-                        namecontroller.text == value;
+                        namecontroller.text = value!;
                       },
                       text: 'Pleas enter name',
                       hintText: MyBloc.get(context).usermodel?.name,
@@ -211,29 +213,13 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: bioController,
                       onSaved: (value) {
-                        namecontroller.text == value;
+                        namecontroller.text = value!;
                       },
                       text: 'Pleas enter bio',
                       hintText: MyBloc.get(context).usermodel?.bio,
                     ),
                     const SizedBox(
                       height: 20,
-                    ),
-                    if (MyBloc.get(context).usermodel?.type != 'client')
-                      CustomTextFoemaFaildEditProfail(
-                        prefixIcon: const Icon(
-                          Icons.work,
-                        ),
-                        textCapitalization: TextCapitalization.sentences,
-                        nameController: jodController,
-                        onSaved: (value) {
-                          namecontroller.text == value;
-                        },
-                        text: 'Pleas enter jod',
-                        hintText: 'Teather',
-                      ),
-                    const SizedBox(
-                      height: 18,
                     ),
                     CustomTextFoemaFaildEditProfail(
                       prefixIcon: const Icon(
@@ -242,7 +228,7 @@ class _EditProfailUserState extends State<EditProfailUser> {
                       textCapitalization: TextCapitalization.sentences,
                       nameController: phoneController,
                       onSaved: (value) {
-                        phoneController.text == value;
+                        phoneController.text = value!;
                       },
                       text: 'Pleas enter phone',
                       hintText: MyBloc.get(context).usermodel?.phone,
@@ -251,6 +237,28 @@ class _EditProfailUserState extends State<EditProfailUser> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.06,
                     ),
+                    if (MyBloc.get(context).usermodel?.type != 'client')
+                      DropdownButton(
+                        items: bloc.catroies.map((value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(
+                              '${value['text']}',
+                              style: const TextStyle(color: primarycolor),
+                            ),
+                          );
+                        }).toList(),
+                        onChanged: (selectedAccountType) {
+                          print('$selectedAccountType');
+                          setState(() {
+                            selectedType = selectedAccountType;
+                          });
+                        },
+                        value: selectedType,
+                        isExpanded: false,
+                        hint: const Text('Choose Your Category',
+                            style: TextStyle(color: primarycolor)),
+                      ),
                     const SizedBox(
                       height: 10,
                     ),
@@ -267,6 +275,8 @@ class _EditProfailUserState extends State<EditProfailUser> {
                               ? bioController.text
                               : MyBloc.get(context).usermodel?.bio ?? "",
                         );
+                        MyBloc.get(context)
+                            .chooseMyCategory(selectedType['text']);
                         Navigator.pop(context);
                       },
                       text: "Save",

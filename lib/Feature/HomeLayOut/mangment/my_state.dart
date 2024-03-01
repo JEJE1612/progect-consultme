@@ -13,13 +13,13 @@ class LodingGetUserData extends MyState {}
 class ScafullGetUserData extends MyState {}
 
 class ErrorGetUserData extends MyState {
-  final String Error;
-  ErrorGetUserData(this.Error);
+  final String error;
+  ErrorGetUserData(this.error);
 }
 
 class HomeErrorStata extends MyState {
-  final String Error;
-  HomeErrorStata(this.Error);
+  final String error;
+  HomeErrorStata(this.error);
 }
 
 class LodingGetProfailImage extends MyState {}

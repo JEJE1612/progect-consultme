@@ -20,3 +20,17 @@ final class RatingFailure extends RatingState {
 
   RatingFailure({required this.errorMessage});
 }
+
+final class RatingconLoading extends RatingState {}
+
+final class RatingconSucess extends RatingState {
+  final List<RatingModel> allRating;
+
+  RatingconSucess({required this.allRating});
+}
+
+final class RatingconFailure extends RatingState {
+  final String errorMessage;
+
+  RatingconFailure({required this.errorMessage});
+}

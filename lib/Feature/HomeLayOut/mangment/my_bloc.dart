@@ -58,6 +58,7 @@ class MyBloc extends Cubit<MyState> {
 
   Future<void> signOut() async {
     try {
+      await CacheHealper.killToken(key: "uid");
       await FirebaseAuth.instance.signOut();
       print("User signed out successfully");
       emit(ScafullsignOut());
@@ -66,15 +67,18 @@ class MyBloc extends Cubit<MyState> {
     }
   }
 
-  void getUserData() {
+  Future<void> getUserData() async {
     emit(LodingGetUserData());
-    FirebaseFirestore.instance.collection('user').doc(uid).get().then((value) {
+    await FirebaseFirestore.instance
+        .collection('user')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) {
       if (value.exists) {
         Map<String, dynamic>? data = value.data();
         if (data != null) {
           usermodel = UserModel.fromJson(data);
           emit(ScafullGetUserData());
-          print("$usermodel");
         } else {
           emit(HomeErrorStata("Data is null"));
         }
@@ -150,7 +154,7 @@ class MyBloc extends Cubit<MyState> {
     });
   }
 
-  void uploadprofialImage({
+  void uploadProfileImage({
     required String? name,
     required String? phone,
     required String? bio,
@@ -211,8 +215,8 @@ class MyBloc extends Cubit<MyState> {
 
   File? imageAsk;
 
-  void removeimagephoto() {
-    imageAsk == File('');
+  void removeImageAsk() {
+    imageAsk = File('');
     emit(RemoveAskImage());
   }
 
@@ -244,6 +248,7 @@ class MyBloc extends Cubit<MyState> {
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         creatAddPhoto(
+          imagecat: "",
           dateTime: date,
           text: text,
           postImge: value,
@@ -257,17 +262,20 @@ class MyBloc extends Cubit<MyState> {
     });
   }
 
-  List<AskModel> poto = [];
-  List potoId = [];
-
+  List<AskModel> photo = [];
+  List photoId = [];
+  String imageCatroiesAsk =
+      "https://firebasestorage.googleapis.com/v0/b/consultme-2be0e.appspot.com/o/user%2FIMG_20240131_230205_486.jpg?alt=media&token=9a180f15-4d97-4fd4-a571-8897779d53a7";
   CollectionReference post = FirebaseFirestore.instance.collection('post');
 
   void creatAddPhoto({
     required String text,
     String? postImge,
     required String dateTime,
+    required String imagecat,
   }) async {
     AskModel model = AskModel(
+      imagecat: imagecat,
       uId: usermodel?.uid,
       name: usermodel?.name,
       text: text,
@@ -277,8 +285,8 @@ class MyBloc extends Cubit<MyState> {
     );
 
     emit(LodingCreatAskUser());
-    poto.clear();
-    potoId.clear();
+    photo.clear();
+    photoId.clear();
 
     try {
       DocumentReference docRef = await post.add(model.toMap());
@@ -309,8 +317,8 @@ class MyBloc extends Cubit<MyState> {
           .get();
 
       for (var element in querySnapshot.docs) {
-        poto.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
-        potoId.add(element.id);
+        photo.add(AskModel.fromJson(element.data() as Map<String, dynamic>));
+        photoId.add(element.id);
       }
 
       emit(ScafullGetListAsk());
@@ -350,8 +358,8 @@ class MyBloc extends Cubit<MyState> {
       await post.doc(docId).delete();
 
       // Remove the item from the local list based on the docId
-      poto.removeWhere((ask) => ask.docId == docId);
-      potoId.remove(docId);
+      photo.removeWhere((ask) => ask.docId == docId);
+      photoId.remove(docId);
 
       emit(SuccessDeleteAskUser());
     } catch (e) {
@@ -363,7 +371,7 @@ class MyBloc extends Cubit<MyState> {
   File? imagework;
 
   void removeimagework() {
-    imageAsk == File('');
+    imageAsk = File('');
     emit(Removeimagework());
   }
 
@@ -395,6 +403,7 @@ class MyBloc extends Cubit<MyState> {
         .then((value) {
       value.ref.getDownloadURL().then((value) {
         creatSameWork(
+          imagecat: '',
           dateTime: date,
           text: text,
           postImge: value,
@@ -417,8 +426,10 @@ class MyBloc extends Cubit<MyState> {
     required String text,
     String? postImge,
     required String dateTime,
+    required String imagecat,
   }) async {
     AskModel model = AskModel(
+      imagecat: '',
       uId: usermodel?.uid,
       name: usermodel?.name,
       text: text,
@@ -470,19 +481,43 @@ class MyBloc extends Cubit<MyState> {
     }
   }
 
+  List<AskModel> someWorkco = [];
+
+  List someWorkcoid = [];
+  void getSomeWorkcon() async {
+    emit(LodingGetListSomeWork());
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Work')
+          .where("uId", isEqualTo: "aFppoU09bhOg93gde1VjY1AaGui1")
+          .orderBy(
+            "dateTime",
+          )
+          .get();
+
+      for (var element in querySnapshot.docs) {
+        someWorkco
+            .add(AskModel.fromJson(element.data() as Map<String, dynamic>));
+        someWorkcoid.add(element.id);
+      }
+      print(someWorkcoid.length);
+
+      emit(ScafullGetSomeWork());
+    } catch (e) {
+      print("Error in getAsk: $e");
+    }
+  }
+
   void deleteWork(String docId) async {
     emit(LodingDeletesomeWorkid());
-
     try {
       await FirebaseFirestore.instance.collection('Work').doc(docId).delete();
-
       // Remove the deleted item from the local lists
       int index = someWorkid.indexOf(docId);
       if (index != -1) {
         someWorkid.removeAt(index);
         someWork.removeAt(index);
       }
-
       emit(SuccessDeletesomeWorkid());
     } catch (e) {
       emit(ErrorDeletesomeWorkid());
@@ -491,10 +526,10 @@ class MyBloc extends Cubit<MyState> {
   }
 
   List<UserModel> user = [];
-  void getAllUser() {
+  Future<void> getAllUser() async {
     emit(LodingGetUserDataChat());
     if (user.isEmpty) {
-      FirebaseFirestore.instance.collection("user").get().then((value) {
+      await FirebaseFirestore.instance.collection("user").get().then((value) {
         for (var element in value.docs) {
           if (element.data()["uid"] != usermodel?.uid) {
             user.add(UserModel.fromJson(element.data()));
@@ -569,7 +604,7 @@ class MyBloc extends Cubit<MyState> {
 
   File? chatimage;
 
-  Future<void> getChatimage({
+  Future<void> getChatImage({
     required String text,
     required String dateTime,
     required String chatImage,
@@ -623,10 +658,19 @@ class MyBloc extends Cubit<MyState> {
 
 // catroies task
 
-  void choosemycategory(String mychoose) {
+  void chooseMyCategory(String mychoose) {
     FirebaseFirestore.instance
         .collection('user')
         .doc(uid)
+        .set({'category': mychoose}, SetOptions(merge: true)).then((value) {
+      //Do your stuff.
+    });
+  }
+
+  void chooseMyCategoryinAsk(String mychoose, String uidask) {
+    FirebaseFirestore.instance
+        .collection('post')
+        .doc(uidask)
         .set({'category': mychoose}, SetOptions(merge: true)).then((value) {
       //Do your stuff.
     });
@@ -641,7 +685,7 @@ class MyBloc extends Cubit<MyState> {
     emit(LodingGetcatroiesState());
     await FirebaseFirestore.instance.collection('Catroies').get().then((value) {
       for (var element in value.docs) {
-        catroies.add(CatroiesModel.fromJson(element.data()));
+        catroies.add(element);
         catroiesnum.add(element.id);
         emit(ScafullGetcatroiesstate());
       }
@@ -697,41 +741,39 @@ class MyBloc extends Cubit<MyState> {
     });
   }
 
-  List<QueryDocumentSnapshot> listPrivateworkConsultant = [];
+  // getPrivateworkConsultant({required String? uid}) async {
+  //   print("hello");
+  //   emit(LodingGetPrivateworkConsultant());
+  //   FirebaseFirestore.instance
+  //       .collection('Work')
+  //       .where('uId', isEqualTo: uid)
+  //       .get()
+  //       .then((value) {
+  //     for (var element in value.docs) {
+  //       listPrivateworkConsultant.add(element);
+  //     }
+  //     print(listPrivateworkConsultant);
+  //     emit(ScafullGettypeconslutant());
+  //   }).catchError((e) {
+  //     emit(ErrorGettypeconslutant(e.toString()));
+  //   });
+  // }
 
-  getPrivateworkConsultant({required String? uid}) async {
-    print("hello");
-    emit(LodingGetPrivateworkConsultant());
-    FirebaseFirestore.instance
-        .collection('Work')
-        .where('uId', isEqualTo: "aFppoU09bhOg93gde1VjY1AaGui1")
-        .get()
-        .then((value) {
-      for (var element in value.docs) {
-        listPrivateworkConsultant.add(element);
-      }
-      print(listPrivateworkConsultant);
-      emit(ScafullGettypeconslutant());
-    }).catchError((e) {
-      emit(ErrorGettypeconslutant(e.toString()));
-    });
-  }
-
-  List<QueryDocumentSnapshot> listPrivateReatingConsultant = [];
-  getPrivateReatingConsultant(String? uid) async {
-    emit(LodingGettypeconsultant());
-    FirebaseFirestore.instance
-        .collection('rating')
-        .where('uId', isEqualTo: 'uid')
-        .get()
-        .then((value) {
-      for (var element in value.docs) {
-        listPrivateworkConsultant.add(element);
-      }
-      debugPrint(value.toString());
-      emit(ScafullGettypeconslutant());
-    }).catchError((e) {
-      emit(ErrorGettypeconslutant(e.toString()));
-    });
-  }
+  // List<QueryDocumentSnapshot> listPrivateReatingConsultant = [];
+  // getPrivateReatingConsultant(String? uid) async {
+  //   emit(LodingGettypeconsultant());
+  //   FirebaseFirestore.instance
+  //       .collection('rating')
+  //       .where('uId', isEqualTo: 'uid')
+  //       .get()
+  //       .then((value) {
+  //     for (var element in value.docs) {
+  //       listPrivateworkConsultant.add(element);
+  //     }
+  //     debugPrint(value.toString());
+  //     emit(ScafullGettypeconslutant());
+  //   }).catchError((e) {
+  //     emit(ErrorGettypeconslutant(e.toString()));
+  //   });
+  // }
 }
